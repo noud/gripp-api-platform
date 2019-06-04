@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% set page_title = 'Oeps, er is iets verkeerd gegaan.' %}
+
+{% block body %}
+    <main class="page-main container">
+        <div class="block block-login">
+            <div class="block-header">
+                <div class="block-title">
+                    <h3>Sorry, we kunnen deze pagina niet meer vinden</h3>
+                    <hr>
+                    <p>Klik <a href="{{ path('ride_worklist') }}">hier</a> om te terug te gaan naar het overzicht.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

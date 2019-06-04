@@ -1,0 +1,108 @@
+{
+	"type" : "project",
+	"license" : "MIT",
+	"require" : {
+		"php": "^7.1.3",
+		"ext-ctype": "*",
+		"ext-iconv": "*",
+		"noud/gripp_api": "^3.0",
+		"psr/simple-cache": "^1.0",
+		"sensio/framework-extra-bundle": "^5.3",
+		"sensiolabs/security-checker": "^5.0",
+		"symfony/apache-pack": "^1.0",
+		"symfony/cache": "4.3.*",
+		"symfony/console": "4.3.*",
+		"symfony/dotenv": "4.3.*",
+		"symfony/flex": "^1.1",
+		"symfony/framework-bundle": "4.3.*",
+		"symfony/security-bundle": "4.3.*",
+		"symfony/serializer-pack": "*",
+		"symfony/translation": "4.3.*",
+		"symfony/twig-bundle": "4.3.*",
+		"symfony/webpack-encore-bundle": "^1.6",
+		"symfony/yaml": "4.3.*"
+	},
+	"config" : {
+		"preferred-install" : {
+			"*" : "dist"
+		},
+		"sort-packages" : true
+	},
+	"autoload" : {
+		"psr-4" : {
+			"App\\" : "src/"
+		}
+	},
+	"autoload-dev" : {
+		"psr-4" : {
+			"App\\Tests\\" : "tests/"
+		}
+	},
+	"replace" : {
+		"paragonie/random_compat" : "2.*",
+		"symfony/polyfill-ctype" : "*",
+		"symfony/polyfill-iconv" : "*",
+		"symfony/polyfill-php71" : "*",
+		"symfony/polyfill-php70" : "*",
+		"symfony/polyfill-php56" : "*"
+	},
+	"scripts" : {
+        "auto-scripts": {
+			"cache:clear": "symfony-cmd",
+			"assets:install %PUBLIC_DIR%": "symfony-cmd",
+			"security-checker security:check": "script"
+		},
+		"post-install-cmd" : [
+			"@auto-scripts"
+		],
+		"post-update-cmd" : [
+			"@auto-scripts"
+		]
+	},
+	"conflict" : {
+		"symfony/symfony" : "*"
+	},
+	"extra" : {
+		"symfony" : {
+			"allow-contrib" : false,
+			"require" : "4.3.*"
+		}
+	},
+	"name" : "noud/gripp_client_symfony",
+	"description" : "Gripp API Symfony",
+	"authors" : [{
+			"name" : "Noud de Brouwer",
+			"email" : "noud4@home.nl",
+			"homepage" : "https://github.com/noud",
+			"role" : "author"
+		}
+	],
+	"support" : {
+		"email" : "noud4@home.nl",
+		"issues" : "https://github.com/noud/gripp_client_symfony/issues",
+		"source" : "https://github.com/noud/gripp_client_symfony"
+	},
+	"keywords" : [
+		"api",
+		"json-rpc",
+		"php",
+		"symfony",
+		"php56",
+		"php53",
+		"php7",
+		"php71",
+		"php72",
+		"curlphp"
+	],
+	"require-dev": {
+	"symfony/debug": "4.3.*",
+        "friendsofphp/php-cs-fixer": "^2.14",
+        "phpmd/phpmd": "^2.6",
+        "phpstan/phpstan-doctrine": "^0.11.2",
+        "phpstan/phpstan-phpunit": "^0.11.0",
+        "phpstan/phpstan-symfony": "^0.11.3",
+        "symfony/debug-pack": "*",
+        "symfony/profiler-pack": "*",
+        "symfony/test-pack": "*"
+	}
+}

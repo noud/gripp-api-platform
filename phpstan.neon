@@ -1,0 +1,17 @@
+includes:
+	- vendor/phpstan/phpstan-doctrine/extension.neon
+	- vendor/phpstan/phpstan-symfony/extension.neon
+	- vendor/phpstan/phpstan-phpunit/extension.neon
+
+parameters:
+    reportUnmatchedIgnoredErrors: false
+
+    autoload_files:
+        - bin/.phpunit/phpunit-6.5/vendor/autoload.php
+
+    symfony:
+        container_xml_path: var/cache/test/srcApp_KernelTestDebugContainer.xml
+
+    excludes_analyse:
+        # Migrations
+        - '**/Migrations/**.php'

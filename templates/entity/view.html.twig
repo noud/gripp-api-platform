@@ -1,0 +1,45 @@
+{% extends 'app.html.twig' %}
+{% trans_default_domain 'gripp' %}
+{% block navbar %}navbar-dark bg-dark border-bottom{% endblock %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block body %}
+    <div class="main-content">
+        <section class="slice">
+            <div class="container py-5 px-md-0 d-flex align-items-center">
+                <div class="w-100">
+                    <div class="row row-grid justify-content-center justify-content-lg-between">
+                        <div class="col-12 order-lg-2">
+                            <div class="card shadow zindex-100 mb-0">
+                                <div class="card-body px-md-5 py-5">
+                                    <div class="mb-5">
+                                        <h1 class="h1">{{ page.title }}</h1>
+                                        <p class="text-muted mb-0">{{ page.content }}</p>
+                                    </div>
+                                    <span class="clearfix"></span>
+                                        <div class="row">
+                                             <div class="col-sm-4">
+                                                 {% for entityFields in entity.tupel %}
+                                                    <div class="row">
+                                                       <div class="col-sm-4">
+                                                             {{ entityFields[0] }}
+                                                       </div>
+                                                       <div class="col-sm-8">
+                                                             {{ entityFields[1] }}
+                                                       </div>
+                                                    </div>
+                                                 {% endfor %}
+                                            </div>
+                                        </div>
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

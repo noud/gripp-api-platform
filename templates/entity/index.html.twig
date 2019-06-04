@@ -1,0 +1,62 @@
+{% extends 'app.html.twig' %}
+{% trans_default_domain 'gripp' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block navbar %}navbar-dark bg-dark border-bottom{% endblock %}
+{% block title %}{{ page.title }}{% endblock %}
+{% block bodyClass 'index-body' %}
+{% block body %}
+    <div class="main-content">
+        <section class="slice">
+            <div class="container py-5 px-md-0 d-flex align-items-center">
+                <div class="w-100">
+                    <div class="row row-grid justify-content-center justify-content-lg-between">
+                        <div class="col-12 order-lg-2">
+                            <div class="card shadow zindex-100 mb-0">
+                                <div class="card-body px-md-5 py-5">
+                                    <div class="mb-5">
+                                        <h1 class="h1">{{ page.title }}</h1>
+                                        <p class="text-muted mb-0">{{ page.content }}</p>
+                                    </div>
+                                    <span class="clearfix"></span>
+{#                                         <div class="row">#}
+{#                                             {{ form_start(form, {'attr': {'autocomplete' : 'off', 'id' : 'ticket_status'}}) }}#}
+{#                                                {{ form_row(form.status) }}                                    #}
+{#                                             {{ form_end(form) }}#}
+{#                                         </div>#}
+                                        <div class="row">
+                                            {% for field in entities.fields %}
+                                                <div class="col-sm-2">
+                                                <strong>{{ field }}</strong>
+{#                                                 <strong>{{ ('tag.field.'.'x')|trans }}</strong>#}
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                        {% for tupel in entities.tupels %}
+                                            <div class="row">
+                                                <div class="col-sm-2">
+                                                    <a href="{{ path('gripp_tag_view', {'id' : tupel[0]}) }}">{{ tupel[0] }}</a>
+                                                </div>
+                                                {% for fieldValue in tupel|slice(1) %}
+                                                        <div class="col-sm-6">
+                                                            {{ fieldValue }}
+                                                        </div>
+                                                {% endfor %}
+                                             </div>
+                                        {% endfor %}
+                                    <br/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}

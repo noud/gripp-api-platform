@@ -1,0 +1,78 @@
+enum:
+  options_orderings_direction:
+     asc: 'ascending'
+     desc: 'descending'
+  filters_operator:
+    equals: 'equals'
+    greaterequals: 'greater or equals'
+  # entityEnums
+  employee:
+    salution:
+      sir: 'Sir'
+      madam: 'Madam'
+      sirmadam: 'Madam or Sir'
+  hour:
+    status:
+      concept: 'concept'
+      definitive: 'definitive'
+      authorized: 'authorized'
+  invoiceline:
+    rowtype:
+      normal: 'normal'
+      group: 'group'
+  offer:
+    acceptancestatus:
+      accepted: 'accepted'
+      rejected: 'rejected'
+    frequency:
+      everymonth: 'every month'
+      everyauarter: 'every auarter'
+      every6months: 'every 6 months'
+      everyyear: 'every year'
+      every18months: 'every 18 months'
+      everytwoyears: 'every two years'
+      everyweek: 'every week'
+      everytwoweeks: 'every two weeks'
+      everythreeyears: 'every three years'
+      everyfouryears: 'every four years'
+      everyfiveyears: 'every five years'
+    paymentmethod:
+      manual_transfer: 'manual transfer'
+      automatic_transfer: 'automatic transfer'
+    status:
+        project_running: 'project running'
+        project_completed: 'project completed'
+        concept: 'concept'
+        rejected: 'rejected'
+        sent: 'sent'
+  webhook:
+    trigger:
+      company:
+        created: 'company created'
+      contract:
+        created: 'contract created'
+      employee:
+        created: 'employee created'
+      invoice:
+        created: 'invoice created'
+        sent: ''
+      offer:
+        accepted: 'offer accepted'
+        created: 'offer created'
+        declined: 'offer declined'
+      project:
+        created: 'project created'
+      task:
+        created: 'task created'
+        done: 'task done'
+      hour:
+        created: 'hour created'
+      payment: 'payment'
+      purchasepayment: 'purchasepayment'
+      contact:
+        created: 'contact created'
+      timelineentry: 'timelineentry'
+      purchaseinvoice:
+        created: 'purchaseinvoice created'
+      purchaseorder:
+        created: 'purchaseorder created'

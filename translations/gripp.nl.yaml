@@ -1,0 +1,78 @@
+enum:
+  options_orderings_direction:
+     asc: 'oplopend'
+     desc: 'aflopend'
+  filters_operator:
+    equals: 'gelijk'
+    greaterequals: 'groter of gelijk'
+  # entityEnums
+  employee:
+    salution:
+      sir: 'Meneer'
+      madam: 'Mevrouw'
+      sirmadam: 'Mevrouw of Meneer'
+  hour:
+    status:
+      concept: 'concept'
+      definitive: 'definitief'
+      authorized: 'geauthorizeerd'
+  invoiceline:
+    rowtype:
+      normal: 'normaal'
+      group: 'groep'
+  offer:
+    acceptancestatus:
+      accepted: 'geaccepteerd'
+      rejected: 'geweigerd'
+    frequency:
+      everymonth: 'elke maand'
+      everyauarter: 'elk kwartaal'
+      every6months: 'elke 6 maanden'
+      everyyear: 'elk jaar'
+      every18months: 'elke 18 maanden'
+      everytwoyears: 'elke twee jaar'
+      everyweek: 'elke week'
+      everytwoweeks: 'elke twee weeks'
+      everythreeyears: 'elke drie jaar'
+      everyfouryears: 'elke vier jaar'
+      everyfiveyears: 'elke vijf jaar'
+    paymentmethod:
+      manual_transfer: 'handmatige overdracht'
+      automatic_transfer: 'automatische overdracht'
+    status:
+      project_running: 'project loopt'
+      project_completed: 'project compleet'
+      concept: 'concept'
+      rejected: 'geweigerd'
+      sent: 'verzonden'
+  webhook:
+    trigger:
+      company:
+        created: 'bedrijf aangemaakt'
+      contract:
+        created: 'contract aangemaakt'
+      employee:
+        created: 'medewerker aangemaakt'
+      invoice:
+        created: 'factuur aangemaakt'
+        sent: ''
+      offer:
+        accepted: 'offerte geaccepteerd'
+        created: 'offerte aangemaakt'
+        declined: 'offerte geweigerd'
+      project:
+        created: 'project aangemaakt'
+      task:
+        created: 'taak aangemaakt'
+        done: 'taak gedaan'
+      hour:
+        created: 'uur aangemaakt'
+      payment: 'betaling'
+      purchasepayment: 'aankoopbetaling'
+      contact:
+        created: 'contact aangemaakt'
+      timelineentry: 'tijdlijn invoer'
+      purchaseinvoice:
+        created: 'aankoopfactuur aangemaakt'
+      purchaseorder:
+        created: 'aankooporder aangemaakt'

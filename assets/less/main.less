@@ -1,0 +1,49 @@
+@import 'bootstrap.less';
+@import '../../node_modules/@fortawesome/fontawesome-free/less/fontawesome.less';
+@import '../../node_modules/@fortawesome/fontawesome-free/less/regular.less';
+@import '../../node_modules/@fortawesome/fontawesome-free/less/solid.less';
+@import '../../node_modules/@fortawesome/fontawesome-free/less/brands.less';
+@import '_components.less';
+@import '_mixins.less';
+@import '_modules.less';
+@import '_variables.less';
+
+* {outline:0!important;}
+html {font-size:100%;}
+body {min-width:320px;-moz-osx-font-smoothing: grayscale;-webkit-font-smoothing: antialiased;font-weight:@font-weight__default;letter-spacing:@letter-spacing__default;padding-top:80px;
+    @media @xs {font-size:@font-size__sm;padding-top:60px;}
+}
+
+h1,h2,h3,h4,h5,h6, .page-title {margin-top:0;line-height:@line-height__heading;font-weight:700;}
+h1, .page-title {font-size:@font-size__lg;margin-bottom:0;letter-spacing:0;
+    @media @xs {font-size:@font-size__sm;}
+}
+h2 {font-size:@font-size__heading-sm;
+    @media @xs {font-size:@font-size__sm;}
+}
+h3 {font-size:@font-size__lg;}
+p {margin:0 0 @line-height-px;
+    @media @xs {margin-bottom:@mobile-line-height-px;}
+}
+.bold {font-weight:700;}
+.no-gutters {margin-left:0;margin-right:0;
+    > [class*='col-'] {padding-left:0;padding-right:0;}
+}
+.xs-gutters {margin-left:-(@grid-gutter-width__xs/2);margin-right:-(@grid-gutter-width__xs/2);
+    > [class*='col-'] {padding-left:(@grid-gutter-width__xs/2);padding-right:(@grid-gutter-width__xs/2);}
+}
+.sm-gutters {margin-left:-(@grid-gutter-width__sm/2);margin-right:-(@grid-gutter-width__sm/2);
+    > [class*='col-'] {padding-left:(@grid-gutter-width__sm/2);padding-right:(@grid-gutter-width__sm/2);}
+}
+
+.flex-row {display:flex;flex-wrap:wrap;
+    &::before, &::after {display:none;}
+}
+
+.std {line-height:1.7;
+    p {margin-bottom:30px;}
+}
+
+.fullpage-overlay {position:fixed;z-index:90;background:fade(@primary-color,35%);left:0;top:0;right:0;bottom:0;visibility:hidden;opacity:0;transition:visibility @animation-duration__default @animation-easing__default, opacity @animation-duration__default @animation-easing__default;
+    &.visible {visibility:visible;opacity:1;}
+}

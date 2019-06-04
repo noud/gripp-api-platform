@@ -1,0 +1,42 @@
+<header class="page-header">
+    <div class="container-fluid">
+        <div class="row flex-row sm-gutters">
+            <div class="col-xs-3 col-navigation">
+{#                 {% if app.user is not empty %}#}
+                <div class="main-navigation-trigger">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <nav class="main-navigation">
+                    <ul class="menu navigation">
+                        <li>
+                            <a href="{{ path('gripp_tag_index') }}"><i class="fas fa-shopping-basket"></i>Tags</a>
+                        </li>
+{#                         <li>#}
+{#                             <a href="{{ path('gripp_tag_create') }}"><i class="fas fa-shopping-basket"></i>Create Tag</a>#}
+{#                         </li>#}
+{#                         <li>#}
+{#                             <a href="{{ path('app_logout') }}"><i class="fas fa-sign-out-alt"></i>Logout</a>#}
+{#                         </li>#}
+                    </ul>
+                </nav>
+{#                 {% endif %}#}
+            </div>
+            {% if page_title is defined %}
+                <div class="col-xs-6 col-title">
+                    <h1>{{ page_title }}</h1>
+                </div>
+            {% endif %}
+            <div class="col-xs-3 col-logo">
+                <a href="{{ path('gripp_tag_index') }}" class="logo">
+                    <picture>
+                        <!--[if IE 9]><video style="display: none;"><![endif]-->
+{#                         <source srcset="{{ asset('/build/images/logo.svg') }}" media="(min-width: 768px)">#}
+                        <!--[if IE 9]></video><![endif]-->
+{#                         <img src="{{ asset('/build/images/logo-icon.svg') }}" alt="Gripp.com B.V." />#}
+                    </picture>
+                </a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="fullpage-overlay main-navigation-overlay"></div>
