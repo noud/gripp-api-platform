@@ -26,7 +26,9 @@ final class TaaktypeAdmin extends AbstractAdmin
         $listMapper
             ->add('searchname')
             ->add('name')
-            ->add('color')
+            ->add('color', null, [
+                'template' => 'bundles/SonataAdminBundle/list_color.html.twig',
+            ])
             ->add('extendedproperties')
             ->add('_action', null, [
                 'actions' => [
