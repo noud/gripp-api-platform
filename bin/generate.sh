@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+bin/console doctrine:mapping:import "App\Entity" annotation --path=src/Entity
+bin/console make:entity --regenerate App
+rm src/Admin/VerlofaanvraagAdmin.php; bin/console make:sonata:admin App/Entity/Verlofaanvraag --id=admin.verlofaanvraag --no-interaction
+rm src/Admin/VerlofmutatieAdmin.php; bin/console make:sonata:admin App/Entity/Verlofmutatie --id=admin.verlofmutatie --no-interaction
+rm src/Admin/BedrijfAdmin.php; bin/console make:sonata:admin App/Entity/Bedrijf --id=admin.bedrijf --no-interaction
+rm src/Admin/ContactpersoonAdmin.php; bin/console make:sonata:admin App/Entity/Contactpersoon --id=admin.contactpersoon --no-interaction
+rm src/Admin/ContractAdmin.php; bin/console make:sonata:admin App/Entity/Contract --id=admin.contract --no-interaction
+rm src/Admin/ContractregelAdmin.php; bin/console make:sonata:admin App/Entity/Contractregel --id=admin.contractregel --no-interaction
+rm src/Admin/KostenplaatsAdmin.php; bin/console make:sonata:admin App/Entity/Kostenplaats --id=admin.kostenplaats --no-interaction
+rm src/Admin/MedewerkerAdmin.php; bin/console make:sonata:admin App/Entity/Medewerker --id=admin.medewerker --no-interaction
+rm src/Admin/MedewerkerdatumAdmin.php; bin/console make:sonata:admin App/Entity/Medewerkerdatum --id=admin.medewerkerdatum --no-interaction
+rm src/Admin/FileAdmin.php; bin/console make:sonata:admin App/Entity/File --id=admin.file --no-interaction
+rm src/Admin/MijnurenAdmin.php; bin/console make:sonata:admin App/Entity/Mijnuren --id=admin.mijnuren --no-interaction
+rm src/Admin/FactuurAdmin.php; bin/console make:sonata:admin App/Entity/Factuur --id=admin.factuur --no-interaction
+rm src/Admin/FactuurregelAdmin.php; bin/console make:sonata:admin App/Entity/Factuurregel --id=admin.factuurregel --no-interaction
+rm src/Admin/GrootboekAdmin.php; bin/console make:sonata:admin App/Entity/Grootboek --id=admin.grootboek --no-interaction
+rm src/Admin/AlerttriggerAdmin.php; bin/console make:sonata:admin App/Entity/Alerttrigger --id=admin.alerttrigger --no-interaction
+rm src/Admin/OfferteAdmin.php; bin/console make:sonata:admin App/Entity/Offerte --id=admin.offerte --no-interaction
+rm src/Admin/OffertefaseAdmin.php; bin/console make:sonata:admin App/Entity/Offertefase --id=admin.offertefase --no-interaction
+rm src/Admin/OnderdeelAdmin.php; bin/console make:sonata:admin App/Entity/Onderdeel --id=admin.onderdeel --no-interaction
+rm src/Admin/PakketAdmin.php; bin/console make:sonata:admin App/Entity/Pakket --id=admin.pakket --no-interaction
+rm src/Admin/PakketregelAdmin.php; bin/console make:sonata:admin App/Entity/Pakketregel --id=admin.pakketregel --no-interaction
+rm src/Admin/BetalingAdmin.php; bin/console make:sonata:admin App/Entity/Betaling --id=admin.betaling --no-interaction
+rm src/Admin/TariefuitzonderingAdmin.php; bin/console make:sonata:admin App/Entity/Tariefuitzondering --id=admin.tariefuitzondering --no-interaction
+rm src/Admin/VerkoopproductAdmin.php; bin/console make:sonata:admin App/Entity/Verkoopproduct --id=admin.verkoopproduct --no-interaction
+rm src/Admin/OpdrachtAdmin.php; bin/console make:sonata:admin App/Entity/Opdracht --id=admin.opdracht --no-interaction
+rm src/Admin/OpdrachtfaseAdmin.php; bin/console make:sonata:admin App/Entity/Opdrachtfase --id=admin.opdrachtfase --no-interaction
+rm src/Admin/InkoopfactuurAdmin.php; bin/console make:sonata:admin App/Entity/Inkoopfactuur --id=admin.inkoopfactuur --no-interaction
+rm src/Admin/InkoopfactuurregelAdmin.php; bin/console make:sonata:admin App/Entity/Inkoopfactuurregel --id=admin.inkoopfactuurregel --no-interaction
+rm src/Admin/InkoopopdrachtAdmin.php; bin/console make:sonata:admin App/Entity/Inkoopopdracht --id=admin.inkoopopdracht --no-interaction
+rm src/Admin/InkoopopdrachtregelAdmin.php; bin/console make:sonata:admin App/Entity/Inkoopopdrachtregel --id=admin.inkoopopdrachtregel --no-interaction
+rm src/Admin/InkoopbetalingAdmin.php; bin/console make:sonata:admin App/Entity/Inkoopbetaling --id=admin.inkoopbetaling --no-interaction
+rm src/Admin/TagAdmin.php; bin/console make:sonata:admin App/Entity/Tag --id=admin.tag --no-interaction
+rm src/Admin/TaakAdmin.php; bin/console make:sonata:admin App/Entity/Taak --id=admin.taak --no-interaction
+rm src/Admin/TaakfaseAdmin.php; bin/console make:sonata:admin App/Entity/Taakfase --id=admin.taakfase --no-interaction
+rm src/Admin/TaaktypeAdmin.php; bin/console make:sonata:admin App/Entity/Taaktype --id=admin.taaktype --no-interaction
+rm src/Admin/TimelineentryAdmin.php; bin/console make:sonata:admin App/Entity/Timelineentry --id=admin.timelineentry --no-interaction
+rm src/Admin/ProducteenheidAdmin.php; bin/console make:sonata:admin App/Entity/Producteenheid --id=admin.producteenheid --no-interaction
+rm src/Admin/WebhookAdmin.php; bin/console make:sonata:admin App/Entity/Webhook --id=admin.webhook --no-interaction
+bin/console cache:clear

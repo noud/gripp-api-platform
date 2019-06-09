@@ -1,0 +1,153 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Admin;
+
+use App\Type\MedewerkerSalutationType;
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Form\Type\DatePickerType;
+
+final class MedewerkerAdmin extends AbstractAdmin
+{
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    {
+        $datagridMapper
+            ->add('searchname')
+            ;
+    }
+
+    protected function configureListFields(ListMapper $listMapper): void
+    {
+        $listMapper
+            ->add('searchname')
+            ->add('userphoto')
+            ->add('title')
+            ->add('screenname')
+            ->add('number')
+            ->add('dateofbirth')
+            ->add('socialsecuritynumber')
+            ->add('emailprivate')
+            ->add('bankaccount')
+            ->add('bankcity')
+            ->add('bankascription')
+            ->add('notes')
+            ->add('employeesince')
+            ->add('username')
+            ->add('password')
+            ->add('active')
+            ->add('role')
+            ->add('email')
+            ->add('phone')
+            ->add('mobile')
+            ->add('street')
+            ->add('adresline2')
+            ->add('streetnumber')
+            ->add('zipcode')
+            ->add('city')
+            ->add('country')
+            ->add('function')
+            ->add('salutation')
+            ->add('initials')
+            ->add('firstname')
+            ->add('infix')
+            ->add('lastname')
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('skills')
+            ->add('_action', null, [
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => [],
+                ],
+            ]);
+    }
+
+    protected function configureFormFields(FormMapper $formMapper): void
+    {
+        $formMapper
+            ->add('searchname')
+            ->add('userphoto')
+            ->add('title')
+            ->add('screenname')
+            ->add('number')
+            ->add('dateofbirth', DatePickerType::class)
+            ->add('socialsecuritynumber')
+            ->add('emailprivate')
+            ->add('bankaccount')
+            ->add('bankcity')
+            ->add('bankascription')
+            ->add('notes')
+            ->add('employeesince', DatePickerType::class)
+            ->add('username')
+            ->add('password')
+            ->add('active')
+            ->add('role')
+            ->add('email')
+            ->add('phone')
+            ->add('mobile')
+            ->add('street')
+            ->add('adresline2')
+            ->add('streetnumber')
+            ->add('zipcode')
+            ->add('city')
+            ->add('country')
+            ->add('function')
+            ->add('salutation', MedewerkerSalutationType::class)
+            ->add('initials')
+            ->add('firstname')
+            ->add('infix')
+            ->add('lastname')
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('skills')
+            ;
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper): void
+    {
+        $showMapper
+            ->add('searchname')
+            ->add('userphoto')
+            ->add('title')
+            ->add('screenname')
+            ->add('number')
+            ->add('dateofbirth')
+            ->add('socialsecuritynumber')
+            ->add('emailprivate')
+            ->add('bankaccount')
+            ->add('bankcity')
+            ->add('bankascription')
+            ->add('notes')
+            ->add('employeesince')
+            ->add('username')
+            ->add('password')
+            ->add('active')
+            ->add('role')
+            ->add('email')
+            ->add('phone')
+            ->add('mobile')
+            ->add('street')
+            ->add('adresline2')
+            ->add('streetnumber')
+            ->add('zipcode')
+            ->add('city')
+            ->add('country')
+            ->add('function')
+            ->add('salutation')
+            ->add('initials')
+            ->add('firstname')
+            ->add('infix')
+            ->add('lastname')
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('skills')
+            ;
+    }
+}

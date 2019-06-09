@@ -39,10 +39,12 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning()
 
-    .addPlugin(new CopyWebpackPlugin())
-    
-    .enableLessLoader()
-    .enablePostCssLoader()
+    .addPlugin(new CopyWebpackPlugin([
+        { from: './assets/static' }
+    ]))
+ 
+    //.enableLessLoader()
+    //.enablePostCssLoader()
     
     .autoProvidejQuery()
     .autoProvideVariables({

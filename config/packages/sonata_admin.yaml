@@ -1,0 +1,21 @@
+sonata_admin:
+    title: 'Gripp Admin'
+    title_logo: build/images/logo.svg
+    dashboard:
+        blocks:
+            - { type: sonata.admin.block.admin_list, position: left }
+    assets:
+        extra_stylesheets:
+            - build/app.css
+        extra_javascripts:
+            - build/runtime.js
+            - build/app.js
+    templates:
+        layout: 'bundles/SonataAdminBundle/standard_layout_favicon.html.twig'
+sonata_block:
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts: [admin]
+        sonata.admin.block.search_result:
+            contexts: [admin]
+            

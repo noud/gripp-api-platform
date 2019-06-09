@@ -11,3 +11,49 @@ This is a Symfony client application that does work with
 and demonstrate Gripp API use.
 
 The application is highly independent of the Entities used and a good example of writing generic code.
+
+## Provisioning
+
+First start Docker. Provision the application with PHP Composer and JavaScript Node.js NPM packages.:
+```bash
+bin/services.sh
+bin/docker_start.sh
+bin/provision.sh
+```
+## Generating
+
+Import the databasche schema.:
+```bash
+mysql -u root -p db_name< db/schema.sql
+```
+Generate the entities and admin webpages.:
+```bash
+bin/generate.sh
+```
+## Tests
+
+First start and go into your Docker workspace:
+```bash
+bin/docker_workspace.sh
+```
+In there run:
+```bash
+bin/phpunit
+```
+
+## Usage
+
+```bash
+/opt/google/chrome/chrome http://gripp.localhost/admin
+```
+
+## Developing
+
+Feel free to contribute.
+
+### Tools
+
+Created with [Nodeclipse](https://github.com/Nodeclipse/nodeclipse-1)
+ ([Eclipse Marketplace](http://marketplace.eclipse.org/content/nodeclipse), [site](http://www.nodeclipse.org))   
+
+Nodeclipse is free open-source project that grows with your contributions.

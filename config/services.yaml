@@ -4,8 +4,10 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: 'en'
+    locale: 'nl'
     gripp_cache_ttl: '%env(GRIPP_CACHE_TTL)%'
+    api_docs_url: '%env(GRIPP_API_DOCS_URL)%'
+    api_docs_name: '%env(GRIPP_API_DOCS_NAME)%'
 
 services:
     # default configuration for services in *this* file
@@ -40,4 +42,278 @@ services:
         arguments:
             - '%kernel.environment%'
             - ''
-   
+
+#    sonata.medewerker.form.salutation_type:
+#        class: '@Sonata\Form\Type\StatusType'
+#        class: '@App\Type\MedewerkerSalutationType'
+#        tags:
+#            - { name: form.type }
+#        arguments:
+##            - '%sonata.order.order.class%'
+##            - '%sonata.medewerker.class%'
+#            - '@sonata.medewerker.class'
+##            - '%sonata.medewerker.medewerker.class%'
+#            - 'getSalutationList'
+#            - 'sonata_medewerker_salutation'
+#    sonata.medewerker.class:
+#        class: App\Entity\Medewerker
+#        #class: App\Type\MedewerkerSalutationType
+
+    admin.verlofaanvraag:
+        class: App\Admin\VerlofaanvraagAdmin
+        arguments: [~, App\Entity\Verlofaanvraag, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Verlofaanvraag }
+        public: true
+
+    admin.verlofmutatie:
+        class: App\Admin\VerlofmutatieAdmin
+        arguments: [~, App\Entity\Verlofmutatie, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Verlofmutatie }
+        public: true
+
+    admin.bedrijf:
+        class: App\Admin\BedrijfAdmin
+        arguments: [~, App\Entity\Bedrijf, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Bedrijf }
+        public: true
+
+    admin.contactpersoon:
+        class: App\Admin\ContactpersoonAdmin
+        arguments: [~, App\Entity\Contactpersoon, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Contactpersoon }
+        public: true
+
+    admin.contract:
+        class: App\Admin\ContractAdmin
+        arguments: [~, App\Entity\Contract, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Contract }
+        public: true
+
+    admin.contractregel:
+        class: App\Admin\ContractregelAdmin
+        arguments: [~, App\Entity\Contractregel, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Contractregel }
+        public: true
+
+    admin.kostenplaats:
+        class: App\Admin\KostenplaatsAdmin
+        arguments: [~, App\Entity\Kostenplaats, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Kostenplaats }
+        public: true
+
+    admin.medewerker:
+        class: App\Admin\MedewerkerAdmin
+        arguments: [~, App\Entity\Medewerker, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Medewerker }
+        public: true
+
+    admin.medewerkerdatum:
+        class: App\Admin\MedewerkerdatumAdmin
+        arguments: [~, App\Entity\Medewerkerdatum, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Medewerkerdatum }
+        public: true
+
+    admin.file:
+        class: App\Admin\FileAdmin
+        arguments: [~, App\Entity\File, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: File }
+        public: true
+
+    admin.mijnuren:
+        class: App\Admin\MijnurenAdmin
+        arguments: [~, App\Entity\Mijnuren, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Mijnuren }
+        public: true
+
+    admin.factuur:
+        class: App\Admin\FactuurAdmin
+        arguments: [~, App\Entity\Factuur, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Factuur }
+        public: true
+
+    admin.factuurregel:
+        class: App\Admin\FactuurregelAdmin
+        arguments: [~, App\Entity\Factuurregel, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Factuurregel }
+        public: true
+
+    admin.grootboek:
+        class: App\Admin\GrootboekAdmin
+        arguments: [~, App\Entity\Grootboek, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Grootboek }
+        public: true
+
+    admin.alerttrigger:
+        class: App\Admin\AlerttriggerAdmin
+        arguments: [~, App\Entity\Alerttrigger, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Alerttrigger }
+        public: true
+
+    admin.offerte:
+        class: App\Admin\OfferteAdmin
+        arguments: [~, App\Entity\Offerte, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Offerte }
+        public: true
+
+    admin.offertefase:
+        class: App\Admin\OffertefaseAdmin
+        arguments: [~, App\Entity\Offertefase, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Offertefase }
+        public: true
+
+    admin.onderdeel:
+        class: App\Admin\OnderdeelAdmin
+        arguments: [~, App\Entity\Onderdeel, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Onderdeel }
+        public: true
+
+    admin.pakket:
+        class: App\Admin\PakketAdmin
+        arguments: [~, App\Entity\Pakket, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Pakket }
+        public: true
+
+    admin.pakketregel:
+        class: App\Admin\PakketregelAdmin
+        arguments: [~, App\Entity\Pakketregel, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Pakketregel }
+        public: true
+
+    admin.betaling:
+        class: App\Admin\BetalingAdmin
+        arguments: [~, App\Entity\Betaling, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Betaling }
+        public: true
+
+    admin.tariefuitzondering:
+        class: App\Admin\TariefuitzonderingAdmin
+        arguments: [~, App\Entity\Tariefuitzondering, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Tariefuitzondering }
+        public: true
+
+    admin.verkoopproduct:
+        class: App\Admin\VerkoopproductAdmin
+        arguments: [~, App\Entity\Verkoopproduct, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Verkoopproduct }
+        public: true
+
+    admin.opdracht:
+        class: App\Admin\OpdrachtAdmin
+        arguments: [~, App\Entity\Opdracht, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Opdracht }
+        public: true
+
+    admin.opdrachtfase:
+        class: App\Admin\OpdrachtfaseAdmin
+        arguments: [~, App\Entity\Opdrachtfase, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Opdrachtfase }
+        public: true
+
+    admin.inkoopfactuur:
+        class: App\Admin\InkoopfactuurAdmin
+        arguments: [~, App\Entity\Inkoopfactuur, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Inkoopfactuur }
+        public: true
+
+    admin.inkoopfactuurregel:
+        class: App\Admin\InkoopfactuurregelAdmin
+        arguments: [~, App\Entity\Inkoopfactuurregel, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Inkoopfactuurregel }
+        public: true
+
+    admin.inkoopopdracht:
+        class: App\Admin\InkoopopdrachtAdmin
+        arguments: [~, App\Entity\Inkoopopdracht, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Inkoopopdracht }
+        public: true
+
+    admin.inkoopopdrachtregel:
+        class: App\Admin\InkoopopdrachtregelAdmin
+        arguments: [~, App\Entity\Inkoopopdrachtregel, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Inkoopopdrachtregel }
+        public: true
+
+    admin.inkoopbetaling:
+        class: App\Admin\InkoopbetalingAdmin
+        arguments: [~, App\Entity\Inkoopbetaling, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Inkoopbetaling }
+        public: true
+
+    admin.tag:
+        class: App\Admin\TagAdmin
+        arguments: [~, App\Entity\Tag, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Tag }
+        public: true
+
+    admin.taak:
+        class: App\Admin\TaakAdmin
+        arguments: [~, App\Entity\Taak, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Taak }
+        public: true
+
+    admin.taakfase:
+        class: App\Admin\TaakfaseAdmin
+        arguments: [~, App\Entity\Taakfase, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Taakfase }
+        public: true
+
+    admin.taaktype:
+        class: App\Admin\TaaktypeAdmin
+        arguments: [~, App\Entity\Taaktype, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Taaktype }
+        public: true
+
+    admin.timelineentry:
+        class: App\Admin\TimelineentryAdmin
+        arguments: [~, App\Entity\Timelineentry, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Timelineentry }
+        public: true
+
+    admin.producteenheid:
+        class: App\Admin\ProducteenheidAdmin
+        arguments: [~, App\Entity\Producteenheid, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Producteenheid }
+        public: true
+
+    admin.webhook:
+        class: App\Admin\WebhookAdmin
+        arguments: [~, App\Entity\Webhook, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Webhook }
+        public: true

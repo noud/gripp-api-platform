@@ -1,3 +1,5 @@
+# Docker
+laradock
 
 ###> symfony/framework-bundle ###
 /.env.local

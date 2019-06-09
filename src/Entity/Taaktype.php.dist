@@ -1,0 +1,157 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Taaktype
+ *
+ * @ORM\Table(name="taaktype")
+ * @ORM\Entity
+ */
+class Taaktype
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
+     */
+    private $searchname;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="color", type="string", length=255, nullable=true)
+     */
+    private $color;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
+     */
+    private $extendedproperties;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
+     */
+    private $createdat;
+//    private $createdat = date('Y-m-d H:i:s');
+//    private $createdat = date("Y-m-d H:i:s");
+//    private $createdat = (new \DateTime())->format('Y-m-d H:i:s');
+//    private $createdat = (new \DateTime())::createFromFormat('U', (string) time());
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
+     */
+    private $updatedat;
+
+    public function __construct()
+    {
+        $this->createdat = date("Y-m-d H:i:s");
+        $this->updatedat = date("Y-m-d H:i:s");
+//`        $this->createdat = (new \DateTime())::createFromFormat('U', (string) time());
+//        $this->updatedat = (new \DateTime())::createFromFormat('U', (string) time());
+//        $this->updatedat = date('Y-m-d H:i:s') ;
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getSearchname(): ?string
+    {
+        return $this->searchname;
+    }
+
+    public function setSearchname(?string $searchname): self
+    {
+        $this->searchname = $searchname;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getExtendedproperties(): ?string
+    {
+        return $this->extendedproperties;
+    }
+
+    public function setExtendedproperties(?string $extendedproperties): self
+    {
+        $this->extendedproperties = $extendedproperties;
+
+        return $this;
+    }
+
+    public function getCreatedat(): ?\DateTimeInterface
+    {
+        return $this->createdat;
+    }
+
+    public function setCreatedat(\DateTimeInterface $createdat): self
+    {
+        $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    public function getUpdatedat(): ?\DateTimeInterface
+    {
+        return $this->updatedat;
+    }
+
+    public function setUpdatedat(\DateTimeInterface $updatedat): self
+    {
+        $this->updatedat = $updatedat;
+
+        return $this;
+    }
+
+
+}
