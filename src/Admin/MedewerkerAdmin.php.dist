@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
-use App\Type\MedewerkerSalutationType;
+//use App\Type\MedewerkerSalutationType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -99,7 +99,8 @@ final class MedewerkerAdmin extends AbstractAdmin
             ->add('city')
             ->add('country')
             ->add('function')
-            ->add('salutation', MedewerkerSalutationType::class)
+            ->add('salutation')
+            //->add('salutation', MedewerkerSalutationType::class)
             ->add('initials')
             ->add('firstname')
             ->add('infix')
