@@ -14,7 +14,11 @@ The application is highly independent of the Entities used and a good example of
 
 ## Provisioning
 
-First start Docker. Provision the application with PHP Composer and JavaScript Node.js NPM packages.:
+Add this local hostname to your DNS.:
+```shell
+127.0.0.1       gripp.localhost
+```
+Start Docker. Provision the application with PHP Composer and JavaScript Node.js NPM packages.:
 ```bash
 bin/services.sh
 bin/docker_start.sh
