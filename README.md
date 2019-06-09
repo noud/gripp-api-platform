@@ -22,7 +22,7 @@ bin/provision.sh
 ```
 ## Generating
 
-Import the databasche schema.:
+Import the database schema.:
 ```bash
 mysql -u root -p db_name< db/schema.sql
 ```
@@ -53,7 +53,7 @@ Feel free to contribute.
 
 ### Tools
 
-Created with [Nodeclipse](https://github.com/Nodeclipse/nodeclipse-1)
- ([Eclipse Marketplace](http://marketplace.eclipse.org/content/nodeclipse), [site](http://www.nodeclipse.org))   
+Created with [Eclipse PDT Extension group Symfony framework plugin](http://p2-dev.pdt-extensions.org)
+ ([Eclipse Marketplace](http://marketplace.eclipse.org/content/doctrine-plugin), [site](http://p2-dev.pdt-extensions.org/frameworks.html))   
 
-Nodeclipse is free open-source project that grows with your contributions.
+Eclipse is free open-source project that grows with your contributions.
