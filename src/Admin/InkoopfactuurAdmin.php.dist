@@ -1,0 +1,122 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Admin;
+
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Form\Type\DatePickerType;
+
+final class InkoopfactuurAdmin extends AbstractAdmin
+{
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    {
+        $datagridMapper
+            ->add('searchname')
+            ;
+    }
+
+    protected function configureListFields(ListMapper $listMapper): void
+    {
+        $listMapper
+            ->add('searchname')
+            ->add('company')
+            ->add('contact')
+            ->add('number')
+            ->add('subject')
+            ->add('date')
+            ->add('reportdate')
+            ->add('expirydate')
+            ->add('phase')
+            ->add('paymentmethod')
+            ->add('totalinclvat')
+            ->add('totalpayed')
+            ->add('bookingnumber')
+            ->add('identity')
+            ->add('description')
+            ->add('totalincldiscountinclvat')
+            ->add('totalopeninclvat')
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('employees')
+            ->add('employeesStarred')
+            ->add('files')
+            ->add('totalbuyingincldiscountexclvat')
+            ->add('purchaseinvoicelines')
+            ->add('payments')
+            ->add('_action', null, [
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => [],
+                ],
+            ]);
+    }
+
+    protected function configureFormFields(FormMapper $formMapper): void
+    {
+        $formMapper
+            ->add('searchname')
+            ->add('company')
+            ->add('contact')
+            ->add('number')
+            ->add('subject')
+            ->add('date', DatePickerType::class)
+            ->add('reportdate', DatePickerType::class)
+            ->add('expirydate', DatePickerType::class)
+            ->add('phase')
+            ->add('paymentmethod')
+            ->add('totalinclvat')
+            ->add('totalpayed')
+            ->add('bookingnumber')
+            ->add('identity')
+            ->add('description')
+            ->add('totalincldiscountinclvat')
+            ->add('totalopeninclvat')
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('employees')
+            ->add('employeesStarred')
+            ->add('files')
+            ->add('totalbuyingincldiscountexclvat')
+            ->add('purchaseinvoicelines')
+            ->add('payments')
+            ;
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper): void
+    {
+        $showMapper
+            ->add('searchname')
+            ->add('company')
+            ->add('contact')
+            ->add('number')
+            ->add('subject')
+            ->add('date')
+            ->add('reportdate')
+            ->add('expirydate')
+            ->add('phase')
+            ->add('paymentmethod')
+            ->add('totalinclvat')
+            ->add('totalpayed')
+            ->add('bookingnumber')
+            ->add('identity')
+            ->add('description')
+            ->add('totalincldiscountinclvat')
+            ->add('totalopeninclvat')
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('employees')
+            ->add('employeesStarred')
+            ->add('files')
+            ->add('totalbuyingincldiscountexclvat')
+            ->add('purchaseinvoicelines')
+            ->add('payments')
+            ;
+    }
+}

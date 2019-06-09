@@ -1,0 +1,128 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Admin;
+
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Form\Type\DatePickerType;
+
+final class OpdrachtAdmin extends AbstractAdmin
+{
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    {
+        $datagridMapper
+            ->add('searchname')
+            ;
+    }
+
+    protected function configureListFields(ListMapper $listMapper): void
+    {
+        $listMapper
+            ->add('templateset')
+            ->add('searchname')
+            ->add('name')
+            ->add('validfor')
+            ->add('accountmanager')
+            ->add('number')
+            ->add('phase')
+            ->add('deadline')
+            ->add('company')
+            ->add('contact')
+            ->add('identity')
+            ->add('startdate')
+            ->add('deliverydate')
+            ->add('enddate')
+            ->add('addhoursspecification')
+            ->add('description')
+            ->add('workdeliveraddress')
+            ->add('clientreference')
+            ->add('isbasis')
+            ->add('archived')
+            ->add('archivedon')
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('employees')
+            ->add('employeesStarred')
+            ->add('files')
+            ->add('projectlines')
+            ->add('_action', null, [
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => [],
+                ],
+            ]);
+    }
+
+    protected function configureFormFields(FormMapper $formMapper): void
+    {
+        $formMapper
+            ->add('templateset')
+            ->add('searchname')
+            ->add('name')
+            ->add('validfor')
+            ->add('accountmanager')
+            ->add('number')
+            ->add('phase')
+            ->add('deadline', DatePickerType::class)
+            ->add('company')
+            ->add('contact')
+            ->add('identity')
+            ->add('startdate', DatePickerType::class)
+            ->add('deliverydate', DatePickerType::class)
+            ->add('enddate')
+            ->add('addhoursspecification')
+            ->add('description')
+            ->add('workdeliveraddress')
+            ->add('clientreference')
+            ->add('isbasis')
+            ->add('archived')
+            ->add('archivedon', DatePickerType::class)
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('employees')
+            ->add('employeesStarred')
+            ->add('files')
+            ->add('projectlines')
+            ;
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper): void
+    {
+        $showMapper
+            ->add('templateset')
+            ->add('searchname')
+            ->add('name')
+            ->add('validfor')
+            ->add('accountmanager')
+            ->add('number')
+            ->add('phase')
+            ->add('deadline')
+            ->add('company')
+            ->add('contact')
+            ->add('identity')
+            ->add('startdate')
+            ->add('deliverydate')
+            ->add('enddate')
+            ->add('addhoursspecification')
+            ->add('description')
+            ->add('workdeliveraddress')
+            ->add('clientreference')
+            ->add('isbasis')
+            ->add('archived')
+            ->add('archivedon')
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('employees')
+            ->add('employeesStarred')
+            ->add('files')
+            ->add('projectlines')
+            ;
+    }
+}

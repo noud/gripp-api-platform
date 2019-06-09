@@ -1,0 +1,104 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Admin;
+
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Form\Type\DatePickerType;
+
+final class ContactpersoonAdmin extends AbstractAdmin
+{
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    {
+        $datagridMapper
+            ->add('searchname')
+            ;
+    }
+
+    protected function configureListFields(ListMapper $listMapper): void
+    {
+        $listMapper
+            ->add('searchname')
+            ->add('title')
+            ->add('showoncompanycard')
+            ->add('dateofbirth')
+            ->add('notes')
+            ->add('active')
+            ->add('email')
+            ->add('phone')
+            ->add('mobile')
+            ->add('department')
+            ->add('function')
+            ->add('company')
+            ->add('salutation')
+            ->add('initials')
+            ->add('firstname')
+            ->add('infix')
+            ->add('lastname')
+            ->add('extendedproperties')
+            ->add('tags')
+            ->add('_action', null, [
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => [],
+                ],
+            ]);
+    }
+
+    protected function configureFormFields(FormMapper $formMapper): void
+    {
+        $formMapper
+            ->add('searchname')
+            ->add('title')
+            ->add('showoncompanycard')
+            ->add('dateofbirth', DatePickerType::class)
+            ->add('notes')
+            ->add('active')
+            ->add('email')
+            ->add('phone')
+            ->add('mobile')
+            ->add('department')
+            ->add('function')
+            ->add('company')
+            ->add('salutation')
+            ->add('initials')
+            ->add('firstname')
+            ->add('infix')
+            ->add('lastname')
+            ->add('extendedproperties')
+            ->add('tags')
+            ;
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper): void
+    {
+        $showMapper
+            ->add('searchname')
+            ->add('title')
+            ->add('showoncompanycard')
+            ->add('dateofbirth')
+            ->add('notes')
+            ->add('active')
+            ->add('email')
+            ->add('phone')
+            ->add('mobile')
+            ->add('department')
+            ->add('function')
+            ->add('company')
+            ->add('salutation')
+            ->add('initials')
+            ->add('firstname')
+            ->add('infix')
+            ->add('lastname')
+            ->add('extendedproperties')
+            ->add('tags')
+            ;
+    }
+}

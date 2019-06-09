@@ -1,0 +1,77 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Admin;
+
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Form\Type\DatePickerType;
+use Sonata\Form\Type\DateTimePickerType;
+
+final class VerlofmutatieAdmin extends AbstractAdmin
+{
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    {
+        $datagridMapper
+            ->add('searchname')
+            ;
+    }
+
+    protected function configureListFields(ListMapper $listMapper): void
+    {
+        $listMapper
+            ->add('searchname')
+            ->add('date')
+            ->add('description')
+            ->add('amount')
+            ->add('startingtime')
+            ->add('absencerequest')
+            ->add('absencerequeststatus')
+            ->add('extendedproperties')
+            ->add('_action', null, [
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => [],
+                ],
+            ]);
+    }
+
+    protected function configureFormFields(FormMapper $formMapper): void
+    {
+        $formMapper
+            ->add('searchname')
+            ->add('date', DatePickerType::class)
+            ->add('description')
+            ->add('amount')
+            ->add('startingtime', DateTimePickerType::class, [
+                'format' => 'kk:mm',
+                'dp_use_seconds' => false,
+                'dp_pick_date' => false,
+                'dp_pick_time' => true,
+            ])
+            ->add('absencerequest')
+            ->add('absencerequeststatus')
+            ->add('extendedproperties')
+            ;
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper): void
+    {
+        $showMapper
+            ->add('searchname')
+            ->add('date')
+            ->add('description')
+            ->add('amount')
+            ->add('startingtime')
+            ->add('absencerequest')
+            ->add('absencerequeststatus')
+            ->add('extendedproperties')
+            ;
+    }
+}

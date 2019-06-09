@@ -1,0 +1,70 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Admin;
+
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Form\Type\DatePickerType;
+
+final class MedewerkerdatumAdmin extends AbstractAdmin
+{
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    {
+        $datagridMapper
+            ->add('searchname')
+            ->add('employee')
+            ->add('name')
+            ->add('date')
+            ->add('phone')
+            ->add('extendedproperties')
+            ;
+    }
+
+    protected function configureListFields(ListMapper $listMapper): void
+    {
+        $listMapper
+            ->add('searchname')
+            ->add('employee')
+            ->add('name')
+            ->add('date')
+            ->add('phone')
+            ->add('extendedproperties')
+            ->add('_action', null, [
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => [],
+                ],
+            ]);
+    }
+
+    protected function configureFormFields(FormMapper $formMapper): void
+    {
+        $formMapper
+            ->add('searchname')
+            ->add('employee')
+            ->add('name')
+            ->add('date', DatePickerType::class)
+            ->add('phone')
+            ->add('extendedproperties')
+            ;
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper): void
+    {
+        $showMapper
+            ->add('searchname')
+            ->add('employee')
+            ->add('name')
+            ->add('date')
+            ->add('phone')
+            ->add('extendedproperties')
+            ;
+    }
+}
