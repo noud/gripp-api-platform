@@ -1,15 +1,15 @@
 {% extends 'bundles/SonataAdminBundle/standard_layout_favicon.html.twig' %}
 {% block sonata_top_nav_menu %}
-         <div class="navbar-custom-menu">
-             <ul class="nav navbar-nav">
-                 {% block sonata_top_nav_menu_add_block %}
-                     <li class="dropdown">
-                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                             <i class="fa fa-plus-square fa-fw" aria-hidden="true"></i> <i class="fa fa-caret-down" aria-hidden="true"></i>
-                         </a>
-                         {% include sonata_admin.adminPool.getTemplate('add_block') %}
-                     </li>
-                 {% endblock %}
-             </ul>
-         </div>
- {% endblock %}
+     <div class="navbar-custom-menu">
+         <ul class="nav navbar-nav">
+             {% block sonata_top_nav_menu_add_block %}
+                 <li class="dropdown">
+                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                         <i class="fa fa-plus-square fa-fw" aria-hidden="true"></i> <i class="fa fa-caret-down" aria-hidden="true"></i>
+                     </a>
+                     {% include sonata_admin.adminPool.getTemplate('add_block') %}
+                 </li>
+             {% endblock %}
+         </ul>
+     </div>
+{% endblock %}

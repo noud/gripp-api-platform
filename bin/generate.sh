@@ -38,4 +38,4 @@ rm src/Admin/TaaktypeAdmin.php; bin/console make:sonata:admin App/Entity/Taaktyp
 rm src/Admin/TimelineentryAdmin.php; bin/console make:sonata:admin App/Entity/Timelineentry --id=admin.timelineentry --no-interaction
 rm src/Admin/ProducteenheidAdmin.php; bin/console make:sonata:admin App/Entity/Producteenheid --id=admin.producteenheid --no-interaction
 rm src/Admin/WebhookAdmin.php; bin/console make:sonata:admin App/Entity/Webhook --id=admin.webhook --no-interaction
-bin/console cache:clear
+bin/edited.sh
