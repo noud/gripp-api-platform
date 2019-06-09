@@ -74,7 +74,7 @@
 		}
 	},
 	"name" : "noud/gripp_client_symfony",
-	"description" : "Gripp API Symfony",
+	"description" : "Gripp client Symfony",
 	"authors" : [{
 			"name" : "Noud de Brouwer",
 			"email" : "noud4@home.nl",
