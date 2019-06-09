@@ -11,7 +11,7 @@ sonata_admin:
             - build/runtime.js
             - build/app.js
     templates:
-        layout: 'bundles/SonataAdminBundle/standard_layout_favicon.html.twig'
+        layout: 'bundles/SonataAdminBundle/standard_layout_header.html.twig'
 sonata_block:
     blocks:
         sonata.admin.block.admin_list:
