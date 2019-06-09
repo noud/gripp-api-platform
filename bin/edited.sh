@@ -14,10 +14,10 @@ cp src/Admin/OpdrachtfaseAdmin.php.dist src/Admin/OpdrachtfaseAdmin.php
 cp src/Admin/TaakAdmin.php.dist src/Admin/TaakAdmin.php
 cp src/Admin/TaakfaseAdmin.php.dist src/Admin/TaakfaseAdmin.php
 cp src/Admin/TaaktypeAdmin.php.dist src/Admin/TaaktypeAdmin.php
-cp src/Admin/MedewerkerDatumAdmin.php.dist src/Admin/MedewerkerDatumAdmin.php
 cp src/Admin/MedewerkerAdmin.php.dist src/Admin/MedewerkerAdmin.php
+cp src/Admin/MedewerkerDatumAdmin.php.dist src/Admin/MedewerkerDatumAdmin.php
 cp src/Admin/TagAdmin.php.dist src/Admin/TagAdmin.php
-cp src/Admin/TimelineAdmin.php.dist src/Admin/TimelineAdmin.php
+cp src/Admin/TimelineentryAdmin.php.dist src/Admin/TimelineentryAdmin.php
 cp src/Admin/VerlofmutatieAdmin.php.dist src/Admin/VerlofmutatieAdmin.php
 cp src/Entity/Medewerker.php.dist src/Entity/Medewerker.php
 cp src/Entity/Taaktype.php.dist src/Entity/Taaktype.php

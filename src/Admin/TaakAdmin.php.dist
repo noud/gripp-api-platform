@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\Form\Type\DatePickerType;
 use Sonata\Form\Type\DateTimePickerType;
 
 final class TaakAdmin extends AbstractAdmin
@@ -55,7 +56,12 @@ final class TaakAdmin extends AbstractAdmin
             ->add('searchname')
             ->add('type')
             ->add('deadlinedate', DatePickerType::class)
-            ->add('deadlinetime')
+            ->add('deadlinetime', DateTimePickerType::class, [
+                'format' => 'kk:mm',
+                'dp_use_seconds' => false,
+                'dp_pick_date' => false,
+                'dp_pick_time' => true,
+            ])
             ->add('description')
             ->add('content')
             ->add('number')
@@ -68,15 +74,12 @@ final class TaakAdmin extends AbstractAdmin
             ->add('extendedproperties')
             ->add('files')
             ->add('calendaritems')
-            ->add('createdat')
-            ->add('updatedat')
             ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-            ->add('id')
             ->add('searchname')
             ->add('type')
             ->add('deadlinedate')

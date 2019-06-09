@@ -17,33 +17,13 @@ final class TimelineentryAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('id')
             ->add('searchname')
-            ->add('employee')
-            ->add('date')
-            ->add('message')
-            ->add('timelinetype')
-            ->add('company')
-            ->add('contact')
-            ->add('offer')
-            ->add('project')
-            ->add('invoice')
-            ->add('purchaseinvoice')
-            ->add('purchaseorder')
-            ->add('contract')
-            ->add('task')
-            ->add('starred')
-            ->add('extendedproperties')
-            ->add('files')
-            ->add('createdat')
-            ->add('updatedat')
             ;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('id')
             ->add('searchname')
             ->add('employee')
             ->add('date')
@@ -61,8 +41,6 @@ final class TimelineentryAdmin extends AbstractAdmin
             ->add('starred')
             ->add('extendedproperties')
             ->add('files')
-            ->add('createdat')
-            ->add('updatedat')
             ->add('_action', null, [
                 'actions' => [
                     'show' => [],
@@ -75,7 +53,6 @@ final class TimelineentryAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('id')
             ->add('searchname')
             ->add('employee')
             ->add('date', DateTimePickerType::class)
@@ -93,15 +70,12 @@ final class TimelineentryAdmin extends AbstractAdmin
             ->add('starred')
             ->add('extendedproperties')
             ->add('files')
-            ->add('createdat')
-            ->add('updatedat')
             ;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-            ->add('id')
             ->add('searchname')
             ->add('employee')
             ->add('date')
@@ -119,8 +93,6 @@ final class TimelineentryAdmin extends AbstractAdmin
             ->add('starred')
             ->add('extendedproperties')
             ->add('files')
-            ->add('createdat')
-            ->add('updatedat')
             ;
     }
 }
