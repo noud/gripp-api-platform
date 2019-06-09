@@ -1,3 +1,6 @@
+# app
+config/db/private_data.sql
+
 # Docker
 laradock
 
