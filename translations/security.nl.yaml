@@ -1,0 +1,11 @@
+login:
+  url:
+    title: 'Inlog gegevens'
+  form:
+    title: 'Inloggen'
+  label:
+    username: 'Gebruikersnaam'
+    password: 'Wachtwoord'
+  button:
+    submit: 'Inloggen'
+    logout: 'Uitloggen'

@@ -18,7 +18,6 @@ use Symfony\Component\Security\Csrf\CsrfToken;
 use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
 use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
 use Symfony\Component\Security\Guard\AuthenticatorInterface;
-use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects) (15)
@@ -45,23 +44,16 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements A
      */
     private $csrfTokenManager;
 
-    /**
-     * @var TranslatorInterface
-     */
-    private $translator;
-
     public function __construct(
         FormFactoryInterface $formFactory,
         RouterInterface $router,
         UserPasswordEncoderInterface $passwordEncoder,
-        CsrfTokenManagerInterface $csrfTokenManager,
-        TranslatorInterface $translator
+        CsrfTokenManagerInterface $csrfTokenManager
     ) {
         $this->formFactory = $formFactory;
         $this->router = $router;
         $this->passwordEncoder = $passwordEncoder;
         $this->csrfTokenManager = $csrfTokenManager;
-        $this->translator = $translator;
     }
 
     public function supports(Request $request): bool
@@ -98,21 +90,26 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements A
             $token = new CsrfToken('authenticate', $credentials['csrf_token']);
 
             if (!$this->csrfTokenManager->isTokenValid($token)) {
-                throw new InvalidCsrfTokenException($this->translator->trans('login.messages.token_invalid', [], 'login'));
+                throw new InvalidCsrfTokenException('authentication.csrf_token_invalid');
             }
         }
 
         try {
-            return $userProvider->loadUserByUsername($credentials['username']);
+            $user = $userProvider->loadUserByUsername($credentials['username']);
         } catch (\Exception $e) {
-            throw new CustomUserMessageAuthenticationException($this->translator->trans('login.messages.user_not_found', [], 'login'));
+            throw new CustomUserMessageAuthenticationException('authentication.username_not_found');
         }
+
+        if (!$user->isActive()) {
+            throw new CustomUserMessageAuthenticationException('authentication.user_not_active');
+        }
+        return $user;
     }
 
     public function checkCredentials($credentials, UserInterface $user): bool
     {
         if (!$this->passwordEncoder->isPasswordValid($user, $credentials['password'])) {
-            throw new CustomUserMessageAuthenticationException($this->translator->trans('login.messages.data_invalid', [], 'login'));
+            throw new CustomUserMessageAuthenticationException('authentication.password_invalid');
         }
 
         return true;

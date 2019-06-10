@@ -85,9 +85,11 @@ final class MedewerkerAdmin extends AbstractAdmin
                 ->add('employeesince', DatePickerType::class)
                 ->end()
             ->end()
-            ->tab('Account')
+            ->tab('Inlog gegevens')
                 ->add('username')
-                ->add('password')
+                ->add('password', null, [
+                    'help' => '<a href="https://bcrypt-generator.com" target="_blank">bcrypt generator</a>',
+                ])
                 ->add('active')
                 ->add('role')
                 ->end()

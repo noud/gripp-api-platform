@@ -820,5 +820,11 @@ class Medewerker implements UserInterface
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-}
 
+    // App\Security\LoginFormAuthenticator::getUser
+
+    public function isActive(): bool
+    {
+        return $this->active ?: false;
+    }
+}

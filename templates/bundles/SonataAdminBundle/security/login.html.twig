@@ -23,14 +23,14 @@
                 {% block sonata_user_login_error %}
                     {% if error is defined and error %}
                         <div class="alert alert-danger">
-                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                            {{ error.messageKey|trans(error.messageData, 'login') }}
                         </div>
                     {% endif %}
                 {% endblock %}
 	            {% include 'flash_messages.html.twig' %}
                 <p class="login-box-msg">{{ 'Authentication'|trans }}</p>
                 <form action="{{ path("sonata_login") }}" method="post" role="form">
-                    <input type="text" name="login[_csrf_token]" value="{{ csrf_token('authenticate') }}">
+                    <input type="hidden" name="login[_csrf_token]" value="{{ csrf_token('authenticate') }}">
                     <div class="form-group has-feedback">
 {#                         <input type="text" class="form-control" id="username" name="{{ form.username.vars.full_name }}" value="{{ last_username }}" required="required" placeholder="Username"/>#}
                         <input type="text" class="form-control" id="username" name="{{ form.username.vars.full_name }}" value="" required="required" placeholder="{{ 'UsernamePlaceholder'|trans }}"/>

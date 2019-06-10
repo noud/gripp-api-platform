@@ -1,0 +1,5 @@
+authentication:
+  username_not_found: 'Gebruikersnaam en/of wachtwoord is onjuist.'
+  user_not_active: 'Dit is account is niet actief.'
+  password_invalid: 'Gegevens zijn ongeldig.'
+  csrf_token_invalid: 'Token is ongeldig.'

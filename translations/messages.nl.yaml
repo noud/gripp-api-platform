@@ -1,3 +1,4 @@
+# authentication
 Login: 'Inloggen'
 Authentication: 'Authenticatie'
 Username: 'Gebruikersnaam'
@@ -6,6 +7,7 @@ UsernamePlaceholder: 'Type gebruikersnaam'
 PasswordPlaceholder: 'Type wachtwoord'
 Active: 'Actief'
 Role: 'Rol'
+# app
 Ordering: 'Volgorde'
 Searchname: 'Zoeknaam'
 Extendedproperties: 'Uitgebreide eigenschappen'
