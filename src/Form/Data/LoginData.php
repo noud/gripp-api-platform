@@ -19,4 +19,11 @@ class LoginData
      * @var string
      */
     public $password;
+
+    /**
+     * @Assert\NotBlank()
+     *
+     * @var string
+     */
+    public $_csrf_token;
 }

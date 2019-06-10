@@ -19,6 +19,7 @@ security:
                 use_forward: false
                 check_path: sonata_login
                 failure_path: null
+                csrf_token_id: authenticate
             logout:
                 path: sonata_logout
                 target: sonata_login

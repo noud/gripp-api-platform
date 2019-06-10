@@ -4,6 +4,7 @@ namespace App\Form\Type;
 
 use App\Form\Data\LoginData;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -28,7 +29,8 @@ final class LoginType extends AbstractType
                 'label' => 'login.label.password',
                 'translation_domain' => 'login',
             ]
-        );
+        )
+        ->add('_csrf_token', HiddenType::class);
     }
 
     /**
@@ -40,7 +42,6 @@ final class LoginType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => LoginData::class,
-            'csrf_token_id' => 'login',
         ]);
     }
 }

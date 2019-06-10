@@ -12,6 +12,13 @@ and demonstrate Gripp API use.
 
 The application is highly independent of the Entities used and a good example of writing generic code.
 
+## Security
+
+The application uses various security measures:
+- [Symfony Security Monitoring](https://security.symfony.com)
+- [Cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection
+- [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) password hashing
+
 ## Provisioning
 
 Add this local hostname to your DNS.:
