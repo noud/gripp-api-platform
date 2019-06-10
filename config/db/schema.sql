@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jun 08, 2019 at 10:42 PM
+-- Generation Time: Jun 10, 2019 at 12:09 AM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.19
 
@@ -752,7 +752,9 @@ CREATE TABLE `pakket` (
   `name` varchar(255) DEFAULT NULL,
   `number` bigint(20) DEFAULT NULL,
   `groupcategory` bigint(20) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
+  `description` text,
+  `description_raw` text,
+  `description_formatter` varchar(255) DEFAULT 'markdown',
   `unit` bigint(20) DEFAULT NULL,
   `internalnote` varchar(255) DEFAULT NULL,
   `hidedetails` tinyint(1) DEFAULT NULL,
