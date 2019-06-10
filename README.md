@@ -26,9 +26,10 @@ bin/provision.sh
 ```
 ## Generating
 
-Import the database schema.:
+Import the database schema and optionally some demo data.:
 ```bash
 mysql -u root -p db_name< db/schema.sql
+mysql -u root -p db_name< db/data.sql
 ```
 Generate the entities and admin webpages.:
 ```bash
@@ -47,9 +48,14 @@ bin/phpunit
 
 ## Usage
 
+Browse to the login screen:
 ```bash
-/opt/google/chrome/chrome http://gripp.localhost/admin
+/opt/google/chrome/chrome http://gripp.localhost/sonata
 ```
+You will be prompted for your credentials:
+![Login](./docs/sonata_login.png?raw=true "Login")
+
+The username demo and password demo will do.
 
 ## Developing
 
