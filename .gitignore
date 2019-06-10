@@ -1,5 +1,8 @@
-# app
+# app data
 config/db/private_data.sql
+# app generated
+src/Admin/*Admin.php
+src/Entity/*.php
 
 # Docker
 laradock
