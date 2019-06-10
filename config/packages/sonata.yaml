@@ -1,0 +1,8 @@
+sonata_formatter:
+    default_formatter: text
+    formatters:
+        text:
+            service: sonata.formatter.text.text
+            extensions:
+                - sonata.formatter.twig.control_flow
+                - sonata.formatter.twig.gist
