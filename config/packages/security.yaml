@@ -11,7 +11,7 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         sonata:
-            pattern: ^/admin(.*)
+            pattern: ^/%sonata_prefix%(.*)
             context: sonata_login
             provider: users
             form_login:
@@ -40,6 +40,6 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/logout, roles: [ROLE_USER] }
-        - { path: ^/admin/, role: ROLE_USER }
+        - { path: ^/%sonata_prefix%/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/%sonata_prefix%/logout, roles: [ROLE_USER] }
+        - { path: ^/%sonata_prefix%/, role: ROLE_USER }

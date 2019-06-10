@@ -8,6 +8,10 @@ parameters:
     gripp_cache_ttl: '%env(GRIPP_CACHE_TTL)%'
     api_docs_url: '%env(GRIPP_API_DOCS_URL)%'
     api_docs_name: '%env(GRIPP_API_DOCS_NAME)%'
+    sonata_prefix: 'sonata'
+    
+imports:
+    - { resource: 'services_sonata.yaml' }
 
 services:
     # default configuration for services in *this* file
@@ -30,6 +34,7 @@ services:
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
+    # cache
     App\Service\CacheService:
             - ''
             - '%gripp_cache_ttl%'
@@ -38,6 +43,20 @@ services:
     
     Psr\SimpleCache\CacheInterface: '@Symfony\Component\Cache\Simple\FilesystemCache'
     
+    
+    # Sonata  
+    authentication_route_loader:
+        public: true
+        class: App\Routing\AuthenticationLoader
+        arguments:
+            - "%sonata_prefix%"
+
+    App\Routing\AuthenticationLoader:
+        tags: [routing.loader]
+        arguments:
+            - "%sonata_prefix%"
+    
+    # API client JSON-RPC
     App\Controller\Gripp\TagController:
         arguments:
             - '%kernel.environment%'

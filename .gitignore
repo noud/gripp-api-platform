@@ -1,6 +1,7 @@
 # app data
 config/db/private_data.sql
 # app generated
+config/services_sonata.yaml
 src/Admin/*Admin.php
 src/Entity/*.php
 

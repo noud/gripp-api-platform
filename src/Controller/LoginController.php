@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 final class LoginController extends AbstractController
 {
     /**
-     * @Route("/admin/login", name="sonata_login")
+     * Constructed in App\Routing\AuthenticationLoader
      */
     public function loginAction(AuthenticationUtils $authenticationUtils): Response
     {
@@ -41,7 +41,7 @@ final class LoginController extends AbstractController
     }
 
     /**
-     * @Route("/admin/logout", name="sonata_logout")
+     * Constructed in App\Routing\AuthenticationLoader
      */
     public function logoutAction(): Response
     {

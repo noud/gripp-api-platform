@@ -9,4 +9,4 @@ twig:
     globals:
         api_docs_url: '%api_docs_url%'
         api_docs_name: '%api_docs_name%'
-        admin_meta_title: 'Admin'
+        sonata_prefix: '%sonata_prefix%'

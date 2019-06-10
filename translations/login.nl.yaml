@@ -1,4 +1,6 @@
 login:
+  url:
+    title: 'Inlog gegevens'
   form:
     title: 'Inloggen'
   label:

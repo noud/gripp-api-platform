@@ -1,3 +1,10 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+authentication_routes:
+    resource: 'authentication_route_loader:load'
+    type: service
+
+authentication:
+    resource: .
+    type: authentication

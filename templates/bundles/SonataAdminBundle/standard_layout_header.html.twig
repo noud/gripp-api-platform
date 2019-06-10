@@ -18,6 +18,7 @@
                              <i class="fa fa-user fa-fw" aria-hidden="true"></i> <i class="fa fa-caret-down" aria-hidden="true"></i>
                          </a>
                          <ul class="dropdown-menu dropdown-user">
+                             <li> <a href="/{{ sonata_prefix }}/app/medewerker/{{ app.user.id }}/edit">{{ 'login.url.title'|trans }}</a></li>
                              <li> <a href="{{ path('sonata_logout') }}">{{ 'login.button.logout'|trans }}</a></li>
                          </ul>
                      </li>
