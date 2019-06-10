@@ -117,17 +117,26 @@
             ".php_cs.dist"
         ]
     },
+    "friendsofsymfony/ckeditor-bundle": {
+        "version": "1.2.0"
+    },
     "jdorn/sql-formatter": {
         "version": "v1.2.17"
     },
     "jean85/pretty-package-versions": {
         "version": "1.2"
     },
+    "knplabs/knp-markdown-bundle": {
+        "version": "1.7.1"
+    },
     "knplabs/knp-menu": {
         "version": "2.3.0"
     },
     "knplabs/knp-menu-bundle": {
         "version": "v2.2.1"
+    },
+    "michelf/php-markdown": {
+        "version": "1.8.0"
     },
     "monolog/monolog": {
         "version": "1.24.0"
@@ -280,6 +289,9 @@
     },
     "sonata-project/exporter": {
         "version": "2.0.1"
+    },
+    "sonata-project/formatter-bundle": {
+        "version": "4.1.2"
     },
     "symfony/apache-pack": {
         "version": "1.0",

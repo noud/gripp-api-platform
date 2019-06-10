@@ -5,6 +5,7 @@ twig:
     form_themes:
         - '@SonataCore/Form/color.html.twig'
         - '@SonataCore/Form/datepicker.html.twig'
+        - '@SonataFormatter/Form/formatter.html.twig'
     globals:
         api_docs_url: '%api_docs_url%'
         api_docs_name: '%api_docs_name%'

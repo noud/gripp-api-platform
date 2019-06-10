@@ -11,6 +11,7 @@
 		"sensiolabs/security-checker": "^5.0",
 		"sonata-project/admin-bundle": "^3.49",
 		"sonata-project/doctrine-orm-admin-bundle": "^3.9",
+		"sonata-project/formatter-bundle": "^4.1",
 		"symfony/apache-pack": "^1.0",
 		"symfony/cache": "4.3.*",
 		"symfony/console": "4.3.*",

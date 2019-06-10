@@ -11,6 +11,7 @@ cp src/Admin/MijnurenAdmin.php.dist src/Admin/MijnurenAdmin.php
 cp src/Admin/OfferteAdmin.php.dist src/Admin/OfferteAdmin.php
 cp src/Admin/OpdrachtAdmin.php.dist src/Admin/OpdrachtAdmin.php
 cp src/Admin/OpdrachtfaseAdmin.php.dist src/Admin/OpdrachtfaseAdmin.php
+cp src/Admin/PakketAdmin.php.dist src/Admin/PakketAdmin.php
 cp src/Admin/TaakAdmin.php.dist src/Admin/TaakAdmin.php
 cp src/Admin/TaakfaseAdmin.php.dist src/Admin/TaakfaseAdmin.php
 cp src/Admin/TaaktypeAdmin.php.dist src/Admin/TaaktypeAdmin.php
