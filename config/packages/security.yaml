@@ -1,11 +1,31 @@
 security:
+    encoders:
+        App\Entity\Medewerker: bcrypt
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
+        users:
+            id: App\Security\UserProvider
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+        login:
+            pattern: ^/admin(.*)
+            context: admin_login
+            provider: users
+            form_login:
+                login_path: admin_login
+                use_forward: false
+                check_path: admin_login
+                failure_path: null
+            logout:
+                path: admin_logout
+                target: admin_login
+            anonymous: true
+            guard:
+                authenticators:
+                    - App\Security\LoginFormAuthenticator
         main:
             anonymous: true
 
@@ -20,3 +40,6 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/logout, roles: [ROLE_USER] }
+        - { path: ^/admin/, role: ROLE_USER }

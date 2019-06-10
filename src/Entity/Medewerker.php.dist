@@ -3,15 +3,21 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Medewerker
  *
  * @ORM\Table(name="medewerker")
  * @ORM\Entity
+ * @UniqueEntity("email")
  */
-class Medewerker
+class Medewerker implements UserInterface
 {
+    const ROLE_USER = 'ROLE_USER';
+
     /**
      * @var int
      *
@@ -74,6 +80,7 @@ class Medewerker
      * @var string|null
      *
      * @ORM\Column(name="emailprivate", type="string", length=255, nullable=true)
+     * @Assert\Email()
      */
     private $emailprivate;
 
@@ -127,6 +134,13 @@ class Medewerker
     private $password;
 
     /**
+     * A non-persisted field that's used to create the encoded password.
+     *
+     * @var string
+     */
+    private $plainPassword;
+
+    /**
      * @var bool|null
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
@@ -144,6 +158,7 @@ class Medewerker
      * @var string|null
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @Assert\Email()
      */
     private $email;
 
@@ -736,5 +751,73 @@ class Medewerker
             self::SALUTION_MADAM => 'salution_madam',
             self::SALUTION_SIRMADAM => 'salution_sirmadam',
         ];
+    }
+
+    /**
+     * Symfony UserInterface
+     */
+
+    /**
+     * @var array
+     * @ORM\Column(type="json")
+     */
+    private $roles = [self::ROLE_USER];
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        $roles[] = self::ROLE_USER;
+
+        return array_unique($roles);
+    }
+
+    /**
+     * @param array $roles
+     */
+    public function setRoles($roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword($plainPassword)
+    {
+        $this->plainPassword = $plainPassword;
+        // forces the object to look "dirty" to Doctrine. Avoids
+        // Doctrine *not* saving this entity, if only plainPassword changes
+        $this->password = null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }

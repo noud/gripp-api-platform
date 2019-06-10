@@ -1,0 +1,14 @@
+login:
+  form:
+    title: 'Inloggen'
+  label:
+    username: 'Gebruikersnaam'
+    password: 'Wachtwoord'
+  button:
+    submit: 'Inloggen'
+    logout: 'Uitloggen'
+  messages:
+    user_not_found: 'Gebruikersnaam en/of wachtwoord is onjuist.'
+    token_invalid: 'Token is ongeldig.'
+    data_invalid: 'Gegevens zijn ongeldig.'
+    user_not_active: 'Dit is account is niet meer actief.'
