@@ -12,7 +12,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 final class LoginController extends AbstractController
 {
     /**
-     * @Route("/admin/login", name="admin_login")
+     * @Route("/admin/login", name="sonata_login")
      */
     public function loginAction(AuthenticationUtils $authenticationUtils): Response
     {
@@ -35,16 +35,16 @@ final class LoginController extends AbstractController
             );
         }
 
-        return $this->render('security/login.html.twig', [
+        return $this->render('bundles/SonataAdminBundle/security/login.html.twig', [
             'form' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/admin/logout", name="admin_logout")
+     * @Route("/admin/logout", name="sonata_logout")
      */
     public function logoutAction(): Response
     {
-        return $this->redirectToRoute('admin_login');
+        return $this->redirectToRoute('sonata_login');
     }
 }

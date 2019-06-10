@@ -66,7 +66,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements A
 
     public function supports(Request $request): bool
     {
-        return 'admin_login' === $request->attributes->get('_route')
+        return 'sonata_login' === $request->attributes->get('_route')
             && $request->isMethod('POST');
     }
 
@@ -75,8 +75,10 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements A
         $credentials = [
             'username' => $request->request->get('login')['username'],
             'password' => $request->request->get('login')['password'],
-            'csrf_token' => $request->request->get('login')['_token'],
         ];
+        if (isset($request->request->get('login')['_token'])) {
+            $credentials[] = ['csrf_token' => $request->request->get('login')['_token']];
+        }
 
         if (null !== $request->getSession()) {
             $request->getSession()->set(
@@ -90,17 +92,19 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements A
 
     public function getUser($credentials, UserProviderInterface $userProvider): UserInterface
     {
-        $token = new CsrfToken('login', $credentials['csrf_token']);
+        if (isset($credentials['csrf_token'])) {
+            $token = new CsrfToken('authenticate', $credentials['csrf_token']);
 
-        if (!$this->csrfTokenManager->isTokenValid($token)) {
-            throw new InvalidCsrfTokenException($this->translator->trans('login.messages.token_invalid', [], 'login'));
+            if (!$this->csrfTokenManager->isTokenValid($token)) {
+                throw new InvalidCsrfTokenException($this->translator->trans('login.messages.token_invalid', [], 'login'));
+            }
         }
 
-        //try {
+        try {
             return $userProvider->loadUserByUsername($credentials['username']);
-//         } catch (\Exception $e) {
-//             throw new CustomUserMessageAuthenticationException($this->translator->trans('login.messages.user_not_found', [], 'login'));
-//         }
+        } catch (\Exception $e) {
+            throw new CustomUserMessageAuthenticationException($this->translator->trans('login.messages.user_not_found', [], 'login'));
+        }
     }
 
     public function checkCredentials($credentials, UserInterface $user): bool
@@ -114,7 +118,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements A
 
     protected function getLoginUrl(): string
     {
-        return $this->router->generate('admin_login');
+        return $this->router->generate('sonata_login');
     }
 
     /**

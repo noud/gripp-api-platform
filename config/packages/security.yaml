@@ -10,18 +10,18 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        login:
+        sonata:
             pattern: ^/admin(.*)
-            context: admin_login
+            context: sonata_login
             provider: users
             form_login:
-                login_path: admin_login
+                login_path: sonata_login
                 use_forward: false
-                check_path: admin_login
+                check_path: sonata_login
                 failure_path: null
             logout:
-                path: admin_logout
-                target: admin_login
+                path: sonata_logout
+                target: sonata_login
             anonymous: true
             guard:
                 authenticators:

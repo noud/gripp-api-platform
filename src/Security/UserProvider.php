@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use App\Entity\Medewerker;
+use App\Entity\Medewerker as User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
@@ -24,7 +24,7 @@ final class UserProvider implements UserProviderInterface
     /**
      * @param string $email
      */
-    public function loadUserByUsername($username): Medewerker
+    public function loadUserByUsername($username): User
     {
         $user = $this->findOneUserBy(['username' => $username]);
 
@@ -42,15 +42,15 @@ final class UserProvider implements UserProviderInterface
     {
         /** @var User $user */
         $user = $this->entityManager
-            ->getRepository(Medewerker::class)
+            ->getRepository(User::class)
             ->findOneBy($options);
 
         return $user;
     }
 
-    public function refreshUser(UserInterface $user): ?Medewerker
+    public function refreshUser(UserInterface $user): ?User
     {
-        if (!$user instanceof Medewerker) {
+        if (!$user instanceof User) {
             throw new UnsupportedUserException();
         }
 
@@ -66,6 +66,7 @@ final class UserProvider implements UserProviderInterface
      */
     public function supportsClass($class): bool
     {
-        return User::class === $class;
+        $isUser = User::class === $class;
+        return $isUser;
     }
 }
