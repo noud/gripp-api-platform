@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jun 10, 2019 at 07:10 PM
+-- Generation Time: Jun 10, 2019 at 10:39 PM
 -- Server version: 5.7.26
 -- PHP Version: 7.2.19
 
@@ -27,7 +27,8 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `medewerker` (`id`, `searchname`, `userphoto`, `title`, `screenname`, `number`, `dateofbirth`, `socialsecuritynumber`, `emailprivate`, `bankaccount`, `bankcity`, `bankascription`, `notes`, `employeesince`, `username`, `password`, `active`, `role`, `email`, `phone`, `mobile`, `street`, `adresline2`, `streetnumber`, `zipcode`, `city`, `country`, `function`, `salutation`, `initials`, `firstname`, `infix`, `lastname`, `extendedproperties`, `tags`, `skills`, `createdAt`, `updatedAt`, `roles`) VALUES
-(2, 'demo medewerker', NULL, '', 'demo', NULL, '2019-06-10', NULL, '', '', NULL, NULL, NULL, NULL, 'demo', '$2y$12$SJ8kQD5w/byRp7q9pyQk6u100cGWv/j0co1kiMjPI3zyElPca2qWa', 1, 1, '', NULL, '06 1234 5678', 'Demostraat', NULL, '7', '1234AB', 'Demostad', 'Nederland', NULL, 'SIRMADAM', 'A.B.', 'Demovoornaam', '', 'Demoachternaam', NULL, NULL, NULL, '2019-06-10 00:00:00', '2019-06-10 00:00:00', '[\"ROLE_USER\"]');
+(2, 'demo medewerker', NULL, '', 'demo', NULL, '2019-06-10', NULL, '', '', NULL, NULL, NULL, NULL, 'demo', '$2y$12$SJ8kQD5w/byRp7q9pyQk6u100cGWv/j0co1kiMjPI3zyElPca2qWa', 1, 1, '', NULL, '06 1234 5678', 'Demostraat', NULL, '7', '1234AB', 'Demostad', 'Nederland', NULL, 'SIRMADAM', 'A.B.', 'Demovoornaam', '', 'Demoachternaam', NULL, NULL, NULL, '2019-06-10 00:00:00', '2019-06-10 00:00:00', '[\"ROLE_USER\"]'),
+(3, 'no demo medewerker', NULL, '', 'nodemo', NULL, '2019-06-10', NULL, '', '', NULL, NULL, NULL, NULL, 'nodemo', '$2y$12$ZWL0bEscB.Zn3JPTpR0Ei.Do5n3WrpmgzkyCy3Tm8xgT2rz8BClzq', 0, 1, '', NULL, '06 1234 5679', 'Demostraat', NULL, '8', '1234AB', 'Demostad', 'Nederland', NULL, 'SIRMADAM', 'C.D.', 'Nodemovoornaam', '', 'Nodemoachternaam', NULL, NULL, NULL, '2019-06-10 00:00:00', '2019-06-10 00:00:00', '[\"ROLE_USER\"]');
 
 --
 -- Dumping data for table `taaktype`
@@ -50,7 +51,7 @@ INSERT INTO `tag` (`id`, `searchname`, `name`, `extendedproperties`, `createdAt`
 (6, 'php71', 'php71', NULL, '2019-06-08 00:00:00', '2019-06-08 00:00:00'),
 (7, 'php72', 'php72', NULL, '2019-06-08 00:00:00', '2019-06-08 00:00:00'),
 (8, 'curlphp', 'curlphp', NULL, '2019-06-08 00:00:00', '2019-06-08 00:00:00'),
-(9, 'symfony', 'symfony', NULL, '2019-06-08 00:00:00', '2019-06-08 00:00:00')
+(9, 'symfony', 'symfony', NULL, '2019-06-08 00:00:00', '2019-06-08 00:00:00'),
 (10, 'javascript', 'javascript', NULL, '2019-06-10 00:00:00', '2019-06-10 00:00:00'),
 (11, 'jquery', 'jquery', NULL, '2019-06-10 00:00:00', '2019-06-10 00:00:00'),
 (12, 'bootstrap', 'bootstrap', NULL, '2019-06-10 00:00:00', '2019-06-10 00:00:00'),

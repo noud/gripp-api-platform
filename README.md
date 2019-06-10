@@ -62,7 +62,7 @@ Browse to the login screen:
 You will be prompted for your credentials:
 ![Login](./docs/sonata_login.png?raw=true "Login")
 
-The username demo and password demo will do. If you succeed to login, you can navigate to your login credentials in the upper right corner pull-down:
+The username demo and password demo will do. (The inactive username nodemo and password nodemo will not be allowed to login.) If you succeed to login, you can navigate to your login credentials in the upper right corner pull-down:
 ![Credentials](./docs/sonata_credentials.png?raw=true "Credentials")
 
 
