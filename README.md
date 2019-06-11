@@ -17,6 +17,7 @@ The application is highly independent of the Entities used and a good example of
 The application uses various security measures:
 - [Security at GitHub](https://github.com/security)
 - [Symfony Security Monitoring](https://security.symfony.com)
+- [SQL injection](https://en.wikipedia.org/wiki/SQL_injection) protection
 - [Cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection
 - [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) password hashing
 
