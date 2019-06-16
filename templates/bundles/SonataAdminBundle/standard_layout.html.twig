@@ -100,7 +100,7 @@
     </head>
     <body
             {% block body_attributes -%}
-                class="sonata-bc skin-black fixed
+                class="sonata-bc skin-{{ sonata_skin_color }} fixed
                 {% if app.request.cookies.get('sonata_sidebar_hide') -%}
                     sidebar-collapse
                 {%- endif -%}"
@@ -235,7 +235,7 @@
                                 {{ knp_menu_render('sonata_admin_sidebar', {template: get_global_template('knp_menu_template')}) }}
 <ul class="sidebar-menu">
 <li class="first last treeview">
-<a href="{{ api_docs_url }}">
+<a href="{{ api_docs_url }}" target="_blank">
 <i class="fa fa-folder"></i>
 <span>{{ api_docs_name }}</span>
 </a>

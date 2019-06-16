@@ -1,15 +1,55 @@
 sonata_admin:
-    title: 'Gripp Sonata'
-    title_logo: build/images/logo.svg
+    title: 'client'
+    title_logo: images/logo.svg
     dashboard:
         blocks:
             - { type: sonata.admin.block.admin_list, position: left }
     assets:
+        stylesheets:
+            - bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css
+            - bundles/sonatacore/vendor/components-font-awesome/css/font-awesome.min.css
+            - bundles/sonatacore/vendor/ionicons/css/ionicons.min.css
+            - bundles/sonataadmin/vendor/admin-lte/dist/css/AdminLTE.min.css
+            - bundles/sonataadmin/vendor/admin-lte/dist/css/skins/_all-skins.min.css
+            - bundles/sonataadmin/vendor/iCheck/skins/square/blue.css
+            - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
+            - bundles/sonataadmin/vendor/jqueryui/themes/base/jquery-ui.css
+            - bundles/sonatacore/vendor/select2/select2.css
+            - bundles/sonatacore/vendor/select2-bootstrap-css/select2-bootstrap.min.css
+            - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
+            - bundles/sonataadmin/css/styles.css
+            - bundles/sonataadmin/css/layout.css
+            - bundles/sonataadmin/css/tree.css
+            - bundles/sonatacore/css/flashmessage.css
         extra_stylesheets:
             - build/app.css
+#        javascripts:
+#             - bundles/sonataadmin/vendor/jquery/dist/jquery.min.js
+#             - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js             - 
+#             - bundles/sonataadmin/vendor/jqueryui/ui/minified/jquery-ui.min.js             - 
+#             - bundles/sonataadmin/vendor/jqueryui/ui/minified/i18n/jquery-ui-i18n.min.js             - 
+#             - bundles/sonatacore/vendor/moment/min/moment.min.js             - 
+#             - bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.min.js             - 
+#             - bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js             - 
+#             - bundles/sonataadmin/vendor/jquery-form/jquery.form.js             - 
+#             - bundles/sonataadmin/jquery/jquery.confirmExit.js             - 
+#             - bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js             - 
+#             - bundles/sonatacore/vendor/select2/select2.min.js             - 
+#             - bundles/sonataadmin/vendor/admin-lte/dist/js/app.min.js             - 
+#             - bundles/sonataadmin/vendor/iCheck/icheck.min.js             - 
+#             - bundles/sonataadmin/vendor/slimScroll/jquery.slimscroll.min.js             - 
+#             - bundles/sonataadmin/vendor/waypoints/lib/jquery.waypoints.min.js             - 
+#             - bundles/sonataadmin/vendor/waypoints/lib/shortcuts/sticky.min.js             - 
+#             - bundles/sonataadmin/vendor/readmore-js/readmore.min.js             - 
+#             - bundles/sonataadmin/vendor/masonry/dist/masonry.pkgd.min.js             - 
+#             - bundles/sonataadmin/Admin.js             - 
+#             - bundles/sonataadmin/treeview.js             - 
+#             - bundles/sonataadmin/sidebar.js             - 
+#             - bundles/sonatacore/js/base.js             - 
         extra_javascripts:
             - build/runtime.js
             - build/app.js
+            - build/2fa.js
     templates:
         layout: 'bundles/SonataAdminBundle/standard_layout_header.html.twig'
 sonata_block:

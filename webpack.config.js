@@ -1,6 +1,5 @@
 const Encore = require('@symfony/webpack-encore');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-require('jquery');
 
 Encore
     .setOutputPath('public/build/')
@@ -15,6 +14,7 @@ Encore
      * and one CSS file (e.g. app.css) if you JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('2fa', './assets/js/2fa.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -40,18 +40,12 @@ Encore
     .enableVersioning()
 
     .addPlugin(new CopyWebpackPlugin([
-        { from: './assets/static' }
+        { from: './assets/static' },
+        {from: './assets/images', to: '../images'}
     ]))
  
     //.enableLessLoader()
     //.enablePostCssLoader()
-    
-    .autoProvidejQuery()
-    .autoProvideVariables({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery',
-    })
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()

@@ -1,0 +1,69 @@
+{% extends 'bundles/SonataAdminBundle/standard_layout_favicon.html.twig' %}
+
+{% block sonata_nav %}
+{% endblock sonata_nav %}
+
+{% block logo %}
+{% endblock logo %}
+
+{% block sonata_left_side %}
+{% endblock sonata_left_side %}
+
+{% block body_attributes %}class="sonata-bc login-page"{% endblock %}
+
+{% block sonata_wrapper %}
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{{ path('sonata_admin_dashboard') }}">
+                <span>{{ 'Login'|trans }}</span>
+            </a>
+        </div>
+        <div class="login-box-body">
+            {% block sonata_user_login_form %}
+                {% block sonata_user_login_error %}
+                        <div class="alert alert-danger">
+                    {% if error is defined and error %}
+                            {{ error.messageKey|trans(error.messageData, 'login') }}
+                    {% endif %}
+                    {% if authenticationError %}
+                        {{ authenticationError|trans(authenticationErrorData, 'SchebTwoFactorBundle') }}
+                    {% endif %}
+                        </div>
+                {% endblock %}
+	            {% include 'flash_messages.html.twig' %}
+                <p class="login-box-msg">{{ '2FAuthentication'|trans }}</p>
+                
+                {# Authentication errors #}
+                
+                {# Let the user select the authentication method #}
+                <p>{{ "choose_provider"|trans({}, 'SchebTwoFactorBundle') }}:
+                    {% for provider in availableTwoFactorProviders %}
+                        <a href="{{ path("2fa_login", {"preferProvider": provider}) }}">{{ provider }}</a>
+                    {% endfor %}
+                </p>
+                
+                {# Display current two-factor provider #}
+                <p class="label"><label for="_auth_code">{{ "auth_code"|trans({}, 'SchebTwoFactorBundle') }} {{ twoFactorProvider }}:</label></p>
+                
+                <form action="{{ path("2fa_login_check") }}" method="post" role="form">
+                	<div class="form-group has-feedback">
+                    	<input id="_auth_code" class="form-control" type="text" autocomplete="off" name="{{ authCodeParameterName }}" required="required" placeholder="{{ '2FAuthenticationPlaceholder'|trans }}" />
+                    	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                    </div>
+                    {% if displayTrustedOption %}
+                    	<div class="form-group has-feedback">
+                    		<input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> {{ "trusted"|trans({}, 'SchebTwoFactorBundle') }}</label>
+                    	</div>
+                    {% endif %}
+                    {% if isCsrfProtectionEnabled %}
+                        <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
+                    {% endif %}
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">{{ 'Login'|trans }}</button>
+                </form>
+                
+                {# The logout link gives the user a way out if they can't complete two-factor authentication #}
+                <p class="cancel"><a href="{{ logoutPath }}">{{ "cancel"|trans({}, 'SchebTwoFactorBundle') }}</a></p>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock sonata_wrapper %}

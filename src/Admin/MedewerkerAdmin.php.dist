@@ -11,6 +11,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\Form\Type\DatePickerType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class MedewerkerAdmin extends AbstractAdmin
 {
@@ -87,8 +89,20 @@ final class MedewerkerAdmin extends AbstractAdmin
             ->end()
             ->tab('Inlog gegevens')
                 ->add('username')
+                ->add('plainPassword', PasswordType::class, [
+                    'required' => false,
+                    'attr' => [
+                        'autocomplete' => 'disabled',
+                    ],
+                ])
                 ->add('password', null, [
                     'help' => '<a href="https://bcrypt-generator.com" target="_blank">bcrypt generator</a>',
+                ])
+                ->add('googleAuthenticatorSecret', TextType::class, [
+                    'required' => false,
+                    'attr' => [
+                        'autocomplete' => 'disabled',
+                    ],
                 ])
                 ->add('active')
                 ->add('role')

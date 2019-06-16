@@ -36,28 +36,46 @@ class AuthenticationLoader extends Loader
 
         $routes = new RouteCollection();
 
-        // prepare login route
+        // Login/out
+
         $path = '/'.$this->pathPrefix.'/login';
         $defaults = [
             '_controller' => 'App\Controller\LoginController::loginAction',
         ];
         $requirements = [];
         $route = new Route($path, $defaults, $requirements);
-
-        // add the new route to the route collection
         $routeName = 'sonata_login';
         $routes->add($routeName, $route);
 
-        // prepare logout route
         $path = '/'.$this->pathPrefix.'/logout';
         $defaults = [
             '_controller' => 'App\Controller\LoginController::logoutAction',
         ];
         $requirements = [];
         $route = new Route($path, $defaults, $requirements);
-
-        // add the new route to the route collection
         $routeName = 'sonata_logout';
+        $routes->add($routeName, $route);
+
+        // 2FA routes
+
+        $path = '/'.$this->pathPrefix.'/generate';
+        $defaults = [
+            '_controller' => 'App\Controller\TwoFAController::twoFactorAction',
+        ];
+        $requirements = [];
+        $route = new Route($path, $defaults, $requirements);
+        $routeName = 'users_request_2fa';
+        $routes->add($routeName, $route);
+
+        $path = '/'.$this->pathPrefix.'/qr/{id}';
+        $defaults = [
+            '_controller' => 'App\Controller\TwoFAController::qrAction',
+        ];
+        $requirements = [
+            'id' => '(\s*|\d+)',
+        ];
+        $route = new Route($path, $defaults, $requirements);
+        $routeName = 'users_request_qr';
         $routes->add($routeName, $route);
 
         $this->isLoaded = true;

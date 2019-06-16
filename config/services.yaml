@@ -9,6 +9,7 @@ parameters:
     api_docs_url: '%env(GRIPP_API_DOCS_URL)%'
     api_docs_name: '%env(GRIPP_API_DOCS_NAME)%'
     sonata_prefix: 'sonata'
+    sonata_skin_color: 'green'
     
 imports:
     - { resource: 'services_sonata.yaml' }
@@ -77,3 +78,16 @@ services:
 #    sonata.medewerker.class:
 #        class: App\Entity\Medewerker
 #        #class: App\Type\MedewerkerSalutationType
+
+    admin.medewerker:
+        class: App\Admin\MedewerkerAdmin
+        arguments: [~, App\Entity\Medewerker, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Medewerker }
+        public: true
+        calls:
+            - [setTemplate, ['edit', 'bundles/SonataAdminBundle/CRUD/2fa_edit.html.twig']]
+
+    App\Doctrine\HashPasswordListener:
+        tags:
+            - doctrine.event_subscriber

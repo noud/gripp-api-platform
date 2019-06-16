@@ -1,0 +1,45 @@
+{% macro render_groups(admin, form, groups, has_tab) %}
+    <div class="row">
+
+    {% for code in groups if admin.formgroups[code] is defined %}
+        {% set form_group = admin.formgroups[code] %}
+
+        <div class="{{ form_group.class|default('col-md-12') }}">
+            <div class="{{ form_group.box_class }}">
+                <div class="box-header">
+                    <h4 class="box-title">
+                        {{ form_group.label|trans({}, form_group.translation_domain ?: admin.translationDomain) }}
+                    </h4>
+                </div>
+                <div class="box-body">
+                    <div class="sonata-ba-collapsed-fields">
+                        {% if form_group.description %}
+                            <p>{{ form_group.description|trans({}, form_group.translation_domain ?: admin.translationDomain) }}</p>
+                        {% endif %}
+
+                        {% for field_name in form_group.fields if form[field_name] is defined %}
+                            {# this change is for 2FA #}
+                        	{% if 'googleAuthenticatorSecret' is same as(field_name) %}
+                        		{% do form.googleAuthenticatorSecret.setRendered %}
+                                <div id="google_authenticator_secret" data-url-sonata="{{ sonata_prefix }}" data-url-request="{{ path('users_request_2fa') }}" data-url-qr="{{ path('users_request_qr', {'id': form.vars.value.id}) }}" data-item-id="{{ form.vars.value.id }}"/>
+                        		{% set form_id = 's6411e22d72' %}
+                        		<label class="" for="{{ form_id ~ '_googleAuthenticatorSecret' }}">{{ 'GoogleAuthenticatorSecret'|trans }}</label>
+                                <input title="" id="{{ form_id ~ '_googleAuthenticatorSecret' }}" name="{{ form_id ~ '[googleAuthenticatorSecret]' }}" class="form-control" type="text" readonly value="{{ form.vars.value.googleAuthenticatorSecret }}"/>
+                                <div style="margin-top:25px;">
+                                    <button type="button" id="getGoogleAuthenticatorSecret" class="btn btn-primary">{{ 'GoogleAuthenticatorSecretGenerate'|trans }}</button>
+                                    <button type="button" id="clearGoogleAuthenticatorSecret" class="btn btn-primary">{{ 'GoogleAuthenticatorSecretClear'|trans }}</button>
+                                </div>
+                                <div id="qr_code" style="margin-top:25px;"><img style="max-width:100%;display:block;" src="" id="qr_image"/></div>
+                        	{% else %}
+	                            {{ form_row(form[field_name])}}
+                            {% endif %}
+                        {% else %}
+                            <em>{{ 'message_form_group_empty'|trans({}, 'SonataAdminBundle') }}</em>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+{% endmacro %}

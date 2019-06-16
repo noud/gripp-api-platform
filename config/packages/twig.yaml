@@ -10,3 +10,4 @@ twig:
         api_docs_url: '%api_docs_url%'
         api_docs_name: '%api_docs_name%'
         sonata_prefix: '%sonata_prefix%'
+        sonata_skin_color: '%sonata_skin_color%'

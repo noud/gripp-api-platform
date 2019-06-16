@@ -1,0 +1,40 @@
+{% extends 'cms_base.html.twig' %}
+{% block body %}
+    <div class="form-container">
+        <div class="container-narrow">
+
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">{{ '2fa.form.title'|trans({}, 'login') }}</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="sonata-ba-collapsed-fields">
+                            {% if authenticationError %}
+                            <p class="alert alert-error">{{ authenticationError|trans(authenticationErrorData) }}</p>
+                            {% endif %}
+                            
+                            {# Display current two-factor provider #}
+                            
+                            <form class="form" action="{{ path("2fa_login_check") }}" method="post">
+                            	<div class="form-group">
+	                            	<label class="control-label control-label required" for="_auth_code">{{ "scheb_two_factor.auth_code"|trans }} {{ twoFactorProvider }}:</label>
+                                	<input id="_auth_code" class="form-control" type="text" autocomplete="off" name="{{ authCodeParameterName }}" />
+                                </div>
+                                {% if displayTrustedOption %}
+                                    <p class="widget"><label for="_trusted"><input id="_trusted" type="checkbox" name="{{ trustedParameterName }}" /> {{ "scheb_two_factor.trusted"|trans }}</label></p>
+                                {% endif %}
+                                {% if isCsrfProtectionEnabled %}
+                                    <input type="hidden" name="{{ csrfParameterName }}" value="{{ csrf_token(csrfTokenId) }}">
+                                {% endif %}
+                                <p class="submit"><input type="submit" class="btn btn-success" value="{{ "scheb_two_factor.login"|trans }}" /></p>
+                            
+                            </form>
+                            
+                            <p class="cancel"><a href="{{ path("admin_logout") }}">{{ "scheb_two_factor.cancel"|trans }}</a></p>
+		                </div>
+	                </div>
+                </div>
+
+        </div>
+    </div>
+{% endblock %}

@@ -1,10 +1,16 @@
 # authentication
 Login: 'Inloggen'
 Authentication: 'Authenticatie'
+2FAuthentication: 'Two-Factor authenticatie'
 Username: 'Gebruikersnaam'
 Password: 'Wachtwoord'
+Plain Password: 'Gewoon wachtwoord'
 UsernamePlaceholder: 'Type gebruikersnaam'
 PasswordPlaceholder: 'Type wachtwoord'
+2FAuthenticationPlaceholder: 'Type Two-Factor authenticatie code'
+GoogleAuthenticatorSecret: 'Google Authenticatie Geheim'
+GoogleAuthenticatorSecretGenerate: 'Genereer'
+GoogleAuthenticatorSecretClear: 'Wis'
 Active: 'Actief'
 Role: 'Rol'
 # app

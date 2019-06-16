@@ -6,8 +6,4 @@
  */
 
 // any CSS you require will output into a single css file (app.css in this case)
-
-import 'moment';
-import 'bootstrap';
-import 'eonasdan-bootstrap-datetimepicker';
 import '../css/app.css';

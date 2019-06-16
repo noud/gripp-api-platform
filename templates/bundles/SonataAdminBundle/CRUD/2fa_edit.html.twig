@@ -1,0 +1,31 @@
+{% extends base_template %}
+
+{% block title %}
+    {# NEXT_MAJOR: remove default filter #}
+    {% if objectId|default(admin.id(object)) is not null %}
+        {{ "title_edit"|trans({'%name%': admin.toString(object)|truncate(15) }, 'SonataAdminBundle') }}
+    {% else %}
+        {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+    {% endif %}
+{% endblock %}
+
+{% block navbar_title %}
+    {{ block('title') }}
+{% endblock %}
+
+{%- block actions -%}
+    {% include '@SonataAdmin/CRUD/action_buttons.html.twig' %}
+{%- endblock -%}
+
+{%- block tab_menu -%}
+    {{ knp_menu_render(admin.sidemenu(action), {
+        'currentClass': 'active',
+        'template': get_global_template('tab_menu_template')
+    }, 'twig') }}
+{%- endblock -%}
+
+{% use 'bundles/SonataAdminBundle/CRUD/2fa_edit_form.html.twig' with form as parentForm %}
+
+{% block form %}
+    {{ block('parentForm') }}
+{% endblock %}

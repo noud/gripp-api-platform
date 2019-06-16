@@ -20,6 +20,7 @@ The application uses various security measures:
 - [SQL injection](https://en.wikipedia.org/wiki/SQL_injection) protection
 - [Cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection
 - [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) password hashing
+- [Two-factor authentication (2FA)](https://en.wikipedia.org/wiki/Multi-factor_authentication) using [Google Authenticator](http://code.google.com/p/google-authenticator/)
 
 ## Provisioning
 
