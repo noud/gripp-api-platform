@@ -8,6 +8,8 @@ src/Entity/*.php
 # Docker
 laradock
 
+public/images/
+
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
