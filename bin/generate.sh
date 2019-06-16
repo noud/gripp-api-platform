@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 bin/console doctrine:mapping:import "App\Entity" annotation --path=src/Entity
 bin/console make:entity --regenerate App
-rm config/services_sonata.yaml
+rm config/services_sonata.yaml; touch config/services_sonata.yaml
 rm src/Admin/VerlofaanvraagAdmin.php; bin/console make:sonata:admin App/Entity/Verlofaanvraag --id=admin.verlofaanvraag --services=services_sonata.yaml --no-interaction
 rm src/Admin/VerlofmutatieAdmin.php; bin/console make:sonata:admin App/Entity/Verlofmutatie --id=admin.verlofmutatie --services=services_sonata.yaml --no-interaction
 rm src/Admin/BedrijfAdmin.php; bin/console make:sonata:admin App/Entity/Bedrijf --id=admin.bedrijf --services=services_sonata.yaml --no-interaction
