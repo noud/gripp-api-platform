@@ -55,7 +55,7 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
     /**
      * @var int|null
      *
-     * @ORM\Column(name="number", type="bigint", nullable=true)
+     * @ORM\Column(name="number", type="integer", nullable=true)
      */
     private $number;
 
@@ -717,9 +717,6 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
      */
     private $roles = [self::ROLE_USER];
 
-    /**
-     * @see UserInterface
-     */
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -728,10 +725,7 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
         return array_unique($roles);
     }
 
-    /**
-     * @param array $roles
-     */
-    public function setRoles($roles): self
+    public function setRoles(array $roles): self
     {
         $this->roles = $roles;
 
