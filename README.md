@@ -12,6 +12,12 @@ and demonstrate Gripp API use.
 
 The application is highly independent of the Entities used and a good example of writing generic code.
 
+For this we generate large part of the application:
+- JSON to [Table Schema](https://frictionlessdata.io/specs/table-schema) using [PHP](https://php.net)
+- [Table Schema](https://frictionlessdata.io/specs/table-schema) to Database Schema using [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
+- [Generate Models](https://symfony.com/doc/current/doctrine/reverse_engineering.html) with a extended [Doctrine Object Relational Mapper (ORM)](https://www.doctrine-project.org/projects/orm.html) ImportMapping Command
+- [Generate Views](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) (still to extend) using the [The Symfony MakerBundle](https://symfony.com/doc/current/bundles/SymfonyMakerBundle)
+
 ## Security
 
 The application uses various security measures:

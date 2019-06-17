@@ -91,3 +91,10 @@ services:
     App\Doctrine\HashPasswordListener:
         tags:
             - doctrine.event_subscriber
+            
+    App\Command\Doctrine\ImportMappingDoctrineCommand:
+        arguments:
+            - '@doctrine'
+            - {}
+        tags:
+            - { name: console.command, command: 'app:mapping:import' }

@@ -10,17 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="taaktype")
  * @ORM\Entity
  */
-class Taaktype
+class Taaktype extends \App\Entity\AbstractEntity\AbstractEntity
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
     /**
      * @var string|null
      *
@@ -48,38 +39,6 @@ class Taaktype
      * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
      */
     private $extendedproperties;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
-     */
-    private $createdat;
-//    private $createdat = date('Y-m-d H:i:s');
-//    private $createdat = date("Y-m-d H:i:s");
-//    private $createdat = (new \DateTime())->format('Y-m-d H:i:s');
-//    private $createdat = (new \DateTime())::createFromFormat('U', (string) time());
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
-     */
-    private $updatedat;
-
-    public function __construct()
-    {
-        $this->createdat = date("Y-m-d H:i:s");
-        $this->updatedat = date("Y-m-d H:i:s");
-//`        $this->createdat = (new \DateTime())::createFromFormat('U', (string) time());
-//        $this->updatedat = (new \DateTime())::createFromFormat('U', (string) time());
-//        $this->updatedat = date('Y-m-d H:i:s') ;
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getSearchname(): ?string
     {
@@ -128,30 +87,4 @@ class Taaktype
 
         return $this;
     }
-
-    public function getCreatedat(): ?\DateTimeInterface
-    {
-        return $this->createdat;
-    }
-
-    public function setCreatedat(\DateTimeInterface $createdat): self
-    {
-        $this->createdat = $createdat;
-
-        return $this;
-    }
-
-    public function getUpdatedat(): ?\DateTimeInterface
-    {
-        return $this->updatedat;
-    }
-
-    public function setUpdatedat(\DateTimeInterface $updatedat): self
-    {
-        $this->updatedat = $updatedat;
-
-        return $this;
-    }
-
-
 }

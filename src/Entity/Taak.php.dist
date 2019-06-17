@@ -10,17 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Table(name="taak")
  */
-class Taak
+class Taak extends \App\Entity\AbstractEntity\AbstractEntity
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
     /**
      * @var string|null
      *
@@ -133,25 +124,6 @@ class Taak
      * @ORM\Column(name="calendaritems", type="bigint", nullable=true)
      */
     private $calendaritems;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
-     */
-    private $createdat;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
-     */
-    private $updatedat;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getSearchname(): ?string
     {
@@ -341,30 +313,6 @@ class Taak
     public function setCalendaritems(?int $calendaritems): self
     {
         $this->calendaritems = $calendaritems;
-
-        return $this;
-    }
-
-    public function getCreatedat(): ?\DateTimeInterface
-    {
-        return $this->createdat;
-    }
-
-    public function setCreatedat(\DateTimeInterface $createdat): self
-    {
-        $this->createdat = $createdat;
-
-        return $this;
-    }
-
-    public function getUpdatedat(): ?\DateTimeInterface
-    {
-        return $this->updatedat;
-    }
-
-    public function setUpdatedat(\DateTimeInterface $updatedat): self
-    {
-        $this->updatedat = $updatedat;
 
         return $this;
     }

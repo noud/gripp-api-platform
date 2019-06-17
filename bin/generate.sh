@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
-bin/console doctrine:mapping:import "App\Entity" annotation --path=src/Entity
+bin/console app:mapping:import "App\Entity" annotation-extended --path=src/Entity --class_to_extend="App\Entity\AbstractEntity\AbstractEntity"
+rm src/Entity/MigrationVersions.php
 bin/console make:entity --regenerate App
 rm config/services_sonata.yaml; touch config/services_sonata.yaml
 rm src/Admin/VerlofaanvraagAdmin.php; bin/console make:sonata:admin App/Entity/Verlofaanvraag --id=admin.verlofaanvraag --services=services_sonata.yaml --no-interaction

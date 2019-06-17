@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,20 +15,16 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Entity
  * @UniqueEntity("email")
  */
-class Medewerker implements UserInterface
+class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements UserInterface, TwoFactorInterface
 {
     const ROLE_USER = 'ROLE_USER';
-
+    
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\Column(name="googleAuthenticatorSecret", type="string", nullable=true)
      */
-    private $id;
-
-    /**
+    private $googleAuthenticatorSecret;
+    
+     /**
      * @var string|null
      *
      * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
@@ -136,7 +133,7 @@ class Medewerker implements UserInterface
     /**
      * A non-persisted field that's used to create the encoded password.
      *
-     * @var string
+     * @var string|null
      */
     private $plainPassword;
 
@@ -228,7 +225,7 @@ class Medewerker implements UserInterface
     /**
      * @var string|null
      *
-     * @ORM\Column(name="salutation", type="string", length=0, nullable=true)
+     * @ORM\Column(name="salutation", type="string", length=8, nullable=true)
      */
     private $salutation;
 
@@ -280,25 +277,6 @@ class Medewerker implements UserInterface
      * @ORM\Column(name="skills", type="bigint", nullable=true)
      */
     private $skills;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
-     */
-    private $createdat;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
-     */
-    private $updatedat;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getSearchname(): ?string
     {
@@ -720,30 +698,6 @@ class Medewerker implements UserInterface
         return $this;
     }
 
-    public function getCreatedat(): ?\DateTimeInterface
-    {
-        return $this->createdat;
-    }
-
-    public function setCreatedat(\DateTimeInterface $createdat): self
-    {
-        $this->createdat = $createdat;
-
-        return $this;
-    }
-
-    public function getUpdatedat(): ?\DateTimeInterface
-    {
-        return $this->updatedat;
-    }
-
-    public function setUpdatedat(\DateTimeInterface $updatedat): self
-    {
-        $this->updatedat = $updatedat;
-
-        return $this;
-    }
-
     public static function getSalutationList()
     {
         return [
@@ -787,7 +741,7 @@ class Medewerker implements UserInterface
     /**
      * @return string
      */
-    public function getPlainPassword()
+    public function getPlainPassword(): ?string
     {
         return $this->plainPassword;
     }
@@ -795,7 +749,7 @@ class Medewerker implements UserInterface
     /**
      * @param string $plainPassword
      */
-    public function setPlainPassword($plainPassword)
+    public function setPlainPassword(?string $plainPassword): void
     {
         $this->plainPassword = $plainPassword;
         // forces the object to look "dirty" to Doctrine. Avoids
@@ -826,5 +780,29 @@ class Medewerker implements UserInterface
     public function isActive(): bool
     {
         return $this->active ?: false;
+    }
+    
+    /**
+     * Two-factor authentication
+     */
+    
+    public function isGoogleAuthenticatorEnabled(): bool
+    {
+        return $this->googleAuthenticatorSecret ? true : false;
+    }
+    
+    public function getGoogleAuthenticatorUsername(): string
+    {
+        return $this->username;
+    }
+    
+    public function getGoogleAuthenticatorSecret(): ?string
+    {
+        return $this->googleAuthenticatorSecret;
+    }
+    
+    public function setGoogleAuthenticatorSecret(?string $googleAuthenticatorSecret): void
+    {
+        $this->googleAuthenticatorSecret = $googleAuthenticatorSecret;
     }
 }

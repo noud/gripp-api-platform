@@ -10,17 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="App\Repository\TimelineentryRepository")
  * @ORM\Table(name="timelineentry")
  */
-class Timelineentry
+class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
     /**
      * @var string|null
      *
@@ -140,25 +131,6 @@ class Timelineentry
      * @ORM\Column(name="files", type="bigint", nullable=true)
      */
     private $files;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
-     */
-    private $createdat;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
-     */
-    private $updatedat;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
 
     public function getSearchname(): ?string
     {
@@ -363,30 +335,4 @@ class Timelineentry
 
         return $this;
     }
-
-    public function getCreatedat(): ?\DateTimeInterface
-    {
-        return $this->createdat;
-    }
-
-    public function setCreatedat(\DateTimeInterface $createdat): self
-    {
-        $this->createdat = $createdat;
-
-        return $this;
-    }
-
-    public function getUpdatedat(): ?\DateTimeInterface
-    {
-        return $this->updatedat;
-    }
-
-    public function setUpdatedat(\DateTimeInterface $updatedat): self
-    {
-        $this->updatedat = $updatedat;
-
-        return $this;
-    }
-
-
 }
