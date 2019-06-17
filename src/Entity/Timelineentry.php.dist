@@ -1,0 +1,392 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Timelineentry
+ *
+ * @ORM\Entity(repositoryClass="App\Repository\TimelineentryRepository")
+ * @ORM\Table(name="timelineentry")
+ */
+class Timelineentry
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
+     */
+    private $searchname;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="employee", type="bigint", nullable=true)
+     */
+    private $employee;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="date", type="datetime", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="message", type="string", length=255, nullable=true)
+     */
+    private $message;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="timelinetype", type="string", length=0, nullable=true)
+     */
+    private $timelinetype;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="company", type="bigint", nullable=false)
+     */
+    private $company;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="contact", type="bigint", nullable=true)
+     */
+    private $contact;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="offer", type="bigint", nullable=true)
+     */
+    private $offer;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="project", type="bigint", nullable=true)
+     */
+    private $project;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="invoice", type="bigint", nullable=true)
+     */
+    private $invoice;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="purchaseinvoice", type="bigint", nullable=true)
+     */
+    private $purchaseinvoice;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="purchaseorder", type="bigint", nullable=true)
+     */
+    private $purchaseorder;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="contract", type="bigint", nullable=true)
+     */
+    private $contract;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Taak")
+     * @ORM\JoinColumn(name="task", referencedColumnName="id")
+     */
+    private $task;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="starred", type="boolean", nullable=true)
+     */
+    private $starred;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
+     */
+    private $extendedproperties;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="files", type="bigint", nullable=true)
+     */
+    private $files;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
+     */
+    private $updatedat;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getSearchname(): ?string
+    {
+        return $this->searchname;
+    }
+
+    public function setSearchname(?string $searchname): self
+    {
+        $this->searchname = $searchname;
+
+        return $this;
+    }
+
+    public function getEmployee(): ?int
+    {
+        return $this->employee;
+    }
+
+    public function setEmployee(?int $employee): self
+    {
+        $this->employee = $employee;
+
+        return $this;
+    }
+
+    public function getDate(): ?\DateTimeInterface
+    {
+        return $this->date;
+    }
+
+    public function setDate(?\DateTimeInterface $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getMessage(): ?string
+    {
+        return $this->message;
+    }
+
+    public function setMessage(?string $message): self
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    public function getTimelinetype(): ?string
+    {
+        return $this->timelinetype;
+    }
+
+    public function setTimelinetype(?string $timelinetype): self
+    {
+        $this->timelinetype = $timelinetype;
+
+        return $this;
+    }
+
+    public function getCompany(): ?int
+    {
+        return $this->company;
+    }
+
+    public function setCompany(int $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getContact(): ?int
+    {
+        return $this->contact;
+    }
+
+    public function setContact(?int $contact): self
+    {
+        $this->contact = $contact;
+
+        return $this;
+    }
+
+    public function getOffer(): ?int
+    {
+        return $this->offer;
+    }
+
+    public function setOffer(?int $offer): self
+    {
+        $this->offer = $offer;
+
+        return $this;
+    }
+
+    public function getProject(): ?int
+    {
+        return $this->project;
+    }
+
+    public function setProject(?int $project): self
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    public function getInvoice(): ?int
+    {
+        return $this->invoice;
+    }
+
+    public function setInvoice(?int $invoice): self
+    {
+        $this->invoice = $invoice;
+
+        return $this;
+    }
+
+    public function getPurchaseinvoice(): ?int
+    {
+        return $this->purchaseinvoice;
+    }
+
+    public function setPurchaseinvoice(?int $purchaseinvoice): self
+    {
+        $this->purchaseinvoice = $purchaseinvoice;
+
+        return $this;
+    }
+
+    public function getPurchaseorder(): ?int
+    {
+        return $this->purchaseorder;
+    }
+
+    public function setPurchaseorder(?int $purchaseorder): self
+    {
+        $this->purchaseorder = $purchaseorder;
+
+        return $this;
+    }
+
+    public function getContract(): ?int
+    {
+        return $this->contract;
+    }
+
+    public function setContract(?int $contract): self
+    {
+        $this->contract = $contract;
+
+        return $this;
+    }
+
+    public function getTask(): ?Taak
+    {
+        return $this->task;
+    }
+
+    public function setTask(?Taak $task): self
+    {
+        $this->task = $task;
+
+        return $this;
+    }
+
+    public function getStarred(): ?bool
+    {
+        return $this->starred;
+    }
+
+    public function setStarred(?bool $starred): self
+    {
+        $this->starred = $starred;
+
+        return $this;
+    }
+
+    public function getExtendedproperties(): ?string
+    {
+        return $this->extendedproperties;
+    }
+
+    public function setExtendedproperties(?string $extendedproperties): self
+    {
+        $this->extendedproperties = $extendedproperties;
+
+        return $this;
+    }
+
+    public function getFiles(): ?int
+    {
+        return $this->files;
+    }
+
+    public function setFiles(?int $files): self
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    public function getCreatedat(): ?\DateTimeInterface
+    {
+        return $this->createdat;
+    }
+
+    public function setCreatedat(\DateTimeInterface $createdat): self
+    {
+        $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    public function getUpdatedat(): ?\DateTimeInterface
+    {
+        return $this->updatedat;
+    }
+
+    public function setUpdatedat(\DateTimeInterface $updatedat): self
+    {
+        $this->updatedat = $updatedat;
+
+        return $this;
+    }
+
+
+}

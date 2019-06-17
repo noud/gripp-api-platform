@@ -63,10 +63,14 @@ Browse to the login screen:
 /opt/google/chrome/chrome http://gripp.localhost/sonata
 ```
 You will be prompted for your credentials:
+
 ![Login](./docs/sonata_login.png?raw=true "Login")
 
 The username demo and password demo will do. (The inactive username nodemo and password nodemo will not be allowed to login.) If you succeed to login, you can navigate to your login credentials in the upper right corner pull-down:
+
 ![Credentials](./docs/sonata_credentials.png?raw=true "Credentials")
+
+As you see in the upper right messages and tasks navigation items and tasks pull-down the application uses the [AdminLTE 2](https://adminlte.io/preview) [Bootstrap 3](https://getbootstrap.com/docs/3.4/) template.
 
 
 ## Developing

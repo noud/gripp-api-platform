@@ -21,5 +21,7 @@ cp src/Admin/TagAdmin.php.dist src/Admin/TagAdmin.php
 cp src/Admin/TimelineentryAdmin.php.dist src/Admin/TimelineentryAdmin.php
 cp src/Admin/VerlofmutatieAdmin.php.dist src/Admin/VerlofmutatieAdmin.php
 cp src/Entity/Medewerker.php.dist src/Entity/Medewerker.php
+cp src/Entity/Taak.php.dist src/Entity/Taak.php
 cp src/Entity/Taaktype.php.dist src/Entity/Taaktype.php
+cp src/Entity/Timelineentry.php.dist src/Entity/Timelineentry.php
 bin/console cache:clear

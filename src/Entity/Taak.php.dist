@@ -1,0 +1,376 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Taak
+ *
+ * @ORM\Entity()
+ * @ORM\Table(name="taak")
+ */
+class Taak
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
+     */
+    private $searchname;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="type", type="bigint", nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="deadlinedate", type="date", nullable=true)
+     */
+    private $deadlinedate;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="deadlinetime", type="time", nullable=true)
+     */
+    private $deadlinetime;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="content", type="string", length=255, nullable=true)
+     */
+    private $content;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="number", type="bigint", nullable=true)
+     */
+    private $number;
+
+    /**
+     * @var Taakfase|null
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Taakfase")
+     * @ORM\JoinColumn(name="phase", referencedColumnName="id")
+     */
+    private $phase;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="company", type="bigint", nullable=false)
+     */
+    private $company;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="offerprojectbase", type="bigint", nullable=true)
+     */
+    private $offerprojectbase;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="offerprojectline", type="bigint", nullable=true)
+     */
+    private $offerprojectline;
+
+    /**
+     * @var float|null
+     *
+     * @ORM\Column(name="estimatedhours", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $estimatedhours;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="completedon", type="date", nullable=true)
+     */
+    private $completedon;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
+     */
+    private $extendedproperties;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="files", type="bigint", nullable=true)
+     */
+    private $files;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="calendaritems", type="bigint", nullable=true)
+     */
+    private $calendaritems;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
+     */
+    private $createdat;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
+     */
+    private $updatedat;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getSearchname(): ?string
+    {
+        return $this->searchname;
+    }
+
+    public function setSearchname(?string $searchname): self
+    {
+        $this->searchname = $searchname;
+
+        return $this;
+    }
+
+    public function getType(): ?int
+    {
+        return $this->type;
+    }
+
+    public function setType(?int $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getDeadlinedate(): ?\DateTimeInterface
+    {
+        return $this->deadlinedate;
+    }
+
+    public function setDeadlinedate(?\DateTimeInterface $deadlinedate): self
+    {
+        $this->deadlinedate = $deadlinedate;
+
+        return $this;
+    }
+
+    public function getDeadlinetime(): ?\DateTimeInterface
+    {
+        return $this->deadlinetime;
+    }
+
+    public function setDeadlinetime(?\DateTimeInterface $deadlinetime): self
+    {
+        $this->deadlinetime = $deadlinetime;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    public function setNumber(?int $number): self
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function getPhase(): ?Taakfase
+    {
+        return $this->phase;
+    }
+
+    public function setPhase(?Taakfase $phase): self
+    {
+        $this->phase = $phase;
+
+        return $this;
+    }
+
+    public function getCompany(): ?int
+    {
+        return $this->company;
+    }
+
+    public function setCompany(int $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getOfferprojectbase(): ?int
+    {
+        return $this->offerprojectbase;
+    }
+
+    public function setOfferprojectbase(?int $offerprojectbase): self
+    {
+        $this->offerprojectbase = $offerprojectbase;
+
+        return $this;
+    }
+
+    public function getOfferprojectline(): ?int
+    {
+        return $this->offerprojectline;
+    }
+
+    public function setOfferprojectline(?int $offerprojectline): self
+    {
+        $this->offerprojectline = $offerprojectline;
+
+        return $this;
+    }
+
+    public function getEstimatedhours(): ?float
+    {
+        return $this->estimatedhours;
+    }
+
+    public function setEstimatedhours(?float $estimatedhours): self
+    {
+        $this->estimatedhours = $estimatedhours;
+
+        return $this;
+    }
+
+    public function getCompletedon(): ?\DateTimeInterface
+    {
+        return $this->completedon;
+    }
+
+    public function setCompletedon(?\DateTimeInterface $completedon): self
+    {
+        $this->completedon = $completedon;
+
+        return $this;
+    }
+
+    public function getExtendedproperties(): ?string
+    {
+        return $this->extendedproperties;
+    }
+
+    public function setExtendedproperties(?string $extendedproperties): self
+    {
+        $this->extendedproperties = $extendedproperties;
+
+        return $this;
+    }
+
+    public function getFiles(): ?int
+    {
+        return $this->files;
+    }
+
+    public function setFiles(?int $files): self
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    public function getCalendaritems(): ?int
+    {
+        return $this->calendaritems;
+    }
+
+    public function setCalendaritems(?int $calendaritems): self
+    {
+        $this->calendaritems = $calendaritems;
+
+        return $this;
+    }
+
+    public function getCreatedat(): ?\DateTimeInterface
+    {
+        return $this->createdat;
+    }
+
+    public function setCreatedat(\DateTimeInterface $createdat): self
+    {
+        $this->createdat = $createdat;
+
+        return $this;
+    }
+
+    public function getUpdatedat(): ?\DateTimeInterface
+    {
+        return $this->updatedat;
+    }
+
+    public function setUpdatedat(\DateTimeInterface $updatedat): self
+    {
+        $this->updatedat = $updatedat;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->description;
+    }
+}

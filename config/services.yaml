@@ -9,7 +9,7 @@ parameters:
     api_docs_url: '%env(GRIPP_API_DOCS_URL)%'
     api_docs_name: '%env(GRIPP_API_DOCS_NAME)%'
     sonata_prefix: 'sonata'
-    sonata_skin_color: 'green'
+    sonata_skin_color: 'blue'
     
 imports:
     - { resource: 'services_sonata.yaml' }
