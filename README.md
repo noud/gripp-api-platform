@@ -30,7 +30,6 @@ Add this local hostname to your DNS.:
 ```
 Start Docker. Provision the application with PHP Composer and JavaScript Node.js NPM packages.:
 ```bash
-bin/services.sh
 bin/docker_start.sh
 bin/provision.sh
 ```
