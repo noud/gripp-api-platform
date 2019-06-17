@@ -4,67 +4,67 @@
         <body>
             <trans-unit id="Toggle navigation">
                 <source>Toggle navigation</source>
-                <target>Toggle navigation</target>
+                <target state="translated">Navigatie in- of uitklappen</target>
             </trans-unit>
             <trans-unit id="Remember Me">
                 <source>Remember Me</source>
-                <target>Remember Me</target>
+                <target state="translated">Onthoud mij</target>
             </trans-unit>
             <trans-unit id="Sign in to start your session">
                 <source>Sign in to start your session</source>
-                <target>Login</target>
+                <target state="translated">Log in om uw sessie te starten</target>
             </trans-unit>
             <trans-unit id="Sign In">
                 <source>Sign In</source>
-                <target>Login</target>
+                <target state="translated">Inloggen</target>
             </trans-unit>
             <trans-unit id="Sign out">
                 <source>Sign out</source>
-                <target>Logout</target>
+                <target state="translated">Uitloggen</target>
             </trans-unit>
             <trans-unit id="Profile">
                 <source>Profile</source>
-                <target>Your profile</target>
+                <target state="translated">Profiel</target>
             </trans-unit>
             <trans-unit id="Member since %date%">
                 <source>Member since %date%</source>
-                <target>Member since %date%</target>
+                <target state="translated">Lid sinds %date%</target>
             </trans-unit>
             <trans-unit id="Username">
                 <source>Username</source>
-                <target>Username</target>
+                <target state="translated">Gebruikersnaam</target>
             </trans-unit>
             <trans-unit id="Password">
                 <source>Password</source>
-                <target>Password</target>
+                <target state="translated">Wachtwoord</target>
             </trans-unit>
             <trans-unit id="Show homepage">
                 <source>Show homepage</source>
-                <target>Show homepage</target>
+                <target state="translated">Toon startpagina</target>
             </trans-unit>
             <trans-unit id="Back to login">
                 <source>Back to login</source>
-                <target>Back to login</target>
+                <target state="translated">Terug naar Inloggen</target>
             </trans-unit>
             <trans-unit id="Reset your password">
                 <source>Reset your password</source>
-                <target>Reset your password</target>
+                <target state="translated">Stel je wachtwoord opnieuw in</target>
             </trans-unit>
             <trans-unit id="I forgot my password">
                 <source>I forgot my password</source>
-                <target>I forgot my password</target>
+                <target state="translated">Ik ben mijn wachtwoord vergeten</target>
             </trans-unit>
             <trans-unit id="Register a new account">
                 <source>Register a new account</source>
-                <target>Register a new account</target>
+                <target state="translated">Maak een nieuw account aan</target>
             </trans-unit>
             <trans-unit id="View all">
                 <source>View all</source>
-                <target>Bekijk allen</target>
+                <target state="translated">Bekijk alles</target>
             </trans-unit>
             <trans-unit id="You have %count% notifications">
                 <source>You have %count% notifications</source>
-                <target>You have 1 notification|You have %count% notifications</target>
+                <target state="translated">Je hebt 1 melding|Je hebt %count% meldingen</target>
             </trans-unit>
             <trans-unit id="You have %count% messages">
                 <source>You have %count% messages</source>
@@ -76,11 +76,11 @@
             </trans-unit>
             <trans-unit id="%progress%% Complete">
                 <source>%progress%% Complete</source>
-                <target>%progress%% completed</target>
+                <target state="translated">%progress%% voltooid</target>
             </trans-unit>
             <trans-unit id="This is a mandatory field">
                 <source>This is a mandatory field</source>
-                <target>This is a mandatory field</target>
+                <target state="translated">Dit is een verplicht veld</target>
             </trans-unit>
         </body>
     </file>
