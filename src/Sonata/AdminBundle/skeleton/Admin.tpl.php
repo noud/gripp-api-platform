@@ -1,36 +1,28 @@
-<?php
+<?= "<?php\n" ?>
 
 declare(strict_types=1);
 
-namespace App\Admin;
+namespace <?= $namespace ?>;
 
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\CoreBundle\Form\Type\ColorType;
 
-final class OffertefaseAdmin extends AbstractAdmin
+final class <?= $class_name ?> extends AbstractAdmin
 {
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('searchname')
-            ;
+<?= $searchFields ?>;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
-            ->add('searchname')
-            ->add('name')
-            ->add('color', null, [
-                'template' => 'bundles/SonataAdminBundle/list_color.html.twig',
-            ])
-            ->add('extendedproperties')
-            ->add('_action', null, [
+<?= $listFields ?>->add('_action', null, [
                 'actions' => [
                     'show' => [],
                     'edit' => [],
@@ -42,20 +34,12 @@ final class OffertefaseAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('searchname')
-            ->add('name')
-            ->add('color', ColorType::class)
-            ->add('extendedproperties')
-            ;
+<?= $formFields ?>;
     }
 
     protected function configureShowFields(ShowMapper $showMapper): void
     {
         $showMapper
-            ->add('searchname')
-            ->add('name')
-            ->add('color')
-            ->add('extendedproperties')
-            ;
+<?= $fields ?>;
     }
 }

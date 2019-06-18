@@ -15,8 +15,10 @@ The application is highly independent of the Entities used and a good example of
 For this we generate large part of the application:
 - JSON to [Table Schema](https://frictionlessdata.io/specs/table-schema) using [PHP](https://php.net)
 - [Table Schema](https://frictionlessdata.io/specs/table-schema) to Database Schema using [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
-- [Generate Models](https://symfony.com/doc/current/doctrine/reverse_engineering.html) with a extended [Doctrine Object Relational Mapper (ORM)](https://www.doctrine-project.org/projects/orm.html) ImportMapping Command
-- [Generate Views](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) (still to extend) using the [The Symfony MakerBundle](https://symfony.com/doc/current/bundles/SymfonyMakerBundle)
+- [Generate Models](https://symfony.com/doc/current/doctrine/reverse_engineering.html) with an extended(*) [Doctrine Object Relational Mapper (ORM)](https://www.doctrine-project.org/projects/orm.html) ImportMapping Command
+- [Generate Views](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) with an extended(*) [SONATA PROJECT](https://sonata-project.org/)s [AdminMaker Command](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) using the [Symfony MakerBundle](https://symfony.com/doc/current/bundles/SymfonyMakerBundle)
+
+*) The extended code generators are part of this project.
 
 ## Security
 

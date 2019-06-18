@@ -116,7 +116,7 @@ final class BedrijfAdmin extends AbstractAdmin
                 ->add('vatshifted')
                 ->add('vat')
                 ->add('cocnumber')
-                ->add('foundationdate')
+                ->add('foundationdate', \Sonata\Form\Type\DatePickerType::class)
                 ->add('active')
                 ->add('screenname')
                 ->add('companyroles')

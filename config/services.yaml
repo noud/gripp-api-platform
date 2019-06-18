@@ -98,3 +98,10 @@ services:
             - {}
         tags:
             - { name: console.command, command: 'app:mapping:import' }
+            
+    App\Command\SonataAdmin\AdminMaker:
+        arguments:
+            - '%kernel.project_dir%'
+            - {'sonata.admin.manager.orm': '@sonata.admin.manager.orm'}
+        tags:
+            - { name: maker.command }
