@@ -1228,5 +1228,8 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-
+    public function __toString()
+    {
+        return trim($this->firstname.' '.$this->infix).' '.$this->lastname;
+    }
 }

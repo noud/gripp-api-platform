@@ -35,11 +35,12 @@ class TimelineentryService
     public function messagesForSubscriber(User $user)
     {
         $userModel = new UserModel();
-        $userModel->setName($user ? $user->getUsername() : 'anonymous');
         
         $messages = $this->findMessagesByUser($user);
         $messagesForSubscriber = [];
         foreach ($messages as $message) {
+            $username = trim($message['firstname'].' '.$message['infix']).' '.$message['lastname'];
+            $userModel->setName($username);
             $messageForSubscriber = new MessageModel(
                 $userModel,
                 $message['message'],

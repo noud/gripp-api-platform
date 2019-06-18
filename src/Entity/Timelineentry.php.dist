@@ -48,9 +48,10 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
     private $timelinetype;
 
     /**
-     * @var int
+     * @var Bedrijf
      *
-     * @ORM\Column(name="company", type="bigint", nullable=false)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Bedrijf")
+     * @ORM\JoinColumn(name="company", referencedColumnName="id")
      */
     private $company;
 
@@ -192,12 +193,12 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getCompany(): ?int
+    public function getCompany(): ?Bedrijf
     {
         return $this->company;
     }
 
-    public function setCompany(int $company): self
+    public function setCompany(Bedrijf $company): self
     {
         $this->company = $company;
 

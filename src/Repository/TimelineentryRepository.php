@@ -19,7 +19,8 @@ class TimelineentryRepository extends ServiceEntityRepository
     {
         $queryBuilder = $this->createQueryBuilder('te');
         $queryBuilder
-            ->select(['te.date','te.id','te.message'])
+            ->select(['te.date','te.id','te.message','bedrijf.firstname','bedrijf.infix','bedrijf.lastname'])
+            ->leftJoin('te.company', 'bedrijf')
             ->andWhere('te.employee = :employee')
             ->andWhere('te.timelinetype LIKE :usermessage')
             ->setParameters([
