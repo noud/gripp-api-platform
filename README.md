@@ -10,22 +10,14 @@ This is a Symfony client application that does work with
 
 and demonstrate Gripp API use.
 
-The application is highly independent of the Entities used and a good example of writing generic code.
-
-For this we generate large part of the application:
-- JSON to [Table Schema](https://frictionlessdata.io/specs/table-schema) using [PHP](https://php.net)
-- [Table Schema](https://frictionlessdata.io/specs/table-schema) to Database Schema using [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
-- [Generate Models](https://symfony.com/doc/current/doctrine/reverse_engineering.html) with an extended(*) [Doctrine Object Relational Mapper (ORM)](https://www.doctrine-project.org/projects/orm.html) ImportMapping Command
-- [Generate Views](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) with an extended(*) [SONATA PROJECT](https://sonata-project.org/)s [AdminMaker Command](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) using the [Symfony MakerBundle](https://symfony.com/doc/current/bundles/SymfonyMakerBundle)
-
-*) The extended code generators are part of this project.
+The application is highly independent of the Entities used and a good example of writing generic code to facilitate a [Rapid-application development (RAD)](https://en.wikipedia.org/wiki/Rapid_application_development) development process.
 
 ## Security
 
 The application uses various security measures:
 - [Security at GitHub](https://github.com/security)
 - [Symfony Security Monitoring](https://security.symfony.com)
-- [SQL injection](https://en.wikipedia.org/wiki/SQL_injection) protection
+- [Structured Query Language (SQL) injection](https://en.wikipedia.org/wiki/SQL_injection) protection
 - [Cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection
 - [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) password hashing
 - [Two-factor authentication (2FA)](https://en.wikipedia.org/wiki/Multi-factor_authentication) using [Google Authenticator](http://code.google.com/p/google-authenticator/)
@@ -42,6 +34,16 @@ bin/docker_start.sh
 bin/provision.sh
 ```
 ## Generating
+
+We generate large part of the application:
+- JSON to JSON [Table Schema](https://frictionlessdata.io/specs/table-schema) using [PHP](https://php.net)
+- JSON [Table Schema](https://frictionlessdata.io/specs/table-schema) to Database Schema using [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
+- [Generate Models](https://symfony.com/doc/current/doctrine/reverse_engineering.html) with an extended(*) [Doctrine Object Relational Mapper (ORM)](https://www.doctrine-project.org/projects/orm.html) ImportMapping Command
+- [Generate Views](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) with an extended(*) [SONATA PROJECT](https://sonata-project.org/)s [AdminMaker Command](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) using the [Symfony MakerBundle](https://symfony.com/doc/current/bundles/SymfonyMakerBundle)
+
+*) The extended code generators are part of this project and still [Proof of concept (PoC)](https://en.wikipedia.org/wiki/Proof_of_concept).
+
+The first 2 steps are already done, being outside this project scope. You have to perform the last 2 steps, import the Database Schema and generate Entities and Views, here is how:
 
 Import the database schema and optionally some demo data.:
 ```bash
