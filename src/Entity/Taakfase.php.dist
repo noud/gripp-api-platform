@@ -1,0 +1,95 @@
+<?php
+
+namespace App\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Taakfase
+ *
+ * @ORM\Table(name="taakfase")
+ * @ORM\Entity
+ */
+class Taakfase extends \App\Entity\AbstractEntity\AbstractEntity
+{
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
+     */
+    private $searchname;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="color", type="string", length=255, nullable=true)
+     */
+    private $color;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
+     */
+    private $extendedproperties;
+
+    public function getSearchname(): ?string
+    {
+        return $this->searchname;
+    }
+
+    public function setSearchname(?string $searchname): self
+    {
+        $this->searchname = $searchname;
+
+        return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(?string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getColor(): ?string
+    {
+        return $this->color;
+    }
+
+    public function setColor(?string $color): self
+    {
+        $this->color = $color;
+
+        return $this;
+    }
+
+    public function getExtendedproperties(): ?string
+    {
+        return $this->extendedproperties;
+    }
+
+    public function setExtendedproperties(?string $extendedproperties): self
+    {
+        $this->extendedproperties = $extendedproperties;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
+    }
+}
