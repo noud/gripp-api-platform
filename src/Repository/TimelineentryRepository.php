@@ -33,7 +33,7 @@ class TimelineentryRepository extends ServiceEntityRepository
         return $queryBuilder->getQuery()->getArrayResult();
     }
     
-    public function findTasksByUserId(int $userId): ?Array
+    public function findTasksByUserId(User $user): ?Array
     {
         $sub = $this->createQueryBuilder('te2');
         $sub->from("App\Entity\Timelineentry","te3");
@@ -48,7 +48,7 @@ class TimelineentryRepository extends ServiceEntityRepository
             ->select(['te.date','taak.id','taak.description','taakfase.name','taakfase.color'])
             ->andWhere('te.employee = :employee')
             ->setParameters([
-                'employee' => $userId,
+                'employee' => $user,
             ])
             ->orderBy('te.date','desc')
          ;

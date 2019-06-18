@@ -32,6 +32,36 @@ class TimelineentryService
         return $this->timelineentryRepository->findMessagesByUserId($user);
     }
     
+    public function itemsForBlock(User $user)
+    {
+        $messages = $this->findMessagesByUser($user);
+        $messagesForBlock = [];
+        foreach ($messages as $message) {
+            $username = trim($message['firstname'].' '.$message['infix']).' '.$message['lastname'];
+            $messagesForBlock[] = [
+                'id' => $message['id'],
+                'title' => 'Bericht van'.' '.$username,
+                'content' => $message['message'],
+                'start' => $message['date']->format('Y-m-d'),
+                'style' => "color: black; background-color: #00a65a;"
+            ];
+        }
+        
+        $tasks = $this->findTasksByUserId($user);
+        $tasksForBlock = [];
+        foreach ($tasks as $task) {
+            $tasksForBlock[] = [
+                'id' => $task['id'],
+                'content' => $task['description'].' ('.$task['name'].'%)',
+                'start' => $task['date']->format('Y-m-d'),
+                'style' => "color: black; background-color: #dd4b39;"
+            ];
+        }
+        
+        $itemsForBlock = array_merge($messagesForBlock, $tasksForBlock);
+        return $itemsForBlock;
+    }
+    
     public function messagesForSubscriber(User $user)
     {
         $userModel = new UserModel();
@@ -56,14 +86,14 @@ class TimelineentryService
     /**
      * @return mixed|bool
      */
-    public function findTasksByUserId(int $userId)
+    public function findTasksByUserId(User $user)
     {
-        return $this->timelineentryRepository->findTasksByUserId($userId);
+        return $this->timelineentryRepository->findTasksByUserId($user);
     }
     
-    public function tasksForSubscriber(int $userId)
+    public function tasksForSubscriber(User $user)
     {
-        $tasks = $this->findTasksByUserId($userId);
+        $tasks = $this->findTasksByUserId($user);
         $tasksForSubscriber = [];
         foreach ($tasks as $task) {
             $taskColor = 'blue';

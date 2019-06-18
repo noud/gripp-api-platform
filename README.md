@@ -81,6 +81,9 @@ The username demo and password demo will do. (The inactive username nodemo and p
 
 As you see in the upper right messages and tasks navigation items and tasks pull-down the application uses the [AdminLTE 2](https://adminlte.io/preview) [Bootstrap 3](https://getbootstrap.com/docs/3.4/) template.
 
+The dashboard contains the [vis.js](https://visjs.org) [Timeline](https://visjs.org/timeline_examples.html), for now only with, entries of the messages and tasks:
+
+![Dashboard](./docs/sonata_dashboard.png?raw=true "Dashboard")
 
 ## Developing
 

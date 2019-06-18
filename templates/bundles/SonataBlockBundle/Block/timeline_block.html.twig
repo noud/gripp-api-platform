@@ -1,0 +1,21 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">Tijdlijn</h4>
+        </div>
+
+        <div class="panel-body">
+            <div class="media">
+                {% if timelineentries %}
+                    <div class="media-body">
+                	<div id="visualization" data-data-set="{{ timelineentries }}"></div>
+                    </div>
+                {% else %}
+                    No timelineentries available.
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

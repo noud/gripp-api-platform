@@ -15,6 +15,7 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addEntry('2fa', './assets/js/2fa.js')
+    .addEntry('timeline', './assets/js/timeline.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -22,10 +23,6 @@ Encore
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
     .enableSingleRuntimeChunk()
-
-    /* login
-       ========================================================================== */
-    // .addEntry('login', './assets/js/login.js')
 
     /*
      * FEATURE CONFIG
@@ -56,6 +53,37 @@ const config = Encore.getWebpackConfig();
 
 config.watchOptions = {
     poll: true,
+};
+
+config.module = {
+    rules: [{
+        test: /node_modules[\\\/]vis[\\\/].*\.js$/,
+        loader: 'babel-loader',
+        query: {
+            cacheDirectory: true,
+            presets: [ "babel-preset-env" ].map(require.resolve),
+            plugins: [
+                "transform-es3-property-literals", // #2452
+                "transform-es3-member-expression-literals", // #2566
+                "transform-runtime" // #2566
+            ]
+        }
+    },{
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+    },{
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+            'file-loader',
+            {
+                loader: 'image-webpack-loader',
+                options: {
+                    bypassOnDebug: true, // webpack@1.x
+                    disable: true, // webpack@2.x and newer
+                },
+            },
+        ],
+    }]
 };
 
 module.exports = config;

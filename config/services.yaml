@@ -105,3 +105,12 @@ services:
             - {'sonata.admin.manager.orm': '@sonata.admin.manager.orm'}
         tags:
             - { name: maker.command }
+            
+    sonata.block.service.timeline:
+        class: App\Sonata\BlockBundle\Block\Service\TimelineBlockService
+        arguments:
+            - ~
+            - '@sonata.templating'
+#            - '@twig'
+        tags:
+            - { name: sonata.block }

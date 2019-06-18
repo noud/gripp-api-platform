@@ -58,8 +58,8 @@ class TaskSubscriber implements EventSubscriberInterface
      */
     public function onTasks(TaskListEvent $event)
     {
-        $userId = $this->security->getToken()->getUser()->getId();
-        $tasks = $this->timelineentryService->tasksForSubscriber($userId);
+        $user = $this->security->getToken()->getUser();
+        $tasks = $this->timelineentryService->tasksForSubscriber($user);
         foreach ($tasks as $task) {
             $event->addTask($task);
         }

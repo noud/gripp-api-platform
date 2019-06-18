@@ -43,7 +43,7 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="timelinetype", type="string", length=0, nullable=true)
+     * @ORM\Column(name="timelinetype", type="string", length=11, nullable=true)
      */
     private $timelinetype;
 
