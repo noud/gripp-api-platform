@@ -6,12 +6,19 @@ Gripp client Symfony
 
 This is a Symfony client application that does work with
 
-[Gripp](https://www.gripp.com)s [Gripp API v3](https://github.com/noud/gripp_api)
+[Gripp](https://www.gripp.com) there [Gripp API v3](https://github.com/noud/gripp_api)
 
 and demonstrate Gripp API use.
 
 The application is highly independent of the Entities used and a good example of writing generic code to facilitate a [Rapid-application development (RAD)](https://en.wikipedia.org/wiki/Rapid_application_development) development process.
 
+## API
+
+The application consumes the Gripp API as client but has various API server interfaces itself as well:
+ - [JSON-RPC](https://en.wikipedia.org/wiki/JSON-RPC)
+ - [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) todo
+ - [GraphQL](https://en.wikipedia.org/wiki/GraphQL) todo
+ 
 ## Security
 
 The application uses various security measures:
@@ -21,6 +28,7 @@ The application uses various security measures:
 - [Cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection
 - [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) password hashing
 - [Two-factor authentication (2FA)](https://en.wikipedia.org/wiki/Multi-factor_authentication) using [Google Authenticator](http://code.google.com/p/google-authenticator/)
+- [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication) for JSON-RPC API server
 
 ## Provisioning
 
