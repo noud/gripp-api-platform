@@ -728,6 +728,12 @@
     "symfony/yaml": {
         "version": "v4.3.0"
     },
+    "timiki/rpc-common": {
+        "version": "1.0.4"
+    },
+    "timiki/rpc-server-bundle": {
+        "version": "4.0.4"
+    },
     "twig/extensions": {
         "version": "1.0",
         "recipe": {

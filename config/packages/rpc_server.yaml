@@ -1,0 +1,6 @@
+rpc_server:
+    mapping:
+      v3:
+        - "%kernel.project_dir%/src/Rpc/v3"
+    cache: ~
+    serializer: ~

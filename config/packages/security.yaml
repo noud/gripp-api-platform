@@ -48,3 +48,4 @@ security:
         - { path: ^/%sonata_prefix%/logout, roles: [ROLE_USER, IS_AUTHENTICATED_2FA_IN_PROGRESS] }
         - { path: ^/%sonata_prefix%/2fa, role: IS_AUTHENTICATED_2FA_IN_PROGRESS }
         - { path: ^/%sonata_prefix%/, role: ROLE_USER }
+        #- { path: ^/rpc, role: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -26,4 +26,5 @@ return [
     Endroid\QrCodeBundle\EndroidQrCodeBundle::class => ['all' => true],
     KevinPapst\AdminLTEBundle\AdminLTEBundle::class => ['all' => true],
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
+    Timiki\Bundle\RpcServerBundle\RpcServerBundle::class => ['all' => true],
 ];

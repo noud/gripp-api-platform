@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e7566dbf9697d901b2c801bf77893be7",
+    "content-hash": "95744d77428c6b3b6e7bff11985e124e",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -7342,6 +7342,117 @@
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
             "time": "2019-04-06T14:04:46+00:00"
+        },
+        {
+            "name": "timiki/rpc-common",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/timiki/rpc-common.git",
+                "reference": "a20e8bc92b16aa3686c4405bf5182123a5cfc750"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/timiki/rpc-common/zipball/a20e8bc92b16aa3686c4405bf5182123a5cfc750",
+                "reference": "a20e8bc92b16aa3686c4405bf5182123a5cfc750",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5 || >=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Timiki\\RpcCommon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Netesin N",
+                    "email": "nikita@netesin.ru"
+                }
+            ],
+            "keywords": [
+                "json-rpc",
+                "rpc"
+            ],
+            "time": "2018-06-04T18:10:41+00:00"
+        },
+        {
+            "name": "timiki/rpc-server-bundle",
+            "version": "4.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/timiki/rpc-server-bundle.git",
+                "reference": "2b65394d3e34429a5579eb816d109e9ae7bedd17"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/timiki/rpc-server-bundle/zipball/2b65394d3e34429a5579eb816d109e9ae7bedd17",
+                "reference": "2b65394d3e34429a5579eb816d109e9ae7bedd17",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/annotations": "^1.6",
+                "doctrine/cache": "^1.8",
+                "ext-json": "*",
+                "php": "^7.1.3",
+                "symfony/console": "^4.1",
+                "symfony/dependency-injection": "^3.3|^4.0",
+                "symfony/event-dispatcher": "^3.3|^4.0",
+                "symfony/framework-bundle": "~3.3|~4.0",
+                "symfony/http-foundation": "^3.3|^4.0",
+                "symfony/http-kernel": "^3.3|^4.0",
+                "symfony/property-access": "^3.3|^4.0",
+                "symfony/security-core": "^4.1",
+                "symfony/serializer": "^3.3|^4.0",
+                "symfony/stopwatch": "^3.3|^4.0",
+                "symfony/validator": "^4.1",
+                "timiki/rpc-common": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.13",
+                "phpstan/phpstan": "^0.10.5",
+                "phpstan/phpstan-symfony": "^0.10.2",
+                "phpunit/phpunit": "^7.4",
+                "symfony/browser-kit": "~3.3|~4.0",
+                "symfony/phpunit-bridge": "~3.3|~4.0",
+                "symfony/translation": "^4.2",
+                "symfony/yaml": "~3.3|~4.0",
+                "twig/twig": "^2.5"
+            },
+            "suggest": {
+                "symfony/security-bundle": "For add check security for method",
+                "symfony/validator": "For add validate params for method",
+                "twig/twig": "For generate command"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Timiki\\Bundle\\RpcServerBundle\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Netesin N",
+                    "email": "nikita@netesin.ru"
+                }
+            ],
+            "description": "JSON-RPC server bundle for symfony",
+            "keywords": [
+                "json-rpc",
+                "rpc",
+                "symfony-bundle"
+            ],
+            "time": "2019-04-23T22:15:50+00:00"
         },
         {
             "name": "twig/extensions",
