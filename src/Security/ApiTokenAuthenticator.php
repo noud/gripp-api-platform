@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use App\Entity\ApiUser;
+use App\Entity\Api\ApiUser;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;

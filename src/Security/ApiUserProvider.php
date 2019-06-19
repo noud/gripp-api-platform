@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use App\Entity\ApiUser as User;
+use App\Entity\Api\ApiUser as User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
