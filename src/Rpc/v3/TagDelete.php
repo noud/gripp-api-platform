@@ -20,6 +20,7 @@ class TagDelete
     /**
      * @Rpc\Param()
      * @Assert\NotBlank()
+     * @Assert\Positive
      */
     protected $param;
     
@@ -46,15 +47,12 @@ class TagDelete
      */
     public function execute()
     {
-        $param = $this->param;
-        
-        // execute
-        $tagId = $param;
-        $tag = $this->tagRepository->find($tagId);
-        $this->entityManager->remove($tag);
-        $this->entityManager->flush();
-        
-        $result = 'Deleted';
-        return $result;
+        $tag = $this->tagRepository->find($this->param);
+        if ($tag) {
+            $this->entityManager->remove($tag);
+            $this->entityManager->flush();
+            return true;
+        }
+        return 'Does not exist.';
     }
 }

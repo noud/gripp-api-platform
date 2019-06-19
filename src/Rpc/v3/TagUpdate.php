@@ -15,19 +15,26 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\EntityManagerInterface;
 
 /**
- * @Rpc\Method("tag.create")
- * @ Rpc\Roles({
- *   "ROLE_NAME"
+ * @Rpc\Method("tag.update")
+ * @Rpc\Roles({
+ *   "ROLE_API_USER"
  * })
  * @Rpc\Cache(lifetime=3600)
  */
-class TagCreate
+class TagUpdate
 {
     /**
      * @Rpc\Param()
      * @Assert\NotBlank()
+     * @Assert\Positive
      */
-    protected $param;
+    protected $param1;
+    
+    /**
+     * @Rpc\Param()
+     * @Assert\NotBlank()
+     */
+    protected $param2;
     
     /**
      * @var Serializer
@@ -62,10 +69,14 @@ class TagCreate
      */
     public function execute()
     {
-        $serializedTag = json_encode($this->param);
-        $tag = $this->serializer->deserialize($serializedTag, Tag::class, 'json');
-        $this->tagRepository->add($tag);
-        $this->entityManager->flush();
-        return true;
+        $tagId = (int) json_encode($this->param1);
+        $serializedTag = json_encode($this->param2);
+        $existingTag = $this->tagRepository->find($tagId);
+        if ($existingTag) {
+            $this->serializer->deserialize($serializedTag, Tag::class, 'json', ['object_to_populate' => $existingTag]);
+            $this->entityManager->flush();
+            return true;
+        }
+        return 'Does not exist.';
     }
 }
