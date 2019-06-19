@@ -25,6 +25,7 @@
                         		{% set form_id = 's6411e22d72' %}
                         		<label class="" for="{{ form_id ~ '_googleAuthenticatorSecret' }}">{{ 'GoogleAuthenticatorSecret'|trans }}</label>
                                 <input title="" id="{{ form_id ~ '_googleAuthenticatorSecret' }}" name="{{ form_id ~ '[googleAuthenticatorSecret]' }}" class="form-control" type="text" readonly value="{{ form.vars.value.googleAuthenticatorSecret }}"/>
+                                <span ckass="help-block sonata-ba-field-help"><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2" target="_blank">Google Authenticator App</a></span>
                                 <div style="margin-top:25px;">
                                     <button type="button" id="getGoogleAuthenticatorSecret" class="btn btn-primary">{{ 'GoogleAuthenticatorSecretGenerate'|trans }}</button>
                                     <button type="button" id="clearGoogleAuthenticatorSecret" class="btn btn-primary">{{ 'GoogleAuthenticatorSecretClear'|trans }}</button>

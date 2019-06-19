@@ -27,7 +27,7 @@ The application uses various security measures:
 - [Structured Query Language (SQL) injection](https://en.wikipedia.org/wiki/SQL_injection) protection
 - [Cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection
 - [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) password hashing
-- [Two-factor authentication (2FA)](https://en.wikipedia.org/wiki/Multi-factor_authentication) using [Google Authenticator](http://code.google.com/p/google-authenticator/)
+- [Two-factor authentication (2FA)](https://en.wikipedia.org/wiki/Multi-factor_authentication) using [Google Authenticator App](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
 - [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication) for JSON-RPC API server
 
 ## Provisioning
