@@ -113,3 +113,11 @@ services:
             - '@sonata.templating'
         tags:
             - { name: sonata.block }
+            
+    sonata.exporter.writer.vcard:
+        public: true
+        class: App\Exporter\Writer\VcardWriter
+        arguments:
+            - '%sonata.exporter.writer.csv.filename%'
+        tags: 
+            - sonata.exporter.writer

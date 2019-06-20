@@ -20,11 +20,17 @@ final class BedrijfAdmin extends AbstractAdmin
             ->add('searchname')
             ;
     }
-
+    
+    public function getExportFormats()
+    {
+        return ['vcard', 'json', 'xml', 'csv', 'xls'];
+    }
+    
     protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->add('searchname')
+            ->add('companyname')
             ->add('identity')
             ->add('website')
             ->add('notes')
@@ -74,7 +80,6 @@ final class BedrijfAdmin extends AbstractAdmin
             ->add('mobile')
             ->add('relationtype')
             ->add('accountmanager')
-            ->add('companyname')
             ->add('salutation')
             ->add('initials')
             ->add('title')
@@ -102,6 +107,7 @@ final class BedrijfAdmin extends AbstractAdmin
         $formMapper
             ->tab('Algemeen')
                 ->add('searchname')
+                ->add('companyname')
                 ->add('identity')
                 ->add('website')
                 ->add('notes')
@@ -172,7 +178,6 @@ final class BedrijfAdmin extends AbstractAdmin
             ->tab('Naam')
                 ->add('relationtype')
                 ->add('accountmanager')
-                ->add('companyname')
                 ->add('salutation')
                 ->add('initials')
                 ->add('title')

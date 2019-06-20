@@ -29,11 +29,16 @@ final class MedewerkerAdmin extends AbstractAdmin
         parent::__construct($code, $class, $baseControllerName);
     }
     
+    public function getExportFormats()
+    {
+        return ['vcard', 'json', 'xml', 'csv', 'xls'];
+    }
+    
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
             ->add('searchname')
-            ;
+        ;
     }
 
     protected function configureListFields(ListMapper $listMapper): void

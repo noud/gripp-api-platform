@@ -150,6 +150,12 @@
     "jean85/pretty-package-versions": {
         "version": "1.2"
     },
+    "jeroendesloovere/vcard": {
+        "version": "1.7.2"
+    },
+    "jeroendesloovere/vcard-bundle": {
+        "version": "1.2.3"
+    },
     "khanamiryan/qrcode-detector-decoder": {
         "version": "1.0.2"
     },

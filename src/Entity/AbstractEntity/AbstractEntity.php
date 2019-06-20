@@ -37,4 +37,14 @@ abstract class AbstractEntity
     {
         return $this->id;
     }
+    
+    public function getCreatedat(): ?DateTime
+    {
+        return $this->createdat;
+    }
+    
+    public function getUpdatedat(): ?DateTime
+    {
+        return $this->updatedat;
+    }
 }

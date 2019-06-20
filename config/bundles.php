@@ -27,4 +27,6 @@ return [
     KevinPapst\AdminLTEBundle\AdminLTEBundle::class => ['all' => true],
     Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle::class => ['all' => true],
     Timiki\Bundle\RpcServerBundle\RpcServerBundle::class => ['all' => true],
+    JeroenDesloovere\Bundle\VCardBundle\JeroenDesloovereVCardBundle::class => ['all' => true],
+    Sonata\Exporter\Bridge\Symfony\Bundle\SonataExporterBundle::class => ['all' => true],
 ];

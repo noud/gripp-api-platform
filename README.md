@@ -18,7 +18,18 @@ The application consumes the Gripp API as client but has various API server inte
  - [JSON-RPC](https://www.jsonrpc.org/specification)
  - [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) todo
  - [GraphQL](https://en.wikipedia.org/wiki/GraphQL) todo
- 
+
+## export
+
+The application is able to export it's data to your desktop:
+ - [CSV](https://en.wikipedia.org/wiki/Comma-separated_values)
+ - [vCard](https://en.wikipedia.org/wiki/VCard) as an extended(*) Writer
+ - [JSON](https://en.wikipedia.org/wiki/JSON)
+ - [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel#File_formats)
+ - [XML](https://en.wikipedia.org/wiki/XML)
+
+*) The extended Writer is part of this project and still [Proof of concept (PoC)](https://en.wikipedia.org/wiki/Proof_of_concept).
+
 ## Security
 
 The application uses various security measures:
