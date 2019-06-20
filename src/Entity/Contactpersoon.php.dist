@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\FullnameTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
 {
+    use FullnameTrait;
+    
     /**
      * @var string|null
      *
@@ -374,5 +377,9 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-
+    public function __toString()
+    {
+        $company = ($this->getCompany()) ? ' | '.$this->getCompany() : '';
+        return $this->getName().$company;
+    }
 }

@@ -20,9 +20,10 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
     private $searchname;
 
     /**
-     * @var int|null
+     * @var Medewerker|null
      *
-     * @ORM\Column(name="employee", type="bigint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Medewerker")
+     * @ORM\JoinColumn(name="employee", referencedColumnName="id")
      */
     private $employee;
 
@@ -56,9 +57,10 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
     private $company;
 
     /**
-     * @var int|null
+     * @var Contactpersoon|null
      *
-     * @ORM\Column(name="contact", type="bigint", nullable=true)
+     * @ORM\ManyToOne(targetEntity="App\Entity\Contactpersoon")
+     * @ORM\JoinColumn(name="contact", referencedColumnName="id")
      */
     private $contact;
 
@@ -145,12 +147,12 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getEmployee(): ?int
+    public function getEmployee(): ?Medewerker
     {
         return $this->employee;
     }
 
-    public function setEmployee(?int $employee): self
+    public function setEmployee(?Medewerker $employee): self
     {
         $this->employee = $employee;
 
@@ -205,12 +207,12 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getContact(): ?int
+    public function getContact(): ?Contactpersoon
     {
         return $this->contact;
     }
 
-    public function setContact(?int $contact): self
+    public function setContact(?Contactpersoon $contact): self
     {
         $this->contact = $contact;
 
