@@ -109,6 +109,14 @@ The dashboard contains the [vis.js](https://visjs.org) [Timeline](https://visjs.
 
 Feel free to contribute.
 
+## Contributions made
+
+Using existing code as much as possible, some projects got an accepted Pull Request:
+- [AdminLTE Bundle for Symfony 4](https://github.com/kevinpapst/AdminLTEBundle)
+	- [Dutch translation added](https://github.com/kevinpapst/AdminLTEBundle/commit/9efc0f388ab908c7187ce7cbfc7d4ef6173e7da5#diff-f1f6a7153c98d120f1ff1ef005ce142e)
+- [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
+	- [Constraints required, enum added and Field type date, datetime and time added](https://github.com/frictionlessdata/tableschema-sql-js/commit/aff64731771ce095d521373182d4f080fb5f84d2)
+
 ### Tools
 
 Created with [Eclipse PDT Extension group Symfony framework plugin](http://p2-dev.pdt-extensions.org)
