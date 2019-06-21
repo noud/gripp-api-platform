@@ -43,57 +43,56 @@ class VcardWriter implements TypedWriterInterface
      */
     public function write(array $data)
     {
-        //dump($data);die();
         if ($data['Actief']) {
             $this->vcardObject[$this->position] = new VCard();
-            
-            if (isset($data['companyname'])) {
-                $this->vcardObject[$this->position]->addCompany($data['companyname']);
+
+            if (isset($data['Naam'])) {
+                $this->vcardObject[$this->position]->addCompany($data['Naam']);
             }
-            if (isset($data['company'])) {
-                $this->vcardObject[$this->position]->addCompany($data['company'], $data['department']);
+            if (isset($data['Website'])) {
+                $this->vcardObject[$this->position]->addURL($data['Website'],'WORK');
             }
-            if (isset($data['website'])) {
-                $this->vcardObject[$this->position]->addURL($data['website'],'WORK');
-            }
-            if (isset($data['visitingaddress_street'])) {
+            if (isset($data['visitingaddressStreet'])) {
                 $this->vcardObject[$this->position]->addAddress(
                     '',
                     '',
-                    $data['visitingaddress_street'].' '.$data['visitingaddress_streetnumber'],
-                    $data['visitingaddress_city'],
+                    $data['visitingaddressStreet'].' '.$data['visitingaddressStreetnumber'],
+                    $data['visitingaddressCity'],
                     '',
-                    $data['visitingaddress_zipcode'],
-                    $data['visitingaddress_country'],
-                    'WORK'
+                    $data['visitingaddressZipcode'],
+                    $data['visitingaddressCountry'],
+                    ('PRIVATEPERSON' === $data['relationtype']) ? 'HOME:POSTAL' : 'WORK'
                 );
             }
-            if (isset($data['postaddress_street'])) {
+            if (isset($data['postaddressStreet'])) {
                 $this->vcardObject[$this->position]->addAddress(
                     '',
                     '',
-                    $data['postaddress_street'].' '.$data['postaddress_streetnumber'],
-                    $data['postaddress_city'],
+                    $data['postaddressStreet'].' '.$data['postaddressStreetnumber'],
+                    $data['postaddressCity'],
                     '',
-                    $data['postaddress_zipcode'],
-                    $data['postaddress_country'],
+                    $data['postaddressZipcode'],
+                    $data['postaddressCountry'],
                     'POSTAL'
                 );
             }
-            if (!isset($data['company']) || isset($data['showoncompanycard'])) {
+            if (isset($data['E-mail'])) {
+                $this->vcardObject[$this->position]->addEmail($data['E-mail'],'PREF;WORK');
+            }
+            if (!isset($data['relationtype']) ||
+                (isset($data['relationtype']) && ('PRIVATEPERSON' === $data['relationtype'])) ||
+                (isset($data['relationtype']) && ('COMPANY' === $data['relationtype'] && (isset($data['Voornaam']) || isset($data['Achternaam'])))) ||
+                isset($data['showoncompanycard'])) {
         //         if (isset($data[''])) {
         //             $this->vcardObject[$this->position]->addJobtitle($data['']);
         //         }
                 $this->vcardObject[$this->position]->addName(
-                    $data['lastname'],
-                    $data['firstname'] //,
+                    $data['Achternaam'],
+                    $data['Voornaam'] //,
                     //$data['additional'],
                     //$data['prefix'],
                     //$data['suffix']
                 );
-                if (isset($data['E-mail'])) {
-                    $this->vcardObject[$this->position]->addEmail($data['E-mail'],'PREF;WORK');
-                }
                 if (isset($data['Privé e-mailen'])) {
                     $this->vcardObject[$this->position]->addEmail($data['Privé e-mailen'],'HOME');
                 }
@@ -114,13 +113,13 @@ class VcardWriter implements TypedWriterInterface
                         $data['city'],
                         '',
                         $data['zipcode'],
-                        $data['country'],
+                        (isset($data['country']) && $data['country']) ?: '',
                         'HOME;POSTAL'
                     );
                 }
             }
         }
-        
+
         ++$this->position;
     }
 

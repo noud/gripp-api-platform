@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Entity\Traits\FullnameTrait;
 use Doctrine\ORM\Mapping as ORM;
+use \DateTime;
+use \DateTimeInterface;
 
 /**
  * Contactpersoon
@@ -15,6 +17,10 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
 {
     use FullnameTrait;
     
+    public function __construct()
+    {
+        $this->dateofbirth = new DateTime();
+    }
     /**
      * @var string|null
      *
@@ -55,7 +61,7 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active;
+    private $active = true;
 
     /**
      * @var string|null

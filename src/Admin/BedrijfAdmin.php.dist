@@ -4,102 +4,53 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\Form\Type\DatePickerType;
 
-final class BedrijfAdmin extends AbstractAdmin
+final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
 {
-
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
-    {
-        $datagridMapper
-            ->add('searchname')
-            ;
+    public function __construct(
+        $code,
+        $class,
+        $baseControllerName
+    ) {
+        parent::__construct($code, $class, $baseControllerName, 'companyname');
     }
     
-    public function getExportFormats()
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
-        return ['vcard', 'json', 'xml', 'csv', 'xls'];
+        parent::configureDatagridFilters($datagridMapper);
+        $datagridMapper
+            ->add('companyname')
+            ->add('relationtype')
+        ;
     }
     
     protected function configureListFields(ListMapper $listMapper): void
     {
+        parent::configureListFields($listMapper);
         $listMapper
-            ->add('searchname')
+            ->add('website', 'url', [
+                'attributes' => ['target' => '_blank'],
+                'hide_protocol' => true,
+            ])
             ->add('companyname')
-            ->add('identity')
-            ->add('website')
-            ->add('notes')
-            ->add('invoicesendto')
-            ->add('invoiceaddressCompanyname')
-            ->add('invoiceaddressAttn')
-            ->add('invoiceaddressStreet')
-            ->add('invoiceaddressStreetnumber')
-            ->add('invoiceaddressAddressline2')
-            ->add('invoiceaddressZipcode')
-            ->add('invoiceaddressCity')
-            ->add('invoiceaddressCountry')
-            ->add('customernumber')
-            ->add('bankaccount')
-            ->add('bankascription')
-            ->add('bankcity')
-            ->add('bic')
-            ->add('externalreference')
-            ->add('additionaltermofpayment')
-            ->add('termofpayment')
-            ->add('termofpaymentPurchaseinvoice')
-            ->add('invoicesendby')
-            ->add('invoiceemail')
-            ->add('vatnumber')
-            ->add('vatshifted')
-            ->add('vat')
-            ->add('cocnumber')
-            ->add('foundationdate')
-            ->add('active')
-            ->add('postaddress')
-            ->add('postaddressStreet')
-            ->add('postaddressStreetnumber')
-            ->add('postaddressAddressline2')
-            ->add('postaddressZipcode')
-            ->add('postaddressCity')
-            ->add('postaddressCountry')
-            ->add('visitingaddressStreet')
-            ->add('visitingaddressAddressline2')
-            ->add('visitingaddressStreetnumber')
-            ->add('visitingaddressZipcode')
-            ->add('visitingaddressCity')
-            ->add('visitingaddressCountry')
-            ->add('visitingaddressLng')
-            ->add('visitingaddressLat')
-            ->add('email')
+            ->add('email', null, [
+                'template' => 'bundles/SonataAdminBundle/link_email.html.twig',
+            ])
             ->add('phone')
             ->add('mobile')
-            ->add('relationtype')
+            ->add('address')
+            ->add('visitingaddressCountry', null, [
+                'label' => 'Country',
+            ])
             ->add('accountmanager')
-            ->add('salutation')
-            ->add('initials')
-            ->add('title')
-            ->add('firstname')
-            ->add('infix')
-            ->add('lastname')
-            ->add('screenname')
-            ->add('extendedproperties')
-            ->add('paymentmethod')
-            ->add('paymentmethodPurchaseinvoice')
+            ->add('name', null, [
+                'label' => 'Owner', // @TODO PRIVATEPERSON
+            ])
             ->add('tags')
-            ->add('companyroles')
-            ->add('files')
-            ->add('_action', null, [
-                'actions' => [
-                    'show' => [],
-                    'edit' => [],
-                    'delete' => [],
-                ],
-            ]);
+        ;
     }
 
     protected function configureFormFields(FormMapper $formMapper): void
@@ -128,6 +79,7 @@ final class BedrijfAdmin extends AbstractAdmin
                 ->add('companyroles')
                 ->add('files')
                 ->end()
+                
             ->end()
             ->tab('Factuuradres')
                 ->add('invoicesendto')
@@ -200,75 +152,5 @@ final class BedrijfAdmin extends AbstractAdmin
                 ->end()
             ->end()
         ;
-    }
-
-    protected function configureShowFields(ShowMapper $showMapper): void
-    {
-        $showMapper
-            ->add('searchname')
-            ->add('identity')
-            ->add('website')
-            ->add('notes')
-            ->add('invoicesendto')
-            ->add('invoiceaddressCompanyname')
-            ->add('invoiceaddressAttn')
-            ->add('invoiceaddressStreet')
-            ->add('invoiceaddressStreetnumber')
-            ->add('invoiceaddressAddressline2')
-            ->add('invoiceaddressZipcode')
-            ->add('invoiceaddressCity')
-            ->add('invoiceaddressCountry')
-            ->add('customernumber')
-            ->add('bankaccount')
-            ->add('bankascription')
-            ->add('bankcity')
-            ->add('bic')
-            ->add('externalreference')
-            ->add('additionaltermofpayment')
-            ->add('termofpayment')
-            ->add('termofpaymentPurchaseinvoice')
-            ->add('invoicesendby')
-            ->add('invoiceemail')
-            ->add('vatnumber')
-            ->add('vatshifted')
-            ->add('vat')
-            ->add('cocnumber')
-            ->add('foundationdate')
-            ->add('active')
-            ->add('postaddress')
-            ->add('postaddressStreet')
-            ->add('postaddressStreetnumber')
-            ->add('postaddressAddressline2')
-            ->add('postaddressZipcode')
-            ->add('postaddressCity')
-            ->add('postaddressCountry')
-            ->add('visitingaddressStreet')
-            ->add('visitingaddressAddressline2')
-            ->add('visitingaddressStreetnumber')
-            ->add('visitingaddressZipcode')
-            ->add('visitingaddressCity')
-            ->add('visitingaddressCountry')
-            ->add('visitingaddressLng')
-            ->add('visitingaddressLat')
-            ->add('email')
-            ->add('phone')
-            ->add('mobile')
-            ->add('relationtype')
-            ->add('accountmanager')
-            ->add('companyname')
-            ->add('salutation')
-            ->add('initials')
-            ->add('title')
-            ->add('firstname')
-            ->add('infix')
-            ->add('lastname')
-            ->add('screenname')
-            ->add('extendedproperties')
-            ->add('paymentmethod')
-            ->add('paymentmethodPurchaseinvoice')
-            ->add('tags')
-            ->add('companyroles')
-            ->add('files')
-            ;
     }
 }

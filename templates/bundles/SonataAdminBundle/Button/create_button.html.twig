@@ -1,0 +1,18 @@
+{% if admin.hasAccess('create') and admin.hasRoute('create') %}
+    {% if admin.subClasses is empty %}
+        <li>
+            <a class="sonata-action-element" href="{{ admin.generateUrl('create') }}">
+                <i class="fa fa-plus-square" aria-hidden="true"></i>
+            </a>
+        </li>
+    {% else %}
+        {% for subclass in admin.subclasses|keys %}
+            <li>
+                <a class="sonata-action-element" href="{{ admin.generateUrl('create', {'subclass': subclass}) }}">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i>
+                    {{ 'link_action_create'|trans({}, 'SonataAdminBundle') }} {{ subclass|trans({}, admin.translationdomain) }}
+                </a>
+            </li>
+        {% endfor %}
+    {% endif %}
+{% endif %}

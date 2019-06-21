@@ -4,18 +4,17 @@ declare(strict_types=1);
 
 namespace App\Admin;
 
+use App\Admin\AbstractAdmin\AbstractVCardAdmin;
 //use App\Type\MedewerkerSalutationType;
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\Form\Type\DatePickerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Security\Core\Security;
 
-final class MedewerkerAdmin extends AbstractAdmin
+final class MedewerkerAdmin extends AbstractVCardAdmin
 {
     private $security;
     
@@ -25,72 +24,41 @@ final class MedewerkerAdmin extends AbstractAdmin
         $baseControllerName,
         Security $security
     ) {
+        parent::__construct($code, $class, $baseControllerName, 'firstname');
         $this->security = $security;
-        parent::__construct($code, $class, $baseControllerName);
-    }
-    
-    public function getExportFormats()
-    {
-        return ['vcard', 'json', 'xml', 'csv', 'xls'];
     }
     
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
+        parent::configureDatagridFilters($datagridMapper);
         $datagridMapper
-            ->add('searchname')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('email')
         ;
     }
-
+    
     protected function configureListFields(ListMapper $listMapper): void
     {
+        parent::configureListFields($listMapper);
         $listMapper
-            ->add('searchname')
-            ->add('userphoto')
-            ->add('title')
-            ->add('screenname')
-            ->add('number')
-            ->add('dateofbirth')
-            ->add('socialsecuritynumber')
-            ->add('emailprivate')
-            ->add('bankaccount')
-            ->add('bankcity')
-            ->add('bankascription')
-            ->add('notes')
-            ->add('employeesince')
-            ->add('username')
-            ->add('active')
-            ->add('role')
-            ->add('email')
-            ->add('phone')
-            ->add('mobile')
-            ->add('street')
-            ->add('adresline2')
-            ->add('streetnumber')
-            ->add('zipcode')
-            ->add('city')
-            ->add('country')
+            ->add('email', null, [
+                'template' => 'bundles/SonataAdminBundle/link_email.html.twig',
+            ])
+            ->add('name')
             ->add('function')
-            ->add('salutation')
-            ->add('initials')
-            ->add('firstname')
-            ->add('infix')
-            ->add('lastname')
-            ->add('extendedproperties')
-            ->add('tags')
+            ->add('mobile')
+            ->add('phone')
+            ->add('address')
+            ->add('country')
             ->add('skills')
-            ->add('_action', null, [
-                'actions' => [
-                    'show' => [],
-                    'edit' => [],
-                    'delete' => [],
-                ],
-            ]);
+        ;
     }
-
+    
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $owned = $this->getSubject()->getId() === $this->security->getToken()->getUser()->getId();
-
+        
         $formMapper
             ->tab('Algemeen')
                 ->add('searchname')
@@ -171,45 +139,5 @@ final class MedewerkerAdmin extends AbstractAdmin
                 ->end()
             ;
         }
-    }
-
-    protected function configureShowFields(ShowMapper $showMapper): void
-    {
-        $showMapper
-            ->add('searchname')
-            ->add('userphoto')
-            ->add('title')
-            ->add('screenname')
-            ->add('number')
-            ->add('dateofbirth')
-            ->add('socialsecuritynumber')
-            ->add('emailprivate')
-            ->add('bankaccount')
-            ->add('bankcity')
-            ->add('bankascription')
-            ->add('notes')
-            ->add('employeesince')
-            ->add('username')
-            ->add('active')
-            ->add('role')
-            ->add('email')
-            ->add('phone')
-            ->add('mobile')
-            ->add('street')
-            ->add('adresline2')
-            ->add('streetnumber')
-            ->add('zipcode')
-            ->add('city')
-            ->add('country')
-            ->add('function')
-            ->add('salutation')
-            ->add('initials')
-            ->add('firstname')
-            ->add('infix')
-            ->add('lastname')
-            ->add('extendedproperties')
-            ->add('tags')
-            ->add('skills')
-            ;
     }
 }

@@ -1,14 +1,14 @@
-<?= "<?php\n" ?>
+<?php
 
 declare(strict_types=1);
 
-namespace <?= $namespace ?>;
+namespace App\Admin;
 
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-final class <?= $class_name ?> extends \App\Admin\AbstractAdmin\AbstractAdmin
+final class TagAdmin extends \App\Admin\AbstractAdmin\AbstractAdmin
 {
     public function __construct(
         $code,
@@ -21,23 +21,24 @@ final class <?= $class_name ?> extends \App\Admin\AbstractAdmin\AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         parent::configureDatagridFilters($datagridMapper);
-        $datagridMapper
-<?= $searchFields ?>
-		;
+//         $datagridMapper
+//             ->add('searchname')
+//         ;
     }
 
     protected function configureListFields(ListMapper $listMapper): void
     {
         parent::configureListFields($listMapper);
         $listMapper
-<?= $listFields ?>
-		;
+            ->add('name')
+        ;
     }
 
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-<?= $formFields ?>
-		;
+            ->add('name')
+            ->add('extendedproperties')
+        ;
     }
 }

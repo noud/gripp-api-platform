@@ -1,5 +1,6 @@
 # Gripp client Symfony
-Gripp client Symfony
+
+![Gripp client Symfony](./docs/gripp_client_symfony.png?raw=true "Gripp client Symfony")
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/noud/gripp_api/master/LICENSE)
 [![master](https://img.shields.io/badge/current-dev-aa11ff.svg)](https://github.com/noud/gripp_client_symfony/releases)

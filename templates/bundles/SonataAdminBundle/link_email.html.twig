@@ -1,0 +1,6 @@
+{% extends admin.getTemplate('base_list_field') %}
+{% block field %}
+    <div class="show-link_email">
+        <div><a href="mailto:{{ value }}" target="__blank">{{ value }}</a></div>
+    </div>
+{% endblock %}

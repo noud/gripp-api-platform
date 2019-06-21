@@ -1,0 +1,5 @@
+{% if admin.hasAccess('delete', object) and admin.hasRoute('delete') %}
+    <a href="{{ admin.generateObjectUrl('delete', object) }}" class="delete_link" title="{{ 'action_delete'|trans({}, 'SonataAdminBundle') }}">
+        <i class="fa fa-times" aria-hidden="true"></i>
+    </a>
+{% endif %}

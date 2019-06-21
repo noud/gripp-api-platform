@@ -3,11 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\AddressTrait;
 use App\Entity\Traits\FullnameTrait;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use \DateTime;
+use \DateTimeInterface;
 
 /**
  * Medewerker
@@ -19,8 +22,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements UserInterface, TwoFactorInterface
 {
     use FullnameTrait;
+    use AddressTrait;
     
     const ROLE_USER = 'ROLE_USER';
+    
+    public function __construct()
+    {
+        $this->dateofbirth = new DateTime();
+    }
     
     /**
      * @ORM\Column(name="googleAuthenticatorSecret", type="string", nullable=true)
@@ -63,7 +72,7 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
     private $number;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="dateofbirth", type="date", nullable=true)
      */
@@ -113,7 +122,7 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
     private $notes;
 
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      *
      * @ORM\Column(name="employeesince", type="date", nullable=true)
      */

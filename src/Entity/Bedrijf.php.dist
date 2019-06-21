@@ -2,7 +2,11 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\FullnameTrait;
+use App\Entity\Traits\VisitingAddressTrait;
 use Doctrine\ORM\Mapping as ORM;
+use \DateTime;
+use \DateTimeInterface;
 
 /**
  * Bedrijf
@@ -12,6 +16,14 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
 {
+    use FullnameTrait;
+    use VisitingAddressTrait;
+    
+    public function __construct()
+    {
+        $this->foundationdate = new DateTime();
+    }
+    
     /**
      * @var string|null
      *
@@ -209,7 +221,7 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
     private $cocnumber;
 
     /**
-     * @var \DateTime|null
+     * @var DateTimeInterface|null
      *
      * @ORM\Column(name="foundationdate", type="date", nullable=true)
      */
@@ -353,7 +365,7 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
      *
      * @ORM\Column(name="relationtype", type="string", length=13, nullable=false)
      */
-    private $relationtype;
+    private $relationtype = 'COMPANY';
 
     /**
      * @var int|null
@@ -796,12 +808,12 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getFoundationdate(): ?\DateTimeInterface
+    public function getFoundationdate(): ?DateTimeInterface
     {
         return $this->foundationdate;
     }
 
-    public function setFoundationdate(?\DateTimeInterface $foundationdate): self
+    public function setFoundationdate(?DateTimeInterface $foundationdate): self
     {
         $this->foundationdate = $foundationdate;
 
@@ -1228,8 +1240,8 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function __toString()
+    public function __toString(): ?string
     {
-        return trim($this->firstname.' '.$this->infix).' '.$this->lastname;
+        return ($this->companyname) ?: '';
     }
 }

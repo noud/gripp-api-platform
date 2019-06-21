@@ -1,3 +1,5 @@
+Active: 'Actief'
+Action: 'Actie'
 # authentication
 Login: 'Inloggen'
 Authentication: 'Authenticatie'
@@ -11,7 +13,6 @@ PasswordPlaceholder: 'Type wachtwoord'
 GoogleAuthenticatorSecret: 'Google Authenticatie Geheim'
 GoogleAuthenticatorSecretGenerate: 'Genereer'
 GoogleAuthenticatorSecretClear: 'Wis'
-Active: 'Actief'
 Role: 'Rol'
 # app
 Ordering: 'Volgorde'
@@ -48,6 +49,17 @@ Company: 'Bedrijf'
 Description: 'Beschrijving'
 Purchaseinvoice: 'Aankoopfactuur'
 Purchaseorder: 'Bestelling'
+# Trait
+Address: 'Adres'
+Country: 'Land'
+Function: 'Functie'
+Firstname: 'Voornaam'
+Lastname: 'Achternaam'
+# Bedrijf
+Companyname: 'Naam'
+Owner: 'Eigenaar'
+# Contactpersoon
+Company Companyname: 'Bedrijf'
 # Medewerker
 Userphoto: 'Gebruikersfoto'
 Title: 'Titel'
