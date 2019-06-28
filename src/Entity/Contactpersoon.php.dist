@@ -109,7 +109,7 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="salutation", type="string", length=0, nullable=true)
+     * @ORM\Column(name="salutation", type="string", length=8, nullable=true)
      */
     private $salutation;
 
