@@ -6,6 +6,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\AdminBundle\Admin\AbstractAdmin as SonataAbstractAdmin;
+use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
 
 abstract class AbstractAdmin extends SonataAbstractAdmin
 {
@@ -53,6 +54,9 @@ abstract class AbstractAdmin extends SonataAbstractAdmin
     
     protected function getEnum(string $table, string $field)
     {
+        $caseConverter = new CamelCaseToSnakeCaseNameConverter();
+        $field = $caseConverter->normalize($field);
+        
         $container = $this->getConfigurationPool()->getContainer();
         $entityManager = $container->get('doctrine.orm.entity_manager');
         $conn = $entityManager->getConnection();

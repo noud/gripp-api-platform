@@ -16,7 +16,6 @@ namespace App\Command\SonataAdmin;
 use Sonata\AdminBundle\Command\Validators;
 use Sonata\AdminBundle\Manipulator\ServicesManipulator;
 use Sonata\AdminBundle\Model\ModelManagerInterface;
-//Sonata\AdminBundle\Maker
 use Symfony\Bundle\MakerBundle\ConsoleStyle;
 use Symfony\Bundle\MakerBundle\DependencyBuilder;
 use Symfony\Bundle\MakerBundle\Generator;
@@ -29,6 +28,8 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\DependencyInjection\Container;
+use Symfony\Component\Serializer\NameConverter\CamelCaseToSnakeCaseNameConverter;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * @author Gaurav Singh Faujdar <faujdar@gmail.com>
@@ -72,11 +73,17 @@ final class AdminMaker extends AbstractMaker implements MakerInterface
      */
     private $modelManager;
 
-    public function __construct($projectDirectory, array $modelManagers = [])
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+    
+    public function __construct($projectDirectory, array $modelManagers = [], EntityManagerInterface $entityManager)
     {
         $this->projectDirectory = $projectDirectory;
         $this->availableModelManagers = $modelManagers;
         $this->skeletonDirectory = __DIR__.'/../../Sonata/AdminBundle/skeleton';
+        $this->entityManager = $entityManager;
     }
 
     public static function getCommandName(): string
@@ -151,7 +158,7 @@ final class AdminMaker extends AbstractMaker implements MakerInterface
      * Configure any library dependencies that your maker requires.
      */
     public function configureDependencies(DependencyBuilder $dependencies): void
-    {
+    {//
     }
 
     /**
@@ -256,7 +263,24 @@ final class AdminMaker extends AbstractMaker implements MakerInterface
             ));
         }
     }
-
+    
+    private function isEnum(string $adminClassName, string $field)
+    {
+        $caseConverter = new CamelCaseToSnakeCaseNameConverter();
+        $field = $caseConverter->normalize($field);
+        
+        $conn = $this->entityManager->getConnection();
+        $sql = "SHOW COLUMNS FROM ".strtolower($adminClassName)." WHERE Field = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindValue(1, $field);
+        $stmt->execute();
+        $type = $stmt->fetchAll();
+        if (isset($type[0])) {
+            return strpos($type[0]['Type'], 'enum(') === 0;
+        }
+        return false;
+    }
+    
     private function fieldsToString($fields, string $adminClassName = '', string $for = '')
     {
         $dateFields = [
@@ -286,12 +310,24 @@ final class AdminMaker extends AbstractMaker implements MakerInterface
         ];
         $fieldString = '';
         foreach ($fields as $field) {
+            // skip
             if (in_array($field, ['id','createdat','updatedat',])) {
                 continue;
             }
-            if ('search' === $for && !('searchname' === $field)) {
+            if ('form' === $for && 'searchname' === $field) {
                 continue;
             }
+            if ('list' === $for && in_array($field, ['searchname','extendedproperties'])) {
+                continue;
+            }
+            if ('search' === $for) {
+                continue;
+            }
+            // check enum
+            if ('form' === $for) {
+                $isEnum = $this->isEnum($adminClassName, $field);
+            }
+            // extra
             switch ($for) {
                 case 'list':
                     if ('color' === $field) {
@@ -303,6 +339,10 @@ final class AdminMaker extends AbstractMaker implements MakerInterface
                     $fieldString = $fieldString.sprintf('%12s', '')."->add('".$field."')".PHP_EOL;
                     break;
                 case 'form':
+                    if ($isEnum) {
+                        $fieldString = $fieldString.sprintf('%12s', '')."->add('".$field."', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => \$this->getEnum(strtolower(substr(get_class(\$this->getSubject()), strrpos(get_class(\$this->getSubject()), '\\\\')+1)), '".$field."')])".PHP_EOL;
+                        break;
+                    }
                     if ('color' === $field) {
                         $fieldString = $fieldString.sprintf('%12s', '')."->add('".$field."', \Sonata\CoreBundle\Form\Type\ColorType::class)".PHP_EOL;
                         break;

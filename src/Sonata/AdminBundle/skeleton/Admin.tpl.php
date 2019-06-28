@@ -21,9 +21,11 @@ final class <?= $class_name ?> extends \App\Admin\AbstractAdmin\AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         parent::configureDatagridFilters($datagridMapper);
+<?php if (strlen(trim($searchFields)) > 0):?>
         $datagridMapper
 <?= $searchFields ?>
 		;
+<?php endif ?>
     }
 
     protected function configureListFields(ListMapper $listMapper): void

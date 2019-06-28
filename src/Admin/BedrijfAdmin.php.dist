@@ -56,8 +56,6 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
 
     protected function configureFormFields(FormMapper $formMapper): void
     {
-        $relationtypeEnum = $this->getEnum('bedrijf', 'relationtype');
-        
         $formMapper
             ->tab('Algemeen')
                 ->add('searchname')
@@ -70,7 +68,8 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
                 ->add('additionaltermofpayment')
                 ->add('termofpayment')
                 ->add('termofpaymentPurchaseinvoice')
-                ->add('invoicesendby')
+            	->add('invoicesendby', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'invoicesendby')])
+             	->add('invoicesendto', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'invoicesendto')])
                 ->add('invoiceemail')
                 ->add('vatnumber')
                 ->add('vatshifted')
@@ -79,13 +78,11 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
                 ->add('foundationdate', \Sonata\Form\Type\DatePickerType::class)
                 ->add('active')
                 ->add('screenname')
-                ->add('companyroles')
+            	->add('companyroles', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'companyroles')])
                 ->add('files')
                 ->end()
-                
             ->end()
             ->tab('Factuuradres')
-                ->add('invoicesendto')
                 ->add('invoiceaddressCompanyname')
                 ->add('invoiceaddressAttn')
                 ->add('invoiceaddressStreet')
@@ -104,7 +101,7 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
                 ->end()
             ->end()
             ->tab('Postadres')
-                ->add('postaddress')
+            	->add('postaddress', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'postaddress')])
                 ->add('postaddressStreet')
                 ->add('postaddressStreetnumber')
                 ->add('postaddressAddressline2')
@@ -131,9 +128,9 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
                 ->end()
             ->end()
             ->tab('Naam')
-                ->add('relationtype', ChoiceType::class, ['choices' => $relationtypeEnum])
+            	->add('relationtype', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'relationtype')])
                 ->add('accountmanager')
-                ->add('salutation')
+            	->add('salutation', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'salutation')])
                 ->add('initials')
                 ->add('title')
                 ->add('firstname')
@@ -146,8 +143,8 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
                 ->end()
             ->end()
             ->tab('Betaal gegevens')
-                ->add('paymentmethod')
-                ->add('paymentmethodPurchaseinvoice')
+            	->add('paymentmethod', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'paymentmethod')])
+	            ->add('paymentmethodPurchaseinvoice', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'paymentmethodPurchaseinvoice')])
                 ->end()
             ->end()
             ->tab('Tags')
