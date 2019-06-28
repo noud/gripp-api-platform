@@ -12,7 +12,7 @@
     "copy-webpack-plugin": "^5.0.0",
     "css-loader": "^3.0.0",
     "image-webpack-loader": "^5.0.0",
-    "webpack-notifier": "^1.6.0"
+    "webpack-notifier": "^1.8.0"
   },
   "license": "UNLICENSED",
   "private": true,
