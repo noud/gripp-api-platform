@@ -16,9 +16,17 @@ The application is highly independent of the Entities used and a good example of
 ## API
 
 The application consumes the Gripp API as client but has various API server interfaces itself as well:
- - [JSON-RPC](https://www.jsonrpc.org/specification)
- - [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with [JSON](https://en.wikipedia.org/wiki/JSON), [JSON-LD](https://en.wikipedia.org/wiki/JSON-LD) or plain HTML
- - [GraphQL](https://en.wikipedia.org/wiki/GraphQL)
+- [JSON-RPC](https://www.jsonrpc.org/specification)
+- [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer)
+      - [JSON-LD](https://json-ld.org/)
+     - [JSONAPI](http://jsonapi.org/)
+     - [HAL](http://stateless.co/hal_specification.html)
+     - [JSON](https://www.json.org/)
+     - [XML](https://www.w3.org/XML/)
+     - [YAML](http://yaml.org/)
+     - [CSV](https://tools.ietf.org/html/rfc4180)
+     - [HTML](https://whatwg.org/)
+- [GraphQL](https://en.wikipedia.org/wiki/GraphQL)
 
 The RESTful API has auto generated documentation conform [OpenAPI](https://en.wikipedia.org/wiki/OpenAPI_Specification)
 
@@ -119,7 +127,7 @@ Using existing code as much as possible, some projects got an accepted Pull Requ
 - [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
 	- [Constraints required, enum added and Field type date, datetime and time added](https://github.com/frictionlessdata/tableschema-sql-js/commit/aff64731771ce095d521373182d4f080fb5f84d2)
 
-### Tools
+## Tools
 
 Created with [Eclipse PDT Extension group Symfony framework plugin](http://p2-dev.pdt-extensions.org)
  ([Eclipse Marketplace](http://marketplace.eclipse.org/content/doctrine-plugin), [site](http://p2-dev.pdt-extensions.org/frameworks.html))   
