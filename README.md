@@ -17,7 +17,7 @@ The application is highly independent of the Entities used and a good example of
 
 The application consumes the Gripp API as client but has various API server interfaces itself as well:
 - [JSON-RPC](https://www.jsonrpc.org/specification)
-- [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer)
+- [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with auto generated documentation conform [OpenAPI](https://swagger.io/specification/)
       - [JSON-LD](https://json-ld.org/)
      - [JSONAPI](http://jsonapi.org/)
      - [HAL](http://stateless.co/hal_specification.html)
@@ -26,13 +26,11 @@ The application consumes the Gripp API as client but has various API server inte
      - [YAML](http://yaml.org/)
      - [CSV](https://tools.ietf.org/html/rfc4180)
      - [HTML](https://whatwg.org/)
-- [GraphQL](https://en.wikipedia.org/wiki/GraphQL)
-
-The RESTful API has auto generated documentation conform [OpenAPI](https://en.wikipedia.org/wiki/OpenAPI_Specification)
+- [GraphQL](https://en.wikipedia.org/wiki/GraphQL) with it's own [GraphiQL](https://github.com/graphql/graphiql/tree/master/packages/graphiql#readme) in-browser IDE
 
 ## export
 
-The application is able to export it's data to your desktop:
+The web application is able to export it's data to your desktop:
  - [CSV](https://en.wikipedia.org/wiki/Comma-separated_values)
  - [vCard](https://en.wikipedia.org/wiki/VCard) as an extended(*) Writer
  - [JSON](https://en.wikipedia.org/wiki/JSON)
