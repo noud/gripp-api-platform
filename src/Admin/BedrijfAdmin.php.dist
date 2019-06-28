@@ -7,6 +7,7 @@ namespace App\Admin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
 {
@@ -55,6 +56,8 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
 
     protected function configureFormFields(FormMapper $formMapper): void
     {
+        $relationtypeEnum = $this->getEnum('bedrijf', 'relationtype');
+        
         $formMapper
             ->tab('Algemeen')
                 ->add('searchname')
@@ -128,7 +131,7 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
                 ->end()
             ->end()
             ->tab('Naam')
-                ->add('relationtype')
+                ->add('relationtype', ChoiceType::class, ['choices' => $relationtypeEnum])
                 ->add('accountmanager')
                 ->add('salutation')
                 ->add('initials')
