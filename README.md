@@ -17,8 +17,10 @@ The application is highly independent of the Entities used and a good example of
 
 The application consumes the Gripp API as client but has various API server interfaces itself as well:
  - [JSON-RPC](https://www.jsonrpc.org/specification)
- - [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) todo
- - [GraphQL](https://en.wikipedia.org/wiki/GraphQL) todo
+ - [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with [JSON](https://en.wikipedia.org/wiki/JSON), [JSON-LD](https://en.wikipedia.org/wiki/JSON-LD) or plain HTML
+ - [GraphQL](https://en.wikipedia.org/wiki/GraphQL)
+
+The RESTful API has auto generated documentation conform [OpenAPI](https://en.wikipedia.org/wiki/OpenAPI_Specification)
 
 ## export
 

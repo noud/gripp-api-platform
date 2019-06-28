@@ -42,4 +42,101 @@ class EntityGenerator extends DoctrineEntityGenerator
 
         return implode("\n", $lines);
     }
+    
+    /**
+     * @return string
+     */
+    protected function generateEntityUse()
+    {
+        if (! $this->generateAnnotations) {
+            return '';
+        }
+        
+        return "\n".'use ApiPlatform\Core\Annotation\ApiResource;'."\n".'use Doctrine\ORM\Mapping as ORM;'."\n";
+    }
+    
+    /**
+     * @param ClassMetadataInfo $metadata
+     *
+     * @return string
+     */
+    protected function generateApiAnnotation(ClassMetadataInfo $metadata)
+    {
+        if (! $this->generateAnnotations) {
+            return '';
+        }
+        
+        if ($metadata->isEmbeddedClass) {
+            return '';
+        }
+        
+        return '@' . 'ApiResource';
+    }
+    
+    /**
+     * @TODO This class is private in Doctrine\ORM\Tools\EntityGenerator
+     * 
+     * @param ClassMetadataInfo $metadata
+     * @return string
+     */
+    private function generateEntityListenerAnnotation(ClassMetadataInfo $metadata): string
+    {
+        if (0 === \count($metadata->entityListeners)) {
+            return '';
+        }
+        
+        $processedClasses = [];
+        foreach ($metadata->entityListeners as $event => $eventListeners) {
+            foreach ($eventListeners as $eventListener) {
+                $processedClasses[] = '"' . $eventListener['class'] . '"';
+            }
+        }
+        
+        return \sprintf(
+            '%s%s({%s})',
+            '@' . $this->annotationsPrefix,
+            'EntityListeners',
+            \implode(',', \array_unique($processedClasses))
+            );
+    }
+    
+    /**
+     * @param ClassMetadataInfo $metadata
+     *
+     * @return string
+     */
+    protected function generateEntityDocBlock(ClassMetadataInfo $metadata)
+    {
+        $lines = [];
+        $lines[] = '/**';
+        $lines[] = ' * ' . $this->getClassName($metadata);
+        
+        if ($this->generateAnnotations) {
+            $lines[] = ' *';
+            
+            $methods = [
+                'generateApiAnnotation',
+                'generateTableAnnotation',
+                'generateInheritanceAnnotation',
+                'generateDiscriminatorColumnAnnotation',
+                'generateDiscriminatorMapAnnotation',
+                'generateEntityAnnotation',
+                'generateEntityListenerAnnotation',
+            ];
+            
+            foreach ($methods as $method) {
+                if ($code = $this->$method($metadata)) {
+                    $lines[] = ' * ' . $code;
+                }
+            }
+            
+            if (isset($metadata->lifecycleCallbacks) && $metadata->lifecycleCallbacks) {
+                $lines[] = ' * @' . $this->annotationsPrefix . 'HasLifecycleCallbacks';
+            }
+        }
+        
+        $lines[] = ' */';
+        
+        return implode("\n", $lines);
+    }
 }

@@ -29,4 +29,6 @@ return [
     Timiki\Bundle\RpcServerBundle\RpcServerBundle::class => ['all' => true],
     JeroenDesloovere\Bundle\VCardBundle\JeroenDesloovereVCardBundle::class => ['all' => true],
     Sonata\Exporter\Bridge\Symfony\Bundle\SonataExporterBundle::class => ['all' => true],
+    Nelmio\CorsBundle\NelmioCorsBundle::class => ['all' => true],
+    ApiPlatform\Core\Bridge\Symfony\Bundle\ApiPlatformBundle::class => ['all' => true],
 ];

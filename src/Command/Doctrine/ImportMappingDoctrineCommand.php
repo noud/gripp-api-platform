@@ -2,6 +2,7 @@
 
 namespace App\Command\Doctrine;
 
+use App\Doctrine\ORM\Tools\EntityGenerator;
 use App\Doctrine\ORM\Tools\Export\ClassMetadataExporter;
 use Doctrine\Bundle\DoctrineBundle\Command\ImportMappingDoctrineCommand as DoctrineImportMappingDoctrineCommand;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -165,5 +166,23 @@ EOT
         $output->writeln('');
 
         return 1;
+    }
+    
+    /**
+     * get a doctrine entity generator
+     *
+     * @return EntityGenerator
+     */
+    protected function getEntityGenerator()
+    {
+        $entityGenerator = new EntityGenerator();
+        $entityGenerator->setGenerateAnnotations(false);
+        $entityGenerator->setGenerateStubMethods(true);
+        $entityGenerator->setRegenerateEntityIfExists(false);
+        $entityGenerator->setUpdateEntityIfExists(true);
+        $entityGenerator->setNumSpaces(4);
+        $entityGenerator->setAnnotationPrefix('ORM\\');
+        
+        return $entityGenerator;
     }
 }

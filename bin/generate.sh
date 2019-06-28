@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 bin/console app:mapping:import "App\Entity" annotation-extended --path=src/Entity --class_to_extend="App\Entity\AbstractEntity\AbstractEntity"
+rm src/Entity/ApiUser.php
 rm src/Entity/MigrationVersions.php
 bin/console make:entity --regenerate App
 rm config/services_sonata.yaml; echo 'services:' > config/services_sonata.yaml
