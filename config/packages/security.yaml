@@ -1,6 +1,7 @@
 security:
     encoders:
         App\Entity\Medewerker: bcrypt
+#        App\Entity\Api\ApiUser: argon2i
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
@@ -8,6 +9,10 @@ security:
             id: App\Security\UserProvider
         jsonrpc_users:
             id: App\Security\ApiUserProvider
+        api_users:
+            entity:
+                class: App\Entity\Api\ApiUser
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -40,8 +45,23 @@ security:
             guard:
                 authenticators:
                     - App\Security\ApiTokenAuthenticator
+        api:
+            pattern: ^/api/
+            stateless: true
+            anonymous: ~
+            provider: api_users
+            guard:
+                authenticators:
+                    - lexik_jwt_authentication.jwt_token_authenticator
         main:
             anonymous: true
+#            json_login:
+#                provider: api_users
+#                check_path: /authentication_token
+#                username_path: username
+#                password_path: password
+#                success_handler: lexik_jwt_authentication.handler.authentication_success
+#                failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication

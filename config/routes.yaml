@@ -8,3 +8,7 @@ authentication_routes:
 authentication:
     resource: .
     type: authentication
+
+#authentication_token:
+#    path: /authentication_token
+#    methods: ['POST']

@@ -9,6 +9,7 @@
 		"endroid/qr-code-bundle": "^3.3",
 		"jeroendesloovere/vcard-bundle": "^1.2",
 		"kevinpapst/adminlte-bundle": "^2.0",
+		"lexik/jwt-authentication-bundle": "^2.6",
 		"noud/gripp_api": "^3.0",
 		"psr/simple-cache": "^1.0",
 		"scheb/two-factor-bundle": "^4.1",

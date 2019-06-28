@@ -25,12 +25,16 @@ class ApiUser implements UserInterface
     private $id;
     
     /**
+     * @var string
+     *
      * @ORM\Column(type="string", unique=true)
      */
     private $username;
     
     /**
-     * @ORM\Column(type="string", unique=true)
+     * @var string
+     *
+     * @ORM\Column(type="text", unique=true, nullable=true)
      */
     private $apiToken;
     
@@ -41,38 +45,26 @@ class ApiUser implements UserInterface
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getUsername()
+    public function getUsername(): string
     {
         return $this->username;
     }
 
-    /**
-     * @param mixed $username
-     */
-    public function setUsername($username)
+    public function setUsername(string $username)
     {
         $this->username = $username;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getApiToken()
+    public function getApiToken(): string
     {
         return $this->apiToken;
     }
 
-    /**
-     * @param mixed $apiToken
-     */
-    public function setApiToken($apiToken)
+    public function setApiToken(string $apiToken)
     {
         $this->apiToken = $apiToken;
     }
-    
+
     /**
      * @see UserInterface
      */
