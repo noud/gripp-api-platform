@@ -39,7 +39,6 @@ security:
                 check_path: 2fa_login_check
         jsonrpc:
             pattern: ^/public/api3.php
-            anonymous: ~
             logout: ~
             provider: jsonrpc_users
             guard:
@@ -48,7 +47,6 @@ security:
         api:
             pattern: ^/api/
             stateless: true
-            anonymous: ~
             provider: api_users
             guard:
                 authenticators:
