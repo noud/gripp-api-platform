@@ -11,14 +11,14 @@ This is a Symfony client application that does work with
 
 and demonstrate Gripp API use.
 
-The application is highly independent of the Entities used and a good example of writing generic code to facilitate a [Rapid-application development (RAD)](https://en.wikipedia.org/wiki/Rapid_application_development) development process.
+The application is highly independent of the Entities used and a good example of writing generic code and [API-First](https://swagger.io/resources/articles/adopting-an-api-first-approach/) development to facilitate a [Rapid-application development (RAD)](https://en.wikipedia.org/wiki/Rapid_application_development) process.
 
 ## API
 
 The application consumes the Gripp API as client but has various API server interfaces itself as well:
 - [JSON-RPC](https://www.jsonrpc.org/specification)
 - [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with auto generated documentation conform [OpenAPI](https://swagger.io/specification/)
-     - [JSON-LD](https://json-ld.org/)
+     - [JSON-LD](https://json-ld.org/) accepts [React](https://reactjs.org/) [Admin](https://marmelab.com/react-admin/)
      - [JSONAPI](http://jsonapi.org/)
      - [HAL](http://stateless.co/hal_specification.html)
      - [JSON](https://www.json.org/)
