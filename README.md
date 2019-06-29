@@ -18,7 +18,7 @@ The application is highly independent of the Entities used and a good example of
 The application consumes the Gripp API as client but has various API server interfaces itself as well:
 - [JSON-RPC](https://www.jsonrpc.org/specification)
 - [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with auto generated documentation conform [OpenAPI](https://swagger.io/specification/)
-      - [JSON-LD](https://json-ld.org/)
+     - [JSON-LD](https://json-ld.org/)
      - [JSONAPI](http://jsonapi.org/)
      - [HAL](http://stateless.co/hal_specification.html)
      - [JSON](https://www.json.org/)
