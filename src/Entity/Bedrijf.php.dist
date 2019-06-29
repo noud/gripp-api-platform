@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Traits\FullnameTrait;
 use App\Entity\Traits\VisitingAddressTrait;
 use Doctrine\ORM\Mapping as ORM;
@@ -11,6 +12,7 @@ use \DateTimeInterface;
 /**
  * Bedrijf
  *
+ * @ApiResource
  * @ORM\Table(name="bedrijf")
  * @ORM\Entity
  */

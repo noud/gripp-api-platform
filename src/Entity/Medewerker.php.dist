@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Traits\AddressTrait;
 use App\Entity\Traits\FullnameTrait;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
@@ -15,6 +16,7 @@ use \DateTimeInterface;
 /**
  * Medewerker
  *
+ * @ApiResource
  * @ORM\Table(name="medewerker")
  * @ORM\Entity
  * @UniqueEntity("email")

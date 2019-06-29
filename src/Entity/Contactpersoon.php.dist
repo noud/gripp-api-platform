@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Traits\FullnameTrait;
 use Doctrine\ORM\Mapping as ORM;
 use \DateTime;
@@ -10,6 +11,7 @@ use \DateTimeInterface;
 /**
  * Contactpersoon
  *
+ * @ApiResource
  * @ORM\Table(name="contactpersoon")
  * @ORM\Entity
  */
