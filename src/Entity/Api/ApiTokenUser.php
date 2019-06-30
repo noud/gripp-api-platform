@@ -11,9 +11,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="api_user")
  * @ORM\Entity
- * @UniqueEntity(fields={"username", "apiToken"})
+ * @UniqueEntity(fields={"username", "apiToken", "apiJWTToken"})
  */
-class ApiUser implements UserInterface
+class ApiTokenUser implements UserInterface
 {
     /**
      * @var int
@@ -52,37 +52,54 @@ class ApiUser implements UserInterface
      */
     protected $apiToken;
     
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="text", unique=true, nullable=true)
+     */
+    protected $apiJWTToken;
+    
     // the getter and setter methods
-
+    
     public function getId(): int
     {
         return $this->id;
     }
-
+    
     public function getUsername(): string
     {
         return $this->username;
     }
-
+    
     public function setUsername(string $username)
     {
         $this->username = $username;
     }
-
+    
     public function getApiToken(): string
     {
         return $this->apiToken;
     }
-
+    
     public function setApiToken(string $apiToken)
     {
         $this->apiToken = $apiToken;
     }
-
+    
+    public function getApiJWTToken(): string
+    {
+        return $this->apiJWTToken;
+    }
+    
+    public function setApiJWTToken(string $apiJWTToken)
+    {
+        $this->apiJWTToken = $apiJWTToken;
+    }
+    
     /**
      * Symfony UserInterface
      */
-        
+    
     /**
      * @see UserInterface
      */
@@ -96,7 +113,7 @@ class ApiUser implements UserInterface
      */
     public function getPassword(): ?string
     {
-        return $this->password;
+        return $this->apiToken;
     }
     
     public function setPassword(string $password): self

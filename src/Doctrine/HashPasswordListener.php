@@ -3,6 +3,7 @@
 namespace App\Doctrine;
 
 use App\Entity\Medewerker as User;
+use App\Entity\Api\ApiUser;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -28,7 +29,7 @@ class HashPasswordListener implements EventSubscriber
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        if (!$entity instanceof User) {
+        if (!($entity instanceof User || $entity instanceof ApiUser)) {
             return;
         }
 
@@ -38,7 +39,7 @@ class HashPasswordListener implements EventSubscriber
     public function preUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        if (!$entity instanceof User) {
+        if (!($entity instanceof User || $entity instanceof ApiUser)) {
             return;
         }
 
@@ -58,7 +59,10 @@ class HashPasswordListener implements EventSubscriber
         return ['prePersist', 'preUpdate'];
     }
 
-    private function encodePassword(User $entity)
+    /**
+     * @param ApiUser|User $entity
+     */
+    private function encodePassword($entity)   // @TODO should use Interface?
     {
         if (!$entity->getPlainPassword()) {
             return;

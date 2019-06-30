@@ -2,7 +2,7 @@
 
 namespace App\Security;
 
-use App\Entity\Api\ApiUser;
+use App\Entity\Api\ApiTokenUser as User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -51,7 +51,7 @@ class ApiTokenAuthenticator extends AbstractGuardAuthenticator
         }
         
         // if a User object, checkCredentials() is called
-        return $this->em->getRepository(ApiUser::class)
+        return $this->em->getRepository(User::class)
             ->findOneBy(['apiToken' => $apiToken]);
     }
     
