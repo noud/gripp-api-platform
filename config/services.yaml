@@ -114,7 +114,7 @@ services:
         tags:
             - { name: sonata.block }
             
-    sonata.exporter.writer.vcard:
+    sonata.exporter.writer.vcf:
         public: true
         class: App\Exporter\Writer\VcardWriter
         arguments:

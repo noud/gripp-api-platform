@@ -17,7 +17,7 @@ abstract class AbstractVCardAdmin extends AbstractAdmin
     
     public function getExportFormats()
     {
-        return ['vcard', 'json', 'xml', 'csv', 'xls'];
+        return ['vcf', 'json', 'xml', 'csv', 'xls'];
     }
     
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void

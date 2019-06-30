@@ -29,7 +29,7 @@ class VcardWriter implements TypedWriterInterface
 
     public function getFormat(): string
     {
-        return 'vcard';
+        return 'vcf';
     }
 
     /**
@@ -83,7 +83,20 @@ class VcardWriter implements TypedWriterInterface
                 (isset($data['relationtype']) && ('PRIVATEPERSON' === $data['relationtype'])) ||
                 (isset($data['relationtype']) && ('COMPANY' === $data['relationtype'] && (isset($data['Voornaam']) || isset($data['Achternaam'])))) ||
                 isset($data['showoncompanycard'])) {
-                    if (isset($data['Functie'])) {
+                    
+                    // @TODO how to get related data
+//                 if (isset($data['Bedrijf']) && !isset($data['Afdeling'])) {
+//                     $this->vcardObject[$this->position]->addCompany($data['Bedrijf']);
+//                 } elseif (isset($data['Bedrijf']) && isset($data['Afdeling'])) {
+//                     $this->vcardObject[$this->position]->addCompany($data['Bedrijf'], $data['Afdeling']);
+//                 } elseif (!isset($data['Bedrijf']) && isset($data['Afdeling'])) {
+//                     $this->vcardObject[$this->position]->addCompany('', $data['Afdeling']);
+//                 }
+                if (isset($data['Afdeling'])) {
+                    $this->vcardObject[$this->position]->addCompany('', $data['Afdeling']);
+                }
+                        
+                if (isset($data['Functie'])) {
                     $this->vcardObject[$this->position]->addJobtitle($data['Functie']);
                 }
                 $this->vcardObject[$this->position]->addName(
