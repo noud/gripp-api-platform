@@ -41,4 +41,5 @@ rm src/Admin/TaaktypeAdmin.php; bin/console make:app:admin App/Entity/Taaktype -
 rm src/Admin/TimelineentryAdmin.php; bin/console make:app:admin App/Entity/Timelineentry --id=admin.timelineentry --services=services_sonata.yaml --no-interaction
 rm src/Admin/ProducteenheidAdmin.php; bin/console make:app:admin App/Entity/Producteenheid --id=admin.producteenheid --services=services_sonata.yaml --no-interaction
 rm src/Admin/WebhookAdmin.php; bin/console make:app:admin App/Entity/Webhook --id=admin.webhook --services=services_sonata.yaml --no-interaction
+rm src/Admin/ApiUserAdmin.php; bin/console make:sonata:admin --id=api.user --services=services_sonata.yaml --no-interaction App/Entity/Api/ApiUser
 bin/edited.sh
