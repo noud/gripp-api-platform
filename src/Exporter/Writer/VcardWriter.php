@@ -61,7 +61,7 @@ class VcardWriter implements TypedWriterInterface
                     '',
                     $data['visitingaddressZipcode'],
                     $data['visitingaddressCountry'],
-                    ('PRIVATEPERSON' === $data['relationtype']) ? 'HOME:POSTAL' : 'WORK'
+                    ('PRIVATEPERSON' === $data['relationtype']) ? 'HOME;POSTAL' : 'WORK'
                 );
             }
             if (isset($data['postaddressStreet'])) {
@@ -83,9 +83,9 @@ class VcardWriter implements TypedWriterInterface
                 (isset($data['relationtype']) && ('PRIVATEPERSON' === $data['relationtype'])) ||
                 (isset($data['relationtype']) && ('COMPANY' === $data['relationtype'] && (isset($data['Voornaam']) || isset($data['Achternaam'])))) ||
                 isset($data['showoncompanycard'])) {
-        //         if (isset($data[''])) {
-        //             $this->vcardObject[$this->position]->addJobtitle($data['']);
-        //         }
+                    if (isset($data['Functie'])) {
+                    $this->vcardObject[$this->position]->addJobtitle($data['Functie']);
+                }
                 $this->vcardObject[$this->position]->addName(
                     $data['Achternaam'],
                     $data['Voornaam'] //,
@@ -98,9 +98,15 @@ class VcardWriter implements TypedWriterInterface
                 }
                 if (isset($data['Geboortedatum'])) {
                     $this->vcardObject[$this->position]->addBirthday(date("Y-m-d", strtotime($data['Geboortedatum'])));
+                } elseif (isset($data['Oprichtingsdatum'])) {
+                    $this->vcardObject[$this->position]->addBirthday(date("Y-m-d", strtotime($data['Oprichtingsdatum'])));
                 }
                 if (isset($data['Telefoon'])) {
-                    $this->vcardObject[$this->position]->addPhoneNumber($data['Telefoon'],'WORK');
+                    $typePhone = 'WORK';
+                    if (isset($data['relationtype']) && ('PRIVATEPERSON' === $data['relationtype'])) {
+                        $typePhone = 'HOME';
+                    }
+                    $this->vcardObject[$this->position]->addPhoneNumber($data['Telefoon'],$typePhone);
                 }
                 if (isset($data['Mobiel'])) {
                     $this->vcardObject[$this->position]->addPhoneNumber($data['Mobiel'],'PREF;CELL');
@@ -113,7 +119,7 @@ class VcardWriter implements TypedWriterInterface
                         $data['city'],
                         '',
                         $data['zipcode'],
-                        (isset($data['country']) && $data['country']) ?: '',
+                        (isset($data['Land']) && $data['Land']) ? $data['Land'] : '',
                         'HOME;POSTAL'
                     );
                 }
