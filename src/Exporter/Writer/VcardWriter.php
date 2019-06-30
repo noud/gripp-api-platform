@@ -97,7 +97,7 @@ class VcardWriter implements TypedWriterInterface
                     $this->vcardObject[$this->position]->addEmail($data['Privé e-mailen'],'HOME');
                 }
                 if (isset($data['Geboortedatum'])) {
-                    $this->vcardObject[$this->position]->addBirthday($data['Geboortedatum']);
+                    $this->vcardObject[$this->position]->addBirthday(date("Y-m-d", strtotime($data['Geboortedatum'])));
                 }
                 if (isset($data['Telefoon'])) {
                     $this->vcardObject[$this->position]->addPhoneNumber($data['Telefoon'],'WORK');
