@@ -1,0 +1,204 @@
+{
+	"info": {
+		"_postman_id": "1da6601b-71d2-4741-9ae0-2b00dc1883f2",
+		"name": "gripp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "tagCreate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bacg7E5bNyqy9TGiSoB1b4IlUIaKhz",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"method\":\"tag.create\",\n        \"params\":[\n            {\n                \"name\":\"name\",\n                \"extendedproperties\":\"xxx\"\n            }\n        ],\n        \"id\":1\n    }\n]"
+				},
+				"url": {
+					"raw": "gripp.localhost/public/api3.php",
+					"host": [
+						"gripp",
+						"localhost"
+					],
+					"path": [
+						"public",
+						"api3.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tagDelete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bacg7E5bNyqy9TGiSoB1b4IlUIaKhz",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"method\":\"tag.delete\",\n        \"params\":[\n            511\n        ],\n        \"id\":1\n    }\n]"
+				},
+				"url": {
+					"raw": "gripp.localhost/public/api3.php",
+					"host": [
+						"gripp",
+						"localhost"
+					],
+					"path": [
+						"public",
+						"api3.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "tagUpdate",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "Bacg7E5bNyqy9TGiSoB1b4IlUIaKhz",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    {\n        \"method\":\"tag.update\",\n        \"params\":[\n        \t51,\n            {\n                \"extendedproperties\":\"XXX\"\n            }\n        ],\n        \"id\":1\n    }\n]"
+				},
+				"url": {
+					"raw": "gripp.localhost/public/api3.php",
+					"host": [
+						"gripp",
+						"localhost"
+					],
+					"path": [
+						"public",
+						"api3.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "authentication_token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": " {\n        \"username\":\"demo\",\n        \"password\":\"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1NjE4MzQ0OTIsImV4cCI6MTU2MTgzODA5Miwicm9sZXMiOlsiUk9MRV9BUElfVVNFUiJdLCJ1c2VybmFtZSI6ImRlbW8ifQ.pxY3_PTi42lYuLlrwJKSTUf5TXJcBDZ3Wmn9xcCW-FK2PMKhBVyDlWmVCHMrNoGTF2cVr4LoqxQ5tEjVTvjE0Dkpdg9uomhAY5CFNUWlRkHZJxWXVRP49qK-w5wYgfajmwoPdC90I2RYaIiVzdkje_x1128fTlRbEuC3vYirewPGtEC56QMX8wuSbe-Pnf0rRz1eCWtGkALZQSHxRUm5i2Tv2eDwSsSxNq0QhS0AeY0LGqW7mYYHHYF8KUSA7qvAgM1108eC3xi8HvC3VZ2lvq_jtD1VgIkOyoxRZVaE0N9FUZGdmySMgJc7JDAacdYgxLzGeUogf2FlG0DqavQk7KTbR6f7n_jWqb8YpwcgGnYdg5Frgbtetr55aANP5cic9lGMR-dK59yrqx9HxbYiEiFHuC4E6IKIn5SYu4mJIOazjT1WEvnGzgx9FA0XXOorxjvPET7jnRh5SVJtNQz1JkVI4dKzbnLjR4a-KnFxGzb7KxgqyYbrJwmfyocUCrT4VUCYmJ5jYU-AsFkjZ0vob0yxPpDY0tIlm9iF4c-F7MocI8JTF7M8ESIuLjnAk8kg1UKvQ-PA_ORyXX2r8_6TuXanCNCNBYkHFpXGKxl75vcVhCplfzvvlxYtnD99MCD-_1c72CgMJg1mZbXHB9prS-mHwJ0ppl2CKwg9Qsv58hs\"\n    }\n"
+				},
+				"url": {
+					"raw": "gripp.localhost/authentication_token",
+					"host": [
+						"gripp",
+						"localhost"
+					],
+					"path": [
+						"authentication_token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "api/tags",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE1NjE4MzQ0OTIsImV4cCI6MTU2MTgzODA5Miwicm9sZXMiOlsiUk9MRV9BUElfVVNFUiJdLCJ1c2VybmFtZSI6ImRlbW8ifQ.pxY3_PTi42lYuLlrwJKSTUf5TXJcBDZ3Wmn9xcCW-FK2PMKhBVyDlWmVCHMrNoGTF2cVr4LoqxQ5tEjVTvjE0Dkpdg9uomhAY5CFNUWlRkHZJxWXVRP49qK-w5wYgfajmwoPdC90I2RYaIiVzdkje_x1128fTlRbEuC3vYirewPGtEC56QMX8wuSbe-Pnf0rRz1eCWtGkALZQSHxRUm5i2Tv2eDwSsSxNq0QhS0AeY0LGqW7mYYHHYF8KUSA7qvAgM1108eC3xi8HvC3VZ2lvq_jtD1VgIkOyoxRZVaE0N9FUZGdmySMgJc7JDAacdYgxLzGeUogf2FlG0DqavQk7KTbR6f7n_jWqb8YpwcgGnYdg5Frgbtetr55aANP5cic9lGMR-dK59yrqx9HxbYiEiFHuC4E6IKIn5SYu4mJIOazjT1WEvnGzgx9FA0XXOorxjvPET7jnRh5SVJtNQz1JkVI4dKzbnLjR4a-KnFxGzb7KxgqyYbrJwmfyocUCrT4VUCYmJ5jYU-AsFkjZ0vob0yxPpDY0tIlm9iF4c-F7MocI8JTF7M8ESIuLjnAk8kg1UKvQ-PA_ORyXX2r8_6TuXanCNCNBYkHFpXGKxl75vcVhCplfzvvlxYtnD99MCD-_1c72CgMJg1mZbXHB9prS-mHwJ0ppl2CKwg9Qsv58hs",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/ld+json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "gripp.localhost/api/tags",
+					"host": [
+						"gripp",
+						"localhost"
+					],
+					"path": [
+						"api",
+						"tags"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
