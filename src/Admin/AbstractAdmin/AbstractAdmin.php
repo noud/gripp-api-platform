@@ -56,11 +56,12 @@ abstract class AbstractAdmin extends SonataAbstractAdmin
     {
         $caseConverter = new CamelCaseToSnakeCaseNameConverter();
         $field = $caseConverter->normalize($field);
-        
+        $table = $caseConverter->normalize($table);
+
         $container = $this->getConfigurationPool()->getContainer();
         $entityManager = $container->get('doctrine.orm.entity_manager');
         $conn = $entityManager->getConnection();
-        $sql = "SHOW COLUMNS FROM ".strtolower($table)." WHERE Field = ?";
+        $sql = "SHOW COLUMNS FROM ".$table." WHERE Field = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $field);
         $stmt->execute();

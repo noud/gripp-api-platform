@@ -268,9 +268,11 @@ final class AdminMaker extends AbstractMaker implements MakerInterface
     {
         $caseConverter = new CamelCaseToSnakeCaseNameConverter();
         $field = $caseConverter->normalize($field);
+        $adminClassName = $caseConverter->normalize($adminClassName);
         
         $conn = $this->entityManager->getConnection();
-        $sql = "SHOW COLUMNS FROM ".strtolower($adminClassName)." WHERE Field = ?";
+        
+        $sql = "SHOW COLUMNS FROM ".$adminClassName." WHERE Field = ?";
         $stmt = $conn->prepare($sql);
         $stmt->bindValue(1, $field);
         $stmt->execute();
