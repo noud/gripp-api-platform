@@ -49,8 +49,8 @@ class VcardWriter implements TypedWriterInterface
             if (isset($data['Naam'])) {
                 $this->vcardObject[$this->position]->addCompany($data['Naam']);
             }
-            if (isset($data['Website'])) {
-                $this->vcardObject[$this->position]->addURL($data['Website'],'WORK');
+            if (isset($data['website'])) {
+                $this->vcardObject[$this->position]->addURL($data['website'],'WORK');
             }
             if (isset($data['visitingaddressStreet'])) {
                 $this->vcardObject[$this->position]->addAddress(
