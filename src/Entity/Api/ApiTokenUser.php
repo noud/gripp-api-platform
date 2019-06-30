@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  *
  * @ORM\Table(name="api_user")
  * @ORM\Entity
- * @UniqueEntity(fields={"username", "apiToken", "apiJWTToken"})
+ * @UniqueEntity(fields={"username", "apiToken"})
  */
 class ApiTokenUser implements UserInterface
 {
@@ -22,43 +22,36 @@ class ApiTokenUser implements UserInterface
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $id;
+    private $id;
     
     /**
      * @var string
      *
      * @ORM\Column(type="string", unique=true)
      */
-    protected $username;
+    private $username;
     
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
-    protected $password;
+    private $password;
     
     /**
      * A non-persisted field that's used to create the encoded password.
      *
      * @var string|null
      */
-    protected $plainPassword;
+    private $plainPassword;
     
     /**
      * @var string
      *
      * @ORM\Column(type="string", unique=true, nullable=true)
      */
-    protected $apiToken;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(type="text", unique=true, nullable=true)
-     */
-    protected $apiJWTToken;
-    
+    private $apiToken;
+
     // the getter and setter methods
     
     public function getId(): int
@@ -84,16 +77,6 @@ class ApiTokenUser implements UserInterface
     public function setApiToken(string $apiToken)
     {
         $this->apiToken = $apiToken;
-    }
-    
-    public function getApiJWTToken(): string
-    {
-        return $this->apiJWTToken;
-    }
-    
-    public function setApiJWTToken(string $apiJWTToken)
-    {
-        $this->apiJWTToken = $apiJWTToken;
     }
     
     /**
