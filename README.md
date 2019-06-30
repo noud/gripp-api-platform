@@ -50,6 +50,7 @@ The application uses various security measures:
 - [Two-factor authentication (2FA)](https://en.wikipedia.org/wiki/Multi-factor_authentication) using [Google Authenticator App](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
 - [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication) for JSON-RPC API server
 - [JWT Authentication](https://jwt.io/) for RESTful API server
+- Use [Cross-Origin Resource Sharing (CORS)](https://enable-cors.org) headers for RESTful API server
 
 ## Provisioning
 
