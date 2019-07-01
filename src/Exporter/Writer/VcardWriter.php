@@ -101,8 +101,8 @@ class VcardWriter implements TypedWriterInterface
                 }
                 $this->vcardObject[$this->position]->addName(
                     $data['Achternaam'],
-                    $data['Voornaam'] //,
-                    //$data['additional'],
+                    $data['Voornaam'],
+                    $data['Tussenvoegsel']  //,
                     //$data['prefix'],
                     //$data['suffix']
                 );

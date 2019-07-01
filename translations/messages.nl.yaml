@@ -55,6 +55,7 @@ Address: 'Adres'
 Country: 'Land'
 Function: 'Functie'
 Firstname: 'Voornaam'
+Infix: 'Tussenvoegsel'
 Lastname: 'Achternaam'
 # Bedrijf
 Companyname: 'Naam'
