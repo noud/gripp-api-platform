@@ -16,41 +16,44 @@ The application is highly independent of the Entities used and a good example of
 ## API
 
 The application consumes the Gripp API as client but has various API server interfaces itself as well:
-- [JSON-RPC](https://www.jsonrpc.org/specification)
-- [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with auto generated documentation conform [OpenAPI](https://swagger.io/specification/)
-     - [JSON-LD](https://json-ld.org/) accepts [Gripp client React Admin](https://github.com/noud/gripp_client_react_admin/blob/master/README.md)
-     - [JSONAPI](http://jsonapi.org/)
-     - [HAL](http://stateless.co/hal_specification.html)
-     - [JSON](https://www.json.org/)
-     - [XML](https://www.w3.org/XML/)
-     - [YAML](http://yaml.org/)
-     - [CSV](https://tools.ietf.org/html/rfc4180)
-     - [HTML](https://whatwg.org/)
-- [GraphQL](https://en.wikipedia.org/wiki/GraphQL) with it's own [GraphiQL](https://github.com/graphql/graphiql/tree/master/packages/graphiql#readme) in-browser IDE
+* [JSON-RPC](https://www.jsonrpc.org/specification)
+* [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with auto generated documentation conform [OpenAPI](https://swagger.io/specification/)
+    * [JSON-LD](https://json-ld.org/)
+        - accepts clients
+         - [Gripp client React Admin](https://github.com/noud/gripp_client_react_admin/blob/master/README.md)
+         - [Gripp client React Redux](https://github.com/noud/gripp_client_react_redux/blob/master/README.md) [Progressive Web App (PWA)](https://en.wikipedia.org/wiki/Progressive_web_applications)
+    * [JSONAPI](http://jsonapi.org/)
+    * [HAL](http://stateless.co/hal_specification.html)
+    * [JSON](https://www.json.org/)
+    * [XML](https://www.w3.org/XML/)
+    * [YAML](http://yaml.org/)
+    * [CSV](https://tools.ietf.org/html/rfc4180)
+    * [HTML](https://whatwg.org/)
+* [GraphQL](https://en.wikipedia.org/wiki/GraphQL) with it's own [GraphiQL](https://github.com/graphql/graphiql/tree/master/packages/graphiql#readme) in-browser IDE
 
 ## export
 
 The web application is able to export it's data to your desktop:
- - [CSV](https://en.wikipedia.org/wiki/Comma-separated_values)
- - [vCard](https://en.wikipedia.org/wiki/VCard) as an extended(*) Writer
- - [JSON](https://en.wikipedia.org/wiki/JSON)
- - [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel#File_formats)
- - [XML](https://en.wikipedia.org/wiki/XML)
+* [CSV](https://en.wikipedia.org/wiki/Comma-separated_values)
+* [vCard](https://en.wikipedia.org/wiki/VCard) as an extended(*) Writer
+* [JSON](https://en.wikipedia.org/wiki/JSON)
+* [Microsoft Excel](https://en.wikipedia.org/wiki/Microsoft_Excel#File_formats)
+* [XML](https://en.wikipedia.org/wiki/XML)
 
 *) The extended Writer is part of this project and still [Proof of concept (PoC)](https://en.wikipedia.org/wiki/Proof_of_concept).
 
 ## Security
 
 The application uses various security measures:
-- [Security at GitHub](https://github.com/security)
-- [Symfony Security Monitoring](https://security.symfony.com)
-- [Structured Query Language (SQL) injection](https://en.wikipedia.org/wiki/SQL_injection) protection
-- [Cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection
-- [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) password hashing
-- [Two-factor authentication (2FA)](https://en.wikipedia.org/wiki/Multi-factor_authentication) using [Google Authenticator App](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
-- [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication) for JSON-RPC API server
-- [JWT Authentication](https://jwt.io/) for RESTful API server
-- Use [Cross-Origin Resource Sharing (CORS)](https://enable-cors.org) headers for RESTful API server
+* [Security at GitHub](https://github.com/security)
+* [Symfony Security Monitoring](https://security.symfony.com)
+* [Structured Query Language (SQL) injection](https://en.wikipedia.org/wiki/SQL_injection) protection
+* [Cross-site request forgery (CSRF)](https://en.wikipedia.org/wiki/Cross-site_request_forgery) protection
+* [bcrypt](https://en.wikipedia.org/wiki/Bcrypt) password hashing
+* [Two-factor authentication (2FA)](https://en.wikipedia.org/wiki/Multi-factor_authentication) using [Google Authenticator App](https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2)
+* [Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication) for JSON-RPC API server
+* [JWT Authentication](https://jwt.io/) for RESTful API server
+* Use [Cross-Origin Resource Sharing (CORS)](https://enable-cors.org) headers for RESTful API server
 
 ## Provisioning
 
@@ -66,10 +69,10 @@ bin/provision.sh
 ## Generating
 
 We generate large part of the application:
-- JSON to JSON [Table Schema](https://frictionlessdata.io/specs/table-schema) using [PHP](https://php.net)
-- JSON [Table Schema](https://frictionlessdata.io/specs/table-schema) to Database Schema using [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
-- [Generate Models](https://symfony.com/doc/current/doctrine/reverse_engineering.html) with an extended(*) [Doctrine Object Relational Mapper (ORM)](https://www.doctrine-project.org/projects/orm.html) ImportMapping Command
-- [Generate Views](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) with an extended(*) [SONATA PROJECT](https://sonata-project.org/)s [AdminMaker Command](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) using the [Symfony MakerBundle](https://symfony.com/doc/current/bundles/SymfonyMakerBundle)
+1. JSON to JSON [Table Schema](https://frictionlessdata.io/specs/table-schema) using [PHP](https://php.net)
+2. JSON [Table Schema](https://frictionlessdata.io/specs/table-schema) to Database Schema using [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
+3. [Generate Models](https://symfony.com/doc/current/doctrine/reverse_engineering.html) with an extended(*) [Doctrine Object Relational Mapper (ORM)](https://www.doctrine-project.org/projects/orm.html) ImportMapping Command
+4. [Generate Views](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) with an extended(*) [SONATA PROJECT](https://sonata-project.org/)s [AdminMaker Command](https://symfony.com/doc/master/bundles/SonataAdminBundle/reference/console.html#make-sonata-admin) using the [Symfony MakerBundle](https://symfony.com/doc/current/bundles/SymfonyMakerBundle)
 
 *) The extended code generators are part of this project and still [Proof of concept (PoC)](https://en.wikipedia.org/wiki/Proof_of_concept).
 
@@ -122,10 +125,10 @@ Feel free to contribute.
 ## Contributions made
 
 Using existing code as much as possible, some projects got an accepted Pull Request:
-- [AdminLTE Bundle for Symfony 4](https://github.com/kevinpapst/AdminLTEBundle)
-	- [Dutch translation added](https://github.com/kevinpapst/AdminLTEBundle/commit/9efc0f388ab908c7187ce7cbfc7d4ef6173e7da5#diff-f1f6a7153c98d120f1ff1ef005ce142e)
-- [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
-	- [Constraints required, enum added and Field type date, datetime and time added](https://github.com/frictionlessdata/tableschema-sql-js/commit/aff64731771ce095d521373182d4f080fb5f84d2)
+* [AdminLTE Bundle for Symfony 4](https://github.com/kevinpapst/AdminLTEBundle)
+      * [Dutch translation added](https://github.com/kevinpapst/AdminLTEBundle/commit/9efc0f388ab908c7187ce7cbfc7d4ef6173e7da5#diff-f1f6a7153c98d120f1ff1ef005ce142e)
+* [tableschema-sql-js](https://github.com/frictionlessdata/tableschema-sql-js)
+      * [Constraints required, enum added and Field type date, datetime and time added](https://github.com/frictionlessdata/tableschema-sql-js/commit/aff64731771ce095d521373182d4f080fb5f84d2)
 
 ## Tools
 
