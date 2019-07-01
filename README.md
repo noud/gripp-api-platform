@@ -134,6 +134,5 @@ Using existing code as much as possible, some projects got an accepted Pull Requ
 ## Tools
 
 Created with [Eclipse PDT Extension group Symfony framework plugin](http://p2-dev.pdt-extensions.org)
- ([Eclipse Marketplace](http://marketplace.eclipse.org/content/doctrine-plugin), [site](http://p2-dev.pdt-extensions.org/frameworks.html))   
-
-Eclipse is free open-source project that grows with your contributions.
+ ([Eclipse Marketplace](http://marketplace.eclipse.org/content/doctrine-plugin))   
+[Eclipse](https://www.eclipse.org/) is free open-source project that grows with your contributions.
