@@ -20,8 +20,9 @@ The application consumes the Gripp API as client but has various API server inte
 * [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with auto generated documentation conform [OpenAPI](https://swagger.io/specification/)
     * [JSON-LD](https://json-ld.org/)
         - accepts clients
+         - [Gripp client React Redux](https://github.com/noud/gripp_client_react_redux/blob/master/README.md) [Progressive Web App (PWA)](https://en.wikipedia.org/wiki/Progressive_web_applications), mobile app
+         - [Gripp client Vue](https://github.com/noud/gripp_client_vue/blob/master/README.md) [Single-page application (SPA)](https://en.wikipedia.org/wiki/Single-page_application), web application or web site
          - [Gripp client React Admin](https://github.com/noud/gripp_client_react_admin/blob/master/README.md)
-         - [Gripp client React Redux](https://github.com/noud/gripp_client_react_redux/blob/master/README.md) [Progressive Web App (PWA)](https://en.wikipedia.org/wiki/Progressive_web_applications)
     * [JSONAPI](http://jsonapi.org/)
     * [HAL](http://stateless.co/hal_specification.html)
     * [JSON](https://www.json.org/)
