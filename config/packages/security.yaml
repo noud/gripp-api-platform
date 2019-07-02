@@ -47,7 +47,7 @@ security:
         api_restful:
             pattern: ^/api/
             stateless: true
-            # @TODO uncomment for PWA
+            # @TODO uncomment for PWA and SPA
             #anonymous: ~
             provider: api_restful_users
             guard:
