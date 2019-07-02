@@ -10,6 +10,8 @@ laradock
 
 public/images/
 
+# ln .env.local
+env
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
