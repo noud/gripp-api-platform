@@ -3,6 +3,7 @@ sonata_admin:
         role_admin: ROLE_USER
     title: 'client'
     title_logo: images/logo.svg
+    persist_filters: true
     dashboard:
         blocks:
             - { type: sonata.block.service.timeline, position: left }
