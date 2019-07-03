@@ -1,9 +1,9 @@
-# Gripp client Symfony
+# Gripp Symfony
 
-![Gripp client Symfony](./docs/gripp_client_symfony.png?raw=true "Gripp client Symfony")
+![Gripp Symfony](./docs/gripp_symfony.png?raw=true "Gripp Symfony")
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/noud/gripp_api/master/LICENSE)
-[![master](https://img.shields.io/badge/current-dev-aa11ff.svg)](https://github.com/noud/gripp_client_symfony/releases)
+[![master](https://img.shields.io/badge/current-dev-aa11ff.svg)](https://github.com/noud/gripp_symfony/releases)
 
 This is a Symfony client application that does work with
 
