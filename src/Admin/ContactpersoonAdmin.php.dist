@@ -8,14 +8,14 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 
-final class ContactpersoonAdmin extends \App\Admin\AbstractAdmin\AbstractAdmin
+final class ContactpersoonAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
 {
     public function __construct(
         $code,
         $class,
         $baseControllerName
     ) {
-        parent::__construct($code, $class, $baseControllerName, 'name');
+        parent::__construct($code, $class, $baseControllerName, 'firstname');
     }
     
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
@@ -32,7 +32,6 @@ final class ContactpersoonAdmin extends \App\Admin\AbstractAdmin\AbstractAdmin
     {
         parent::configureListFields($listMapper);
         $listMapper
-            ->add('active')
             ->add('email', null, [
                 'template' => 'bundles/SonataAdminBundle/link_email.html.twig',
             ])
@@ -49,24 +48,45 @@ final class ContactpersoonAdmin extends \App\Admin\AbstractAdmin\AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('company')
-            ->add('department')
-            ->add('function')
-            ->add('showoncompanycard')
-            ->add('email')
-            ->add('active')
-            ->add('salutation', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'salutation')])
-            ->add('title')
-            ->add('initials')
-            ->add('firstname')
-            ->add('infix')
-            ->add('lastname')
-            ->add('mobile')
-            ->add('phone')
-            ->add('dateofbirth', \Sonata\Form\Type\DatePickerType::class)
-            ->add('notes')
-            ->add('extendedproperties')
-            ->add('tags')
-        ;
+            ->tab('Name')
+                ->add('salutation', \Symfony\Component\Form\Extension\Core\Type\ChoiceType::class, ['choices' => $this->getEnum(strtolower(substr(get_class($this->getSubject()), strrpos(get_class($this->getSubject()), '\\')+1)), 'salutation')])
+                ->add('title')
+                ->add('initials')
+                ->add('firstname')
+                ->add('infix')
+                ->add('lastname')
+                ->end()
+            ->end()
+            ->tab('Company')
+                ->add('company')
+                ->add('department')
+                ->add('function')
+                ->add('showoncompanycard')
+                ->end()
+            ->end()
+            ->tab('Contact')
+                ->add('email')
+                ->add('active')
+                ->add('mobile')
+                ->add('phone')
+                ->end()
+            ->end()
+            ->tab('Birthday')
+                ->add('dateofbirth', \Sonata\Form\Type\DatePickerType::class)
+                ->end()
+            ->end()
+            ->tab('Notes')
+                ->add('notes')
+                ->end()
+            ->end()
+            ->tab('Uitgebreide eigenschappen')
+                ->add('extendedproperties')
+                ->end()
+            ->end()
+            ->tab('Tags')
+                ->add('tags')
+                ->end()
+            ->end()
+            ;
     }
 }

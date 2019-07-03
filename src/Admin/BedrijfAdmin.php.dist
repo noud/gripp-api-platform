@@ -25,6 +25,8 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
         $datagridMapper
             ->add('companyname')
             ->add('relationtype')
+            ->add('firstname')
+            ->add('lastname')
         ;
     }
     
@@ -32,6 +34,9 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
     {
         parent::configureListFields($listMapper);
         $listMapper
+            ->add('email', null, [
+                'template' => 'bundles/SonataAdminBundle/link_email.html.twig',
+            ])
             ->add('website', 'url', [
                 'attributes' => ['target' => '_blank'],
                 'hide_protocol' => true,
@@ -39,9 +44,6 @@ final class BedrijfAdmin extends \App\Admin\AbstractAdmin\AbstractVCardAdmin
             ->add('companyname')
             ->add('name', null, [
                 'label' => 'Owner', // @TODO PRIVATEPERSON
-            ])
-            ->add('email', null, [
-                'template' => 'bundles/SonataAdminBundle/link_email.html.twig',
             ])
             ->add('mobile')
             ->add('phone')
