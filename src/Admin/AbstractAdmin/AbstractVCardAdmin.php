@@ -5,7 +5,7 @@ namespace App\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 
-abstract class AbstractVCardAdmin extends AbstractAdmin
+abstract class AbstractVCardAdmin extends AbstractPerPageAllAdmin
 {
     public function __construct($code, $class, $baseControllerName, $sort_field)
     {
