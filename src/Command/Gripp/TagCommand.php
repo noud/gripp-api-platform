@@ -26,16 +26,12 @@ class TagCommand extends AbstractCommand
     protected function configure(): void
     {
         $this
-            // the name of the command (the part after "bin/console")
             ->setName('gripp:tag')
-            // the short description shown while running "php bin/console list"
             ->setDescription('Tag of the Gripp API.')
-            // the full command description shown when running the command with
-            // the "--help" option
             ->setHelp('This command shows Tags of the Gripp API.')
             ->addArgument('action', InputArgument::OPTIONAL, 'Action')
             ->addArgument('id', InputArgument::OPTIONAL, 'Id')
-            ;
+        ;
     }
 
     /**

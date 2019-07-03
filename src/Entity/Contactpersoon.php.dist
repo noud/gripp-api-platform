@@ -14,6 +14,7 @@ use \DateTimeInterface;
  * @ApiResource
  * @ORM\Table(name="contactpersoon")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
 {
@@ -23,6 +24,7 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
     {
         $this->dateofbirth = new DateTime();
     }
+
     /**
      * @var string|null
      *
@@ -162,9 +164,12 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
         return $this->searchname;
     }
 
-    public function setSearchname(?string $searchname): self
+    /**
+     * @ORM\PreUpdate
+     */
+    public function setSearchname(): self
     {
-        $this->searchname = $searchname;
+        $this->searchname = ($this->email) ?: $this->__toString();
 
         return $this;
     }
