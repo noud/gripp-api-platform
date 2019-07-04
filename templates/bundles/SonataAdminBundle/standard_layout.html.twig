@@ -71,13 +71,11 @@
 
         <title>
         {% block sonata_head_title %}
-            {{ 'Admin'|trans({}, 'SonataAdminBundle') }}
 
             {% if _title is not empty %}
                 {{ _title|striptags|raw }}
             {% else %}
                 {% if action is defined %}
-                    -
                     {% for menu in breadcrumbs_builder.breadcrumbs(admin, action) %}
                         {% if not loop.first %}
                             {% if loop.index != 2 %}
