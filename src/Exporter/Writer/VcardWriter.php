@@ -139,7 +139,10 @@ class VcardWriter implements TypedWriterInterface
                         'HOME;POSTAL'
                     );
                 }
-            } else {
+                if (isset($data['Notities'])) {
+                    $this->vcardObject[$this->position]->addNote($data['Notities']);
+                }
+                } else {
                 if (isset($data['Naam'])) {
                     $this->vcardObject[$this->position]->addCompany($data['Naam']);
                 }

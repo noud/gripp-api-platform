@@ -10,6 +10,7 @@ use KevinPapst\AdminLTEBundle\Model\TaskModel;
 use KevinPapst\AdminLTEBundle\Model\UserModel;
 use Psr\SimpleCache\CacheInterface;
 use Symfony\Component\Cache\Simple\FilesystemCache;
+use App\Entity\Contactpersoon;
 
 class TimelineentryService
 {
@@ -24,10 +25,12 @@ class TimelineentryService
         $this->timelineentryRepository = $timelineentryRepository;
     }
     
-    /**
-     * @return mixed|bool
-     */
-    public function findMessagesByUser(User $user)
+    public function findCompaniesByContact(Contactpersoon $contactpersoon): ?array
+    {
+        return $this->timelineentryRepository->findCompaniesByContact($contactpersoon);
+    }
+    
+    public function findMessagesByUser(User $user): ?array
     {
         return $this->timelineentryRepository->findMessagesByUserId($user);
     }
@@ -83,10 +86,7 @@ class TimelineentryService
         return $messagesForSubscriber;
     }
     
-    /**
-     * @return mixed|bool
-     */
-    public function findTasksByUserId(User $user)
+    public function findTasksByUserId(User $user): ?array
     {
         return $this->timelineentryRepository->findTasksByUserId($user);
     }
