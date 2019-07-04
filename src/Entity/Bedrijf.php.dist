@@ -234,7 +234,7 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active;
+    private $active = true;
 
     /**
      * @var string|null
