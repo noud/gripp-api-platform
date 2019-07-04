@@ -2,6 +2,7 @@
 
 namespace App\Service;
 
+use App\Entity\Contactpersoon;
 use App\Repository\ContactpersoonRepository;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -25,19 +26,13 @@ class ContactpersoonService
         $this->contactpersoonRepository = $contactpersoonRepository;
     }
     
-    /**
-     * @return mixed|bool
-     */
     public function findComanyNameBySearchname(string $searchname): ?string
     {
         $contactpersoon = $this->findBySearchname($searchname);
         return $contactpersoon->getCompany()->__toString();
     }
     
-    /**
-     * @return mixed|bool
-     */
-    public function findBySearchname(string $searchname)
+    public function findBySearchname(string $searchname): ?Contactpersoon
     {
         return $this->contactpersoonRepository->findBySearchname($searchname);
     }

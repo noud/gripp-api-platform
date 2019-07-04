@@ -2,6 +2,7 @@
 
 namespace App\Exporter\Writer;
 
+use App\Service\CurlService as Curl;
 use JeroenDesloovere\VCard\VCard;
 use Sonata\Exporter\Writer\TypedWriterInterface;
 
@@ -46,9 +47,6 @@ class VcardWriter implements TypedWriterInterface
         if ($data['Actief']) {
             $this->vcardObject[$this->position] = new VCard();
 
-            if (isset($data['Naam'])) {
-                $this->vcardObject[$this->position]->addCompany($data['Naam']);
-            }
             if (isset($data['website'])) {
                 $this->vcardObject[$this->position]->addURL($data['website'],'WORK');
             }
@@ -84,18 +82,23 @@ class VcardWriter implements TypedWriterInterface
                 (isset($data['relationtype']) && ('COMPANY' === $data['relationtype'] && (isset($data['Voornaam']) || isset($data['Achternaam'])))) ||
                 isset($data['showoncompanycard'])) {
                     
-                    // @TODO how to get related data
-//                 if (isset($data['Bedrijf']) && !isset($data['Afdeling'])) {
-//                     $this->vcardObject[$this->position]->addCompany($data['Bedrijf']);
-//                 } elseif (isset($data['Bedrijf']) && isset($data['Afdeling'])) {
-//                     $this->vcardObject[$this->position]->addCompany($data['Bedrijf'], $data['Afdeling']);
-//                 } elseif (!isset($data['Bedrijf']) && isset($data['Afdeling'])) {
-//                     $this->vcardObject[$this->position]->addCompany('', $data['Afdeling']);
-//                 }
-                if (isset($data['Afdeling'])) {
-                    $this->vcardObject[$this->position]->addCompany('', $data['Afdeling']);
+                // Company Department
+                if (isset($data['Naam']) && $data['Naam']) {
+                    $this->vcardObject[$this->position]->addCompany($data['Naam']);
+                } elseif (!isset($data['Naam']) && !isset($data['showoncompanycard'])) {
+                } else {
+                    $JWT = '';
+                    $curl = new Curl();
+                    $response = $curl->execute('/api/contactpersoons/'.$data['id'], $JWT);
+                    if (isset($response['company']) || isset($data['Afdeling'])){
+                        $companyUri = $response['company'];
+                        $response = $curl->execute($companyUri, $JWT);
+                        $companyName = $response['companyname'];
+                        $departmentName = (isset($data['Afdeling'])) ? $data['Afdeling'] : '';
+                        $this->vcardObject[$this->position]->addCompany($companyName, $departmentName);
+                    }
                 }
-                        
+                
                 if (isset($data['Functie'])) {
                     $this->vcardObject[$this->position]->addJobtitle($data['Functie']);
                 }
