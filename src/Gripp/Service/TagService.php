@@ -7,18 +7,24 @@ use App\Gripp\Enum\API\FiltersOperatorEnum;
 use App\Gripp\Enum\API\OptionsOrderingsDirectionEnum;
 use App\Service\CacheService;
 
-class TagService extends AbstractService
+class TagService
 {
     /**
      * @var CacheService
      */
     private $cacheService;
 
+    /**
+     * @var APIService
+     */
+    private $apiService;
+    
     public function __construct(
-        CacheService $cacheService
+        CacheService $cacheService,
+        APIService $apiService
     ) {
         $this->cacheService = $cacheService;
-        parent::__construct();
+        $this->apiService = $apiService;
     }
 
     public function allTags(): array
@@ -30,7 +36,7 @@ class TagService extends AbstractService
             $limit = 10;
             $totalResponse = [];
 
-            while (true) {
+            do {
                 $options = [
                     'paging' => [
                         'firstresult' => $from,
@@ -44,13 +50,14 @@ class TagService extends AbstractService
                     ],
                 ];
                 $response = $this->get([], $options);
-                if (\count($response)) {
-                    $totalResponse = array_merge($totalResponse, $response);
-                    $from += $limit;
+                if (\count($response['rows'])) {
+                    $totalResponse = array_merge($totalResponse, $response['rows']);
+                    $from = $response['next_start'];
                 } else {
+                    // @TODO some real bad did happen?
                     break;
                 }
-            }
+            } while ($response['more_items_in_collection']);
 
             $this->cacheService->saveToCache($cacheKey, $totalResponse);
 
@@ -110,7 +117,7 @@ class TagService extends AbstractService
         $cacheKey = sprintf('gripp_'.Tag::API_NAME.'s_%s', md5(Tag::API_NAME.'s'));
         $this->cacheService->deleteCacheByKey($cacheKey);
 
-        $response = $this->API->tag_create($fields);
+        $response = $this->apiService->API->tag_create($fields);
 
         return $response;
     }
@@ -120,7 +127,7 @@ class TagService extends AbstractService
         $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5((string) $id));
         $this->cacheService->deleteCacheByKey($cacheKey);
 
-        $batchresponse = $this->API->tag_delete($id);
+        $batchresponse = $this->apiService->API->tag_delete($id);
         $response = $batchresponse[0]['result'];
 
         return $response;
@@ -136,8 +143,7 @@ class TagService extends AbstractService
             ],
         ];
 
-        $batchresponse = $this->API->tag_get($filters, $options);
-
+        $batchresponse = $this->apiService->API->tag_get($filters, $options);
         $response = $batchresponse[0]['result'];
 
         return $response;
@@ -153,7 +159,7 @@ class TagService extends AbstractService
             ],
         ];
 
-        $batchresponse = $this->API->tag_getone($filters, $options);
+        $batchresponse = $this->apiService->API->tag_getone($filters, $options);
         $response = $batchresponse[0]['result'];
 
         return $response;
@@ -169,7 +175,7 @@ class TagService extends AbstractService
         $this->cacheService->deleteCacheByKey($cacheKey);
 
         //$response = $this->API->$entityFunction($id, $fields);
-        $response = $this->API->tag_update($id, $fields);
+        $response = $this->apiService->API->tag_update($id, $fields);
 
         return $response;
     }

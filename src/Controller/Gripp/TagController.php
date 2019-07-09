@@ -33,17 +33,7 @@ class TagController extends AbstractController
     public function index(): Response
     {
         $tagsName = 'Tags';
-        //$tagsArray = $this->tagService->allTags();
-        $tagsArray = [
-            [
-                'id' => 1,
-                'name' => 'tag name 1',
-            ],
-            [
-                'id' => 2,
-                'name' => 'tag name 2',
-            ],
-        ];
+        $tagsArray = $this->tagService->allTags();
 
         return $this->entitiesTable($tagsName, $tagsArray);
     }

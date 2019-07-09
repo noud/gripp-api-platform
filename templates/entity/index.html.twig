@@ -42,7 +42,9 @@
                                                 </div>
                                                 {% for fieldValue in tupel|slice(1) %}
                                                         <div class="col-sm-6">
+                                                            {% if fieldValue is not iterable %}
                                                             {{ fieldValue }}
+                                                            {% endif %}
                                                         </div>
                                                 {% endfor %}
                                              </div>

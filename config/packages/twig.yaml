@@ -7,7 +7,7 @@ twig:
         - '@SonataCore/Form/datepicker.html.twig'
         - '@SonataFormatter/Form/formatter.html.twig'
     globals:
-        api_docs_url: '%api_docs_url%'
-        api_docs_name: '%api_docs_name%'
+        api_docs_url: '%gripp_api_docs_url%'
+        api_docs_name: '%gripp_api_docs_name%'
         sonata_prefix: '%sonata_prefix%'
         sonata_skin_color: '%sonata_skin_color%'

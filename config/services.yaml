@@ -5,9 +5,10 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'nl'
-    gripp_cache_ttl: '%env(GRIPP_CACHE_TTL)%'
-    api_docs_url: '%env(GRIPP_API_DOCS_URL)%'
-    api_docs_name: '%env(GRIPP_API_DOCS_NAME)%'
+    gripp_api_docs_url: '%env(GRIPP_API_DOCS_URL)%'
+    gripp_api_docs_name: '%env(GRIPP_API_DOCS_NAME)%'
+    gripp_api_token: '%env(GRIPP_API_TOKEN)%'
+    gripp_api_cache_ttl: '%env(GRIPP_API_CACHE_TTL)%'
     sonata_prefix: 'sonata'
     sonata_skin_color: 'blue'
     
@@ -38,12 +39,16 @@ services:
     # cache
     App\Service\CacheService:
             - ''
-            - '%gripp_cache_ttl%'
+            - '%gripp_api_cache_ttl%'
 
     Symfony\Component\Cache\Simple\FilesystemCache:
     
     Psr\SimpleCache\CacheInterface: '@Symfony\Component\Cache\Simple\FilesystemCache'
     
+    # Gripp API
+    App\Gripp\Service\APIService:
+        arguments:
+            - "%gripp_api_token%"
     
     # Sonata  
     authentication_route_loader:
