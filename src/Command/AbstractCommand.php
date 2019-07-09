@@ -32,15 +32,19 @@ abstract class AbstractCommand extends Command
             function ($a) {
                 $returnArray = [];
                 $fields = array_keys($a);
+                
                 foreach ($fields as $field) {
-                    $returnArray[] = $a[$field];
+                    if (!is_array($a[$field])) {
+                        $returnArray[] = $a[$field];
+                    } else {
+                        $returnArray[] = $a[$field]['date'];
+                    }
                 }
 
                 return $returnArray;
             },
             $entityArray
         );
-
         $table = new Table($output);
         $table
             ->setHeaders([
