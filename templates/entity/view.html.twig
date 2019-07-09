@@ -21,10 +21,12 @@
                                                  {% for entityFields in entity.tupel %}
                                                     <div class="row">
                                                        <div class="col-sm-4">
-                                                             {{ entityFields[0] }}
+                                                          {{ entityFields[0] }}
                                                        </div>
                                                        <div class="col-sm-8">
+                                                          {% if entityFields[1] is not iterable %}
                                                              {{ entityFields[1] }}
+                                                          {% endif %}
                                                        </div>
                                                     </div>
                                                  {% endfor %}

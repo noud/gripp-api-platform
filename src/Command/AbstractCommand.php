@@ -61,7 +61,7 @@ abstract class AbstractCommand extends Command
         $entityTitle = sprintf('%s %s', $entityName, $entityArray['id']);
         $entityArrayAsRows = [];
         foreach ($entityArray as $key => $value) {
-            $entityArrayAsRows[] = [$key, $value];
+            $entityArrayAsRows[] = [$key, !is_array($value) ? $value : ''];
         }
 
         $table = new Table($output);

@@ -44,11 +44,7 @@ class TagController extends AbstractController
     public function view(int $id): Response
     {
         $tagName = 'Tag';
-        //$tagArray = $this->tagService->getTagById($id);
-        $tagArray = [
-            'id' => $id,
-            'name' => 'tag name '.$id,
-        ];
+        $tagArray = $this->tagService->getTagById($id);
 
         return $this->entityView($tagName, $tagArray);
     }

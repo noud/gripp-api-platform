@@ -160,7 +160,7 @@ class TagService
         ];
 
         $batchresponse = $this->apiService->API->tag_getone($filters, $options);
-        $response = $batchresponse[0]['result'];
+        $response = $batchresponse[0]['result']['rows'][0];
 
         return $response;
     }

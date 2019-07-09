@@ -65,11 +65,7 @@ class TagCommand extends AbstractCommand
     private function view(OutputInterface $output, int $id): void
     {
         $tagName = 'Tag';
-        //$tagArray = $this->tagService->getTagById($id);
-        $tagArray = [
-            'id' => $id,
-            'name' => 'tag name '.$id,
-        ];
+        $tagArray = $this->tagService->getTagById($id);
         $this->entityView($output, $tagName, $tagArray);
     }
 }
