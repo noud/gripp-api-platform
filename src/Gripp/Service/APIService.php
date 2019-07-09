@@ -19,7 +19,7 @@ class APIService
     /**
      * @var Serializer
      */
-    protected $serializer;
+    public $serializer;
 
     public function __construct(
         string $token = '#APITOKEN#' //Your API token

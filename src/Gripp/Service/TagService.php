@@ -5,6 +5,7 @@ namespace App\Gripp\Service;
 use App\Gripp\Entity\Tag;
 use App\Gripp\Enum\API\FiltersOperatorEnum;
 use App\Gripp\Enum\API\OptionsOrderingsDirectionEnum;
+use App\Gripp\Form\Data\TagData;
 use App\Service\CacheService;
 
 class TagService
@@ -67,7 +68,7 @@ class TagService
         return $hit;
     }
 
-    public function getTagById(int $id): array
+    public function getTagByIdAsArray(int $id): array
     {
         $filters = [
             [
@@ -80,7 +81,18 @@ class TagService
 
         return $response;
     }
-
+    
+    public function getTagById(int $id): ?Tag
+    {
+        $response = $this->getTagByIdAsArray($id);
+        dump($response);
+        $response = array_filter($response, function($var){return !is_null($var);} );
+        dump($response);
+        $tag = $this->apiService->serializer->denormalize($response, Tag::class);
+        dump($tag);
+        return $tag;
+    }
+    
     public function deleteTag(Tag $tag): array
     {
         $id = $tag->getId();
@@ -100,15 +112,15 @@ class TagService
     public function createTag(Tag $tag): array
     {
         /** @var array $fields */
-        $fields = $this->serializer->normalize($tag, null, ['groups' => 'write']);
+        $fields = $this->apiService->serializer->normalize($tag, null, ['groups' => 'write']);
         $this->create($fields);
     }
 
-    public function updateTag(Tag $tag): array
+    public function updateTag(Tag $tag, TagData $tagData): void
     {
         $id = $tag->getId();
         /** @var array $fields */
-        $fields = $this->serializer->normalize($tag, null, ['groups' => 'write']);
+        $fields = $this->apiService->serializer->normalize($tagData, null); //, ['groups' => 'write']);
         $this->update($id, $fields);
     }
 
@@ -165,7 +177,7 @@ class TagService
         return $response;
     }
 
-    private function update(int $id, array $fields): array
+    private function update(int $id, array $fields): bool
     {
         //$entityName = str_replace('Service', '', $this->name());
         //$entityFunction = $this->entityName.'_update';
@@ -173,10 +185,15 @@ class TagService
         $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5((string) $id));
 //        $cacheKey = sprintf('gripp_'.$entityName::API_NAME.'_%s', md5((string) $id));
         $this->cacheService->deleteCacheByKey($cacheKey);
-
+        $cacheKey = sprintf('gripp_tags_%s', md5('tags'));
+        $this->cacheService->deleteCacheByKey($cacheKey);
+        
         //$response = $this->API->$entityFunction($id, $fields);
         $response = $this->apiService->API->tag_update($id, $fields);
-
-        return $response;
+        if (isset($response[0]['result']['success']) && $response[0]['result']['success']) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

@@ -13,4 +13,9 @@ abstract class AbstractSearchableEntity extends AbstractEntity
     {
         return $this->searchname;
     }
+    
+    public function setSearchname(string $searchname): void
+    {
+        $this->searchname = $searchname;
+    }
 }

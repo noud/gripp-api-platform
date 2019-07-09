@@ -38,9 +38,12 @@
                                         {% for tupel in entities.tupels %}
                                             <div class="row">
                                                 <div class="col-sm-2">
-                                                    <a href="{{ path('gripp_tag_view', {'id' : tupel[0]}) }}">{{ tupel[0] }}</a>
+                                                    {{ tupel[0] }}
                                                 </div>
-                                                {% for fieldValue in tupel|slice(1) %}
+                                                <div class="col-sm-2">
+                                                    <a href="{{ path('gripp_tag_view', {'id' : tupel[1]}) }}">{{ tupel[1] }}</a>
+                                                </div>
+                                                {% for fieldValue in tupel|slice(2) %}
                                                         <div class="col-sm-6">
                                                             {% if fieldValue is not iterable %}
                                                                 {{ fieldValue }}
