@@ -37,7 +37,11 @@ abstract class AbstractCommand extends Command
                     if (!is_array($a[$field])) {
                         $returnArray[] = $a[$field];
                     } else {
-                        $returnArray[] = $a[$field]['date'];
+                        if (isset($a[$field]['date'])) {
+                            $returnArray[] = $a[$field]['date'];
+                        } else {
+                            $returnArray[] = '';
+                        }
                     }
                 }
 
@@ -61,7 +65,15 @@ abstract class AbstractCommand extends Command
         $entityTitle = sprintf('%s %s', $entityName, $entityArray['id']);
         $entityArrayAsRows = [];
         foreach ($entityArray as $key => $value) {
-            $entityArrayAsRows[] = [$key, !is_array($value) ? $value : ''];
+            $newValue = '';
+            if (!is_array($value)) {
+                 $newValue = $value;
+            } else {
+                if (isset($value['date'])) {
+                    $newValue = $value['date'];
+                }
+            }
+            $entityArrayAsRows[] = [$key, $newValue];
         }
 
         $table = new Table($output);

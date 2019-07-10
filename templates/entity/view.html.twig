@@ -26,6 +26,8 @@
                                                        <div class="col-sm-8">
                                                           {% if entityFields[1] is not iterable %}
                                                              {{ entityFields[1] }}
+                                                          {% elseif 'date' in entityFields[1]|keys %}
+                                                              {{ entityFields[1]['date'] }}
                                                           {% endif %}
                                                        </div>
                                                     </div>

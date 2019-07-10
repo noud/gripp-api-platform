@@ -47,6 +47,8 @@
                                                         <div class="col-sm-6">
                                                             {% if fieldValue is not iterable %}
                                                                 {{ fieldValue }}
+                                                            {% elseif 'date' in fieldValue|keys %}
+                                                               {{ fieldValue['date'] }}
                                                             {% endif %}
                                                         </div>
                                                 {% endfor %}

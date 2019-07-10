@@ -87,7 +87,14 @@ class TagService
         $response = $this->getTagByIdAsArray($id);
         if ($response) {
             $response = array_filter($response, function($var){return !is_null($var);} );
+            $tagCreatedon = $this->apiService->dateTimeSerializer->denormalize($response['createdon'], \DateTime::class);
+            $tagUpdatedon = $this->apiService->dateTimeSerializer->denormalize($response['updatedon'], \DateTime::class);
+            unset($response['createdon']);
+            unset($response['updatedon']);
             $tag = $this->apiService->serializer->denormalize($response, Tag::class);
+            $tag->setCreatedon($tagCreatedon);
+            $tag->setUpdatedon($tagUpdatedon);
+            
             return $tag;
         }
         return null;
