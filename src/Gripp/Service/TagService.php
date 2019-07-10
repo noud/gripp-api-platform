@@ -68,7 +68,7 @@ class TagService
         return $hit;
     }
 
-    public function getTagByIdAsArray(int $id): array
+    public function getTagByIdAsArray(int $id): ?array
     {
         $filters = [
             [
@@ -85,19 +85,18 @@ class TagService
     public function getTagById(int $id): ?Tag
     {
         $response = $this->getTagByIdAsArray($id);
-        dump($response);
-        $response = array_filter($response, function($var){return !is_null($var);} );
-        dump($response);
-        $tag = $this->apiService->serializer->denormalize($response, Tag::class);
-        dump($tag);
-        return $tag;
+        if ($response) {
+            $response = array_filter($response, function($var){return !is_null($var);} );
+            $tag = $this->apiService->serializer->denormalize($response, Tag::class);
+            return $tag;
+        }
+        return null;
     }
     
-    public function deleteTag(Tag $tag): array
+    public function deleteTag(Tag $tag): void
     {
         $id = $tag->getId();
-
-        return $this->delete($id);
+        $this->delete($id);
     }
 
     /*
@@ -109,10 +108,10 @@ class TagService
             $this->createTag($tag);
         }
     */
-    public function createTag(Tag $tag): array
+    public function createTag(TagData $tagData): void
     {
         /** @var array $fields */
-        $fields = $this->apiService->serializer->normalize($tag, null, ['groups' => 'write']);
+        $fields = $this->apiService->serializer->normalize($tagData, null); //, ['groups' => 'write']);
         $this->create($fields);
     }
 
@@ -124,25 +123,29 @@ class TagService
         $this->update($id, $fields);
     }
 
-    private function create(array $fields): array
+    private function create(array $fields): bool
     {
-        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'s_%s', md5(Tag::API_NAME.'s'));
-        $this->cacheService->deleteCacheByKey($cacheKey);
-
+        $this->invalidateAllCache();
+        
         $response = $this->apiService->API->tag_create($fields);
-
-        return $response;
+        if (isset($response[0]['result']['success']) && $response[0]['result']['success']) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    private function delete(int $id): array
+    private function delete(int $id): bool
     {
-        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5((string) $id));
-        $this->cacheService->deleteCacheByKey($cacheKey);
-
-        $batchresponse = $this->apiService->API->tag_delete($id);
-        $response = $batchresponse[0]['result'];
-
-        return $response;
+        $this->invalidateCache($id);
+        $this->invalidateAllCache();
+        
+        $response = $this->apiService->API->tag_delete($id);
+        if (isset($response[0]['result']['success']) && $response[0]['result']['success']) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private function get(array $filters = [], array $options = []): array
@@ -161,7 +164,7 @@ class TagService
         return $response;
     }
 
-    private function getone(array $filters = [], array $options = [], int $id = 1): array
+    private function getone(array $filters = [], array $options = [], int $id = 1): ?array
     {
         $filters = [
             [
@@ -171,22 +174,34 @@ class TagService
             ],
         ];
 
-        $batchresponse = $this->apiService->API->tag_getone($filters, $options);
-        $response = $batchresponse[0]['result']['rows'][0];
+        $response = $this->apiService->API->tag_getone($filters, $options);
+        if ($response[0]['result']['count'] === 1) {
+            return $response[0]['result']['rows'][0];
+        }
 
-        return $response;
+        return null;
     }
 
+    private function invalidateAllCache():  void
+    {
+        $cacheKey = sprintf('gripp_tags_%s', md5('tags'));
+        $this->cacheService->deleteCacheByKey($cacheKey);
+    }
+    
+    private function invalidateCache(int $id): void
+    {
+        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5((string) $id));
+//        $cacheKey = sprintf('gripp_'.$entityName::API_NAME.'_%s', md5((string) $id));
+        $this->cacheService->deleteCacheByKey($cacheKey);
+    }
+        
     private function update(int $id, array $fields): bool
     {
         //$entityName = str_replace('Service', '', $this->name());
         //$entityFunction = $this->entityName.'_update';
 
-        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5((string) $id));
-//        $cacheKey = sprintf('gripp_'.$entityName::API_NAME.'_%s', md5((string) $id));
-        $this->cacheService->deleteCacheByKey($cacheKey);
-        $cacheKey = sprintf('gripp_tags_%s', md5('tags'));
-        $this->cacheService->deleteCacheByKey($cacheKey);
+        $this->invalidateCache($id);
+        $this->invalidateAllCache();
         
         //$response = $this->API->$entityFunction($id, $fields);
         $response = $this->apiService->API->tag_update($id, $fields);

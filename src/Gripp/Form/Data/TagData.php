@@ -14,8 +14,10 @@ class TagData
     public $name;
     
     public function __construct(
-        Tag $tag
+        Tag $tag = null
     ) {
-        $this->name = $tag->getName();
+        if ($tag) {
+            $this->name = $tag->getName();
+        }
     }
 }

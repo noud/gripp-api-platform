@@ -56,20 +56,52 @@ class TagController extends AbstractController
     /**
      * @Route("/edit/{id}", name="gripp_tag_edit")
      */
-    public function create(int $id, TagHandler $tagHandler, Request $request): Response
+    public function edit(int $id, TagHandler $tagHandler, Request $request): Response
     {
         $tag = $this->tagService->getTagById($id);
         $data = new TagData($tag);
         $form = $this->createForm(TagType::class, $data);
         
         if ($tagHandler->handleRequest($form, $request, $tag)) {
+            $this->addFlash('success', 'tag.message.updated');
+            
+            return $this->redirectToRoute('gripp_tag_index');
+        }
+        
+        return $this->render('gripp/tag/add_edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+    
+    /**
+     * @Route("/add", name="gripp_tag_add")
+     */
+    public function create(TagHandler $tagHandler, Request $request): Response
+    {
+        $data = new TagData();
+        $form = $this->createForm(TagType::class, $data);
+        
+        if ($tagHandler->handleRequest($form, $request)) {
             $this->addFlash('success', 'tag.message.added');
             
             return $this->redirectToRoute('gripp_tag_index');
         }
         
-        return $this->render('gripp/tag/edit.html.twig', [
+        return $this->render('gripp/tag/add_edit.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+    
+    /**
+     * @Route("/delete/{id}", name="gripp_tag_delete")
+     */
+    public function delete(int $id, Request $request): Response
+    {
+        $tag = $this->tagService->getTagById($id);
+        if ($tag) {
+            $this->tagService->deleteTag($tag);
+        }
+        
+        return $this->redirectToRoute('gripp_tag_index');
     }
 }

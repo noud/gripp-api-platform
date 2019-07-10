@@ -35,14 +35,18 @@ class TagHandler
     /**
      * @throws \Doctrine\ORM\ORMException
      */
-    public function handleRequest(FormInterface $form, Request $request, Tag $tag): bool
+    public function handleRequest(FormInterface $form, Request $request, Tag $tag = null): bool
     {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var TagData $tagData */
             $tagData = $form->getData();
-            $this->tagService->updateTag($tag, $tagData);
+            if ($tag) {
+                $this->tagService->updateTag($tag, $tagData);
+            } else {
+                $this->tagService->createTag($tagData);
+            }
 
             return true;
         }
