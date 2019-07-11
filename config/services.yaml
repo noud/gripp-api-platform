@@ -61,12 +61,19 @@ services:
         tags: [routing.loader]
         arguments:
             - "%sonata_prefix%"
+            
+    App\Twig\IsIntTwigExtension:
+        tags:
+            - { name: twig.extension }
     
     # API client JSON-RPC
-    App\Controller\TagController:
+    App\Controller\TaakfaseController:
         arguments:
             - '%kernel.environment%'
-    App\Controller\TaakfaseController:
+    App\Controller\TaaktypeController:
+        arguments:
+            - '%kernel.environment%'
+    App\Controller\TagController:
         arguments:
             - '%kernel.environment%'
 

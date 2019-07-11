@@ -3,8 +3,10 @@
 namespace App\Doctrine;
 
 use App\Entity\Taakfase;
+use App\Entity\Taaktype;
 use App\Entity\Tag;
 use App\Service\TaakfaseService;
+use App\Service\TaaktypeService;
 use App\Service\TagService;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -21,13 +23,25 @@ class EntityListener implements EventSubscriber
     private $passwordEncoder;
 
     /**
+     * @var TaakfaseService
+     */
+    private $taakfaseService;
+    
+    /**
+     * @var TaaktypeService
+     */
+    private $taaktypeService;
+    
+    /**
      * HashPasswordListener constructor.
      */
     public function __construct(
         TaakfaseService $taakfaseService,
+        TaaktypeService $taaktypeService,
         TagService $tagService
     ) {
         $this->taakfaseService = $taakfaseService;
+        $this->taaktypeService = $taaktypeService;
         $this->tagService = $tagService;
     }
 
@@ -61,9 +75,10 @@ class EntityListener implements EventSubscriber
     {
         if ($entity instanceof Taakfase) {
             $this->taakfaseService->updateTaakfase($entity);
+        } elseif ($entity instanceof Taaktype) {
+            $this->taaktypeService->updateTaaktype($entity);
         } elseif ($entity instanceof Tag) {
             $this->tagService->updateTag($entity);
-            
         }
     }
 }

@@ -62,6 +62,11 @@ abstract class AbstractEntity
         return $this->updatedat;
     }
     
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+    
     public function setCreatedon(DateTime $createdon): void
     {
         $this->createdat = $createdon;

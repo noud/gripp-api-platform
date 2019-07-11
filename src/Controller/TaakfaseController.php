@@ -36,10 +36,11 @@ class TaakfaseController extends AbstractController
      */
     public function index(): Response
     {
+        $taakfaseName = 'Taakfase';
         $taakfasesName = 'Taakfases';
         $taakfasesArray = $this->taakfaseService->allTaakfases();
 
-        return $this->entitiesTable($taakfasesName, $taakfasesArray);
+        return $this->entitiesTable($taakfaseName, $taakfasesName, $taakfasesArray);
     }
 
     /**

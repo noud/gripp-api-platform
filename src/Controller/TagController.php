@@ -36,10 +36,11 @@ class TagController extends AbstractController
      */
     public function index(): Response
     {
+        $tagName = 'Tag';
         $tagsName = 'Tags';
         $tagsArray = $this->tagService->allTags();
 
-        return $this->entitiesTable($tagsName, $tagsArray);
+        return $this->entitiesTable($tagName, $tagsName, $tagsArray);
     }
 
     /**

@@ -45,7 +45,8 @@ class TaakfaseService
 
     public function allTaakfases(): array
     {
-        $cacheKey = sprintf('gripp_taakfases_%s', md5('taakfases'));
+        //$this->invalidateAllCache();
+        $cacheKey = sprintf('gripp_'.Taakfase::API_NAME.'_%s', md5(Taakfase::API_NAME));
         $hit = $this->cacheService->getFromCache($cacheKey);
         if (false === $hit) {
             $this->sqlService->truncate('App\Entity\Taakfase');
@@ -237,7 +238,7 @@ class TaakfaseService
 
     private function invalidateAllCache():  void
     {
-        $cacheKey = sprintf('gripp_taakfases_%s', md5('taakfases'));
+        $cacheKey = sprintf('gripp_'.Taakfase::API_NAME.'_%s', md5(Taakfase::API_NAME));
         $this->cacheService->deleteCacheByKey($cacheKey);
     }
     

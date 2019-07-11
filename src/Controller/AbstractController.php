@@ -7,9 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 class AbstractController extends SymfonyAbstractController
 {
-    protected function entitiesTable(string $entityName, array $entityArray = []): Response
+    protected function entitiesTable(string $entityName, string $entitiesName, array $entityArray = []): Response
     {
-        $entityTitle = sprintf('%s %s', \count($entityArray), $entityName);
+        $entityTitle = sprintf('%s %s', \count($entityArray), $entitiesName);
         $entityDescription = '@TODO EntityDescription';
         $entityFields = array_keys($entityArray[0]);
         $entityValues = array_map(
@@ -33,6 +33,7 @@ class AbstractController extends SymfonyAbstractController
                     'content' => $entityDescription,
                 ],
                 'entities' => [
+                    'name' => strtolower($entityName),
                     'fields' => $entityFields,
                     'tupels' => $entityValues,
                 ],
