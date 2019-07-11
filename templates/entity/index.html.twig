@@ -38,10 +38,18 @@
                                         {% for tupel in entities.tupels %}
                                             <div class="row">
                                                 <div class="col-sm-2">
-                                                    {{ tupel[0] }}
+                                                	{% if tupel[0]|is_int %}
+                                                    	<a href="{{ path('gripp_'~entities.name~'_view', {'id' : tupel[0]}) }}">{{ tupel[0] }}</a>
+                                                    {% else %}
+                                                        {{ tupel[0] }}
+                                                    {% endif %}
                                                 </div>
                                                 <div class="col-sm-2">
-                                                    <a href="{{ path('gripp_tag_view', {'id' : tupel[1]}) }}">{{ tupel[1] }}</a>
+                                                	{% if tupel[1]|is_int %}
+                                                    	<a href="{{ path('gripp_'~entities.name~'_view', {'id' : tupel[1]}) }}">{{ tupel[1] }}</a>
+                                                    {% else %}
+                                                        {{ tupel[1] }}
+                                                    {% endif %}
                                                 </div>
                                                 {% for fieldValue in tupel|slice(2) %}
                                                         <div class="col-sm-6">
