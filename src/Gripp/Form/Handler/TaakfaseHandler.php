@@ -2,14 +2,14 @@
 
 namespace App\Gripp\Form\Handler;
 
-use App\Entity\Tag;
-use App\Gripp\Form\Data\TagData;
-use App\Gripp\Service\TagService;
+use App\Entity\Taakfase;
+use App\Gripp\Form\Data\TaakfaseData;
+use App\Gripp\Service\TaakfaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 
-class TagHandler
+class TaakfaseHandler
 {
     /**
      * @var EntityManagerInterface
@@ -17,35 +17,35 @@ class TagHandler
     private $entityManager;
 
     /**
-     * @var TagService
+     * @var TaakfaseService
      */
-    private $tagService;
+    private $taakfaseService;
 
     /**
      * JoinHandler constructor.
      */
     public function __construct(
         EntityManagerInterface $entityManager,
-        TagService $tagService
+        TaakfaseService $taakfaseService
     ) {
         $this->entityManager = $entityManager;
-        $this->tagService = $tagService;
+        $this->taakfaseService = $taakfaseService;
     }
 
     /**
      * @throws \Doctrine\ORM\ORMException
      */
-    public function handleRequest(FormInterface $form, Request $request, Tag $tag = null): bool
+    public function handleRequest(FormInterface $form, Request $request, Taakfase $taakfase = null): bool
     {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            /** @var TagData $tagData */
-            $tagData = $form->getData();
-            if ($tag) {
-                $this->tagService->updateTag($tag, $tagData);
+            /** @var TaakfaseData $taakfaseData */
+            $taakfaseData = $form->getData();
+            if ($taakfase) {
+                $this->taakfaseService->updateTaakfase($taakfase, $taakfaseData);
             } else {
-                $this->tagService->createTag($tagData);
+                $this->taakfaseService->createTaakfase($taakfaseData);
             }
 
             return true;

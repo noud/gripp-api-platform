@@ -2,14 +2,14 @@
 
 namespace App\Gripp\Service;
 
-use App\Entity\Tag;
+use App\Entity\Taakfase;
 use App\Gripp\Enum\API\FiltersOperatorEnum;
 use App\Gripp\Enum\API\OptionsOrderingsDirectionEnum;
-use App\Gripp\Form\Data\TagData;
-use App\Repository\TagRepository;
+use App\Gripp\Form\Data\TaakfaseData;
+use App\Repository\TaakfaseRepository;
 use App\Service\CacheService;
 
-class TagService
+class TaakfaseService
 {
     /**
      * @var CacheService
@@ -27,28 +27,28 @@ class TagService
     private $sqlService;
     
     /**
-     * @var TagRepository
+     * @var TaakfaseRepository
      */
-    private $tagRepository;
+    private $taakfaseRepository;
     
     public function __construct(
         CacheService $cacheService,
         APIService $apiService,
         SQLService $sqlService,
-        TagRepository $tagRepository
+        TaakfaseRepository $taakfaseRepository
     ) {
         $this->cacheService = $cacheService;
         $this->apiService = $apiService;
         $this->sqlService = $sqlService;
-        $this->tagRepository = $tagRepository;
+        $this->taakfaseRepository = $taakfaseRepository;
     }
 
-    public function allTags(): array
+    public function allTaakfases(): array
     {
-        $cacheKey = sprintf('gripp_tags_%s', md5('tags'));
+        $cacheKey = sprintf('gripp_taakfases_%s', md5('taakfases'));
         $hit = $this->cacheService->getFromCache($cacheKey);
         if (false === $hit) {
-            $this->sqlService->truncate('App\Entity\Tag');
+            $this->sqlService->truncate('App\Entity\Taakfase');
             
             $from = 0;
             $limit = 10;
@@ -62,7 +62,7 @@ class TagService
                     ],
                     'orderings' => [
                         [
-                            'field' => 'tag.id',
+                            'field' => 'taskphase.id',
                             'direction' => OptionsOrderingsDirectionEnum::ASC,
                         ],
                     ],
@@ -81,8 +81,8 @@ class TagService
             
             foreach ($totalResponse as $response) {
                 $this->saveToCache($response);
-                $tag = $this->denormalizeArrayToTag($response);
-                $this->tagRepository->add($tag);
+                $taakfase = $this->denormalizeArrayToTaakfase($response);
+                $this->taakfaseRepository->add($taakfase);
             }
             $this->sqlService->getEntityManager()->flush();
             
@@ -92,11 +92,11 @@ class TagService
         return $hit;
     }
 
-    public function getTagByIdAsArray(int $id): ?array
+    public function getTaakfaseByIdAsArray(int $id): ?array
     {
         $filters = [
             [
-                'field' => Tag::API_NAME.'.id',
+                'field' => Taakfase::API_NAME.'.id',
                 'operator' => FiltersOperatorEnum::EQUALS,
                 'value' => $id,
             ],
@@ -106,61 +106,61 @@ class TagService
         return $response;
     }
     
-    public function denormalizeArrayToTag(array $data): ?Tag
+    public function denormalizeArrayToTaakfase(array $data): ?Taakfase
     {
         $data = array_filter($data, function($var){return !is_null($var);});
-        $tagCreatedon = $this->apiService->dateTimeSerializer->denormalize($data['createdon'], \DateTime::class);
+        $taakfaseCreatedon = $this->apiService->dateTimeSerializer->denormalize($data['createdon'], \DateTime::class);
         unset($data['createdon']);
         if (isset($data['updatedon'])) {
-            $tagUpdatedon = $this->apiService->dateTimeSerializer->denormalize($data['updatedon'], \DateTime::class);
+            $taakfaseUpdatedon = $this->apiService->dateTimeSerializer->denormalize($data['updatedon'], \DateTime::class);
             unset($data['updatedon']);
         }
-        $tag = $this->apiService->serializer->denormalize($data, Tag::class);
-        $tag->setCreatedon($tagCreatedon);
-        if (isset($tagUpdatedon)) {
-            $tag->setUpdatedon($tagUpdatedon);
+        $taakfase = $this->apiService->serializer->denormalize($data, Taakfase::class);
+        $taakfase->setCreatedon($taakfaseCreatedon);
+        if (isset($taakfaseUpdatedon)) {
+            $taakfase->setUpdatedon($taakfaseUpdatedon);
         }
         
-        return $tag;
+        return $taakfase;
     }
     
-    public function getTagById(int $id): ?Tag
+    public function getTaakfaseById(int $id): ?Taakfase
     {
-        $response = $this->getTagByIdAsArray($id);
+        $response = $this->getTaakfaseByIdAsArray($id);
         if ($response) {
-            return $this->denormalizeArrayToTag($response);
+            return $this->denormalizeArrayToTaakfase($response);
         }
         return null;
     }
     
-    public function deleteTag(Tag $tag): void
+    public function deleteTaakfase(Taakfase $taakfase): void
     {
-        $id = $tag->getId();
+        $id = $taakfase->getId();
         $this->delete($id);
     }
 
     /*
-        public function addTag(TagData $tagData)
+        public function addTaakfase(TaakfaseData $taakfaseData)
         {
-            $tag = new Tag();
-            $tag->setContent($tagData->content);
+            $taakfase = new Taakfase();
+            $taakfase->setContent($taakfaseData->content);
 
-            $this->createTag($tag);
+            $this->createTaakfase($taakfase);
         }
     */
     
-    public function createTag(TagData $tagData): void
+    public function createTaakfase(TaakfaseData $taakfaseData): void
     {
         /** @var array $fields */
-        $fields = $this->apiService->serializer->normalize($tagData, null); //, ['groups' => 'write']);
+        $fields = $this->apiService->serializer->normalize($taakfaseData, null); //, ['groups' => 'write']);
         $this->create($fields);
     }
 
-    public function updateTag(Tag $tag, TagData $tagData): void
+    public function updateTaakfase(Taakfase $taakfase, TaakfaseData $taakfaseData): void
     {
-        $id = $tag->getId();
+        $id = $taakfase->getId();
         /** @var array $fields */
-        $fields = $this->apiService->serializer->normalize($tagData, null); //, ['groups' => 'write']);
+        $fields = $this->apiService->serializer->normalize($taakfaseData, null); //, ['groups' => 'write']);
         $this->update($id, $fields);
     }
 
@@ -168,7 +168,7 @@ class TagService
     {
         $this->invalidateAllCache();
         
-        $response = $this->apiService->API->tag_create($fields);
+        $response = $this->apiService->API->taskphase_create($fields);
         if (isset($response[0]['result']['success']) && $response[0]['result']['success']) {
             return true;
         } else {
@@ -181,7 +181,7 @@ class TagService
         $this->invalidateCache($id);
         $this->invalidateAllCache();
         
-        $response = $this->apiService->API->tag_delete($id);
+        $response = $this->apiService->API->taskphase_delete($id);
         if (isset($response[0]['result']['success']) && $response[0]['result']['success']) {
             return true;
         } else {
@@ -193,13 +193,13 @@ class TagService
     {
         $filters = [
             [
-                'field' => Tag::API_NAME.'.id',
+                'field' => Taakfase::API_NAME.'.id',
                 'operator' => FiltersOperatorEnum::GREATEREQUALS,
                 'value' => 1,
             ],
         ];
 
-        $batchresponse = $this->apiService->API->tag_get($filters, $options);
+        $batchresponse = $this->apiService->API->taskphase_get($filters, $options);
         $response = $batchresponse[0]['result'];
 
         return $response;
@@ -209,13 +209,13 @@ class TagService
     {
         $filters = [
             [
-                'field' => Tag::API_NAME.'.id',
+                'field' => Taakfase::API_NAME.'.id',
                 'operator' => FiltersOperatorEnum::EQUALS,
                 'value' => $id,
             ],
         ];
 
-        $response = $this->apiService->API->tag_getone($filters, $options);
+        $response = $this->apiService->API->taskphase_getone($filters, $options);
         if ($response[0]['result']['count'] === 1) {
             return $response[0]['result']['rows'][0];
         }
@@ -225,13 +225,13 @@ class TagService
 
     private function invalidateAllCache():  void
     {
-        $cacheKey = sprintf('gripp_tags_%s', md5('tags'));
+        $cacheKey = sprintf('gripp_taakfases_%s', md5('taakfases'));
         $this->cacheService->deleteCacheByKey($cacheKey);
     }
     
     private function invalidateCache(int $id): void
     {
-        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5((string) $id));
+        $cacheKey = sprintf('gripp_'.Taakfase::API_NAME.'_%s', md5((string) $id));
 //        $cacheKey = sprintf('gripp_'.$entityName::API_NAME.'_%s', md5((string) $id));
         $this->cacheService->deleteCacheByKey($cacheKey);
     }
@@ -239,7 +239,7 @@ class TagService
     
     private function saveToCache(array $response): void
     {
-        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5((string) $response['id']));
+        $cacheKey = sprintf('gripp_'.Taakfase::API_NAME.'_%s', md5((string) $response['id']));
         $this->cacheService->saveToCache($cacheKey, $response);
     }
 
@@ -252,7 +252,7 @@ class TagService
         $this->invalidateAllCache();
         
         //$response = $this->API->$entityFunction($id, $fields);
-        $response = $this->apiService->API->tag_update($id, $fields);
+        $response = $this->apiService->API->taskphase_update($id, $fields);
         if (isset($response[0]['result']['success']) && $response[0]['result']['success']) {
             return true;
         } else {

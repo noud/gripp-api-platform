@@ -6,13 +6,13 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Taakfase
+ * Tag
  *
  * @ApiResource
- * @ORM\Table(name="taakfase")
+ * @ORM\Table(name="tag")
  * @ORM\Entity
  */
-class Taakfase extends \App\Entity\AbstractEntity\AbstractPhaseEntity
+class Tag extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
 {
-    const API_NAME = 'taskphase';
+    const API_NAME = 'tag';
 }

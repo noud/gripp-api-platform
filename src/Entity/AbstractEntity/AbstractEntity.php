@@ -47,4 +47,28 @@ abstract class AbstractEntity
     {
         return $this->updatedat;
     }
+    
+    /**
+     * Gripp API
+     */
+    
+    public function getCreatedon(): DateTime
+    {
+        return $this->createdat;
+    }
+    
+    public function getUpdatedon(): DateTime
+    {
+        return $this->updatedat;
+    }
+    
+    public function setCreatedon(DateTime $createdon): void
+    {
+        $this->createdat = $createdon;
+    }
+    
+    public function setUpdatedon(DateTime $updatedon): void
+    {
+        $this->updatedat = $updatedon;
+    }
 }

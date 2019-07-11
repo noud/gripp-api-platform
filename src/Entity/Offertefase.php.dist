@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Entity;
+
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Offertefase
+ *
+ * @ApiResource
+ * @ORM\Table(name="offertefase")
+ * @ORM\Entity
+ */
+class Offertefase extends \App\Entity\AbstractEntity\AbstractPhaseEntity
+{
+    const API_NAME = 'offerphase';
+}

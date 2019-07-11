@@ -2,25 +2,18 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Pakket
  *
+ * @ApiResource
  * @ORM\Table(name="pakket")
  * @ORM\Entity
  */
-class Pakket
+class Pakket extends \App\Entity\AbstractEntity\AbstractEntity
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
-
     /**
      * @var string|null
      *
@@ -45,23 +38,23 @@ class Pakket
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
      */
     private $description;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description_raw", type="text", nullable=true)
+     * @ORM\Column(name="description_raw", type="text", length=65535, nullable=true)
      */
     private $descriptionRaw;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="description_formatter", type="string", length=255, nullable=true)
+     * @ORM\Column(name="description_formatter", type="string", length=255, nullable=true, options={"default"="markdown"})
      */
-    private $descriptionFormatter;
+    private $descriptionFormatter = 'markdown';
 
     /**
      * @var int|null
@@ -119,25 +112,6 @@ class Pakket
      */
     private $extendedproperties;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="createdAt", type="datetime", nullable=false)
-     */
-    private $createdat;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=false)
-     */
-    private $updatedat;
-
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
     public function getName(): ?string
     {
         return $this->name;
@@ -177,6 +151,13 @@ class Pakket
     public function getDescription(): ?string
     {
         return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
     }
 
     public function getDescriptionRaw(): ?string
@@ -295,30 +276,6 @@ class Pakket
     public function setExtendedproperties(?string $extendedproperties): self
     {
         $this->extendedproperties = $extendedproperties;
-
-        return $this;
-    }
-
-    public function getCreatedat(): ?\DateTimeInterface
-    {
-        return $this->createdat;
-    }
-
-    public function setCreatedat(\DateTimeInterface $createdat): self
-    {
-        $this->createdat = $createdat;
-
-        return $this;
-    }
-
-    public function getUpdatedat(): ?\DateTimeInterface
-    {
-        return $this->updatedat;
-    }
-
-    public function setUpdatedat(\DateTimeInterface $updatedat): self
-    {
-        $this->updatedat = $updatedat;
 
         return $this;
     }
