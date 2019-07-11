@@ -46,7 +46,7 @@ services:
     Psr\SimpleCache\CacheInterface: '@Symfony\Component\Cache\Simple\FilesystemCache'
     
     # Gripp API
-    App\Gripp\Service\APIService:
+    App\Service\APIService:
         arguments:
             - "%gripp_api_token%"
     
@@ -96,6 +96,10 @@ services:
             - [setTemplate, ['edit', 'bundles/SonataAdminBundle/CRUD/2fa_edit.html.twig']]
 
     App\Doctrine\HashPasswordListener:
+        tags:
+            - doctrine.event_subscriber
+            
+    App\Doctrine\EntityListener:
         tags:
             - doctrine.event_subscriber
             

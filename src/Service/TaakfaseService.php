@@ -156,14 +156,26 @@ class TaakfaseService
         $this->create($fields);
     }
 
-    public function updateTaakfase(Taakfase $taakfase, TaakfaseData $taakfaseData): void
+    public function updateTaakfaseWithData(Taakfase $taakfase, TaakfaseData $taakfaseData): void
     {
         $id = $taakfase->getId();
         /** @var array $fields */
         $fields = $this->apiService->serializer->normalize($taakfaseData, null); //, ['groups' => 'write']);
         $this->update($id, $fields);
     }
-
+    
+    public function updateTaakfase(Taakfase $taakfase): void
+    {
+        $id = $taakfase->getId();
+        /** @var array $fields */
+        $fields = $this->apiService->serializer->normalize($taakfase, null); //, ['groups' => 'write']);
+        unset($fields['id']);
+        unset($fields['createdon']);
+        unset($fields['updatedon']);
+        unset($fields['searchname']);
+        $this->update($id, $fields);
+    }
+    
     private function create(array $fields): bool
     {
         $this->invalidateAllCache();

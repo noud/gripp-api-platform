@@ -45,6 +45,7 @@ class TagService
 
     public function allTags(): array
     {
+        //$this->invalidateAllCache();
         $cacheKey = sprintf('gripp_tags_%s', md5('tags'));
         $hit = $this->cacheService->getFromCache($cacheKey);
         if (false === $hit) {
@@ -156,14 +157,26 @@ class TagService
         $this->create($fields);
     }
 
-    public function updateTag(Tag $tag, TagData $tagData): void
+    public function updateTagWithData(Tag $tag, TagData $tagData): void
     {
         $id = $tag->getId();
         /** @var array $fields */
         $fields = $this->apiService->serializer->normalize($tagData, null); //, ['groups' => 'write']);
         $this->update($id, $fields);
     }
-
+    
+    public function updateTag(Tag $tag): void
+    {
+        $id = $tag->getId();
+        /** @var array $fields */
+        $fields = $this->apiService->serializer->normalize($tag, null); //, ['groups' => 'write']);
+        unset($fields['id']);
+        unset($fields['createdon']);
+        unset($fields['updatedon']);
+        unset($fields['searchname']);
+        $this->update($id, $fields);
+    }
+    
     private function create(array $fields): bool
     {
         $this->invalidateAllCache();

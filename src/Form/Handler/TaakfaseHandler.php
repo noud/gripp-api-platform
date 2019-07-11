@@ -43,7 +43,7 @@ class TaakfaseHandler
             /** @var TaakfaseData $taakfaseData */
             $taakfaseData = $form->getData();
             if ($taakfase) {
-                $this->taakfaseService->updateTaakfase($taakfase, $taakfaseData);
+                $this->taakfaseService->updateTaakfaseWithData($taakfase, $taakfaseData);
             } else {
                 $this->taakfaseService->createTaakfase($taakfaseData);
             }

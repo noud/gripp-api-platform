@@ -43,7 +43,7 @@ class TagHandler
             /** @var TagData $tagData */
             $tagData = $form->getData();
             if ($tag) {
-                $this->tagService->updateTag($tag, $tagData);
+                $this->tagService->updateTagWithData($tag, $tagData);
             } else {
                 $this->tagService->createTag($tagData);
             }
