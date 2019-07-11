@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Gripp\Service;
+namespace App\Service;
 
 use com_gripp_API;
-use App\Gripp\Serializer\Normalizer\DateTimeNormalizer;
+use App\Serializer\Normalizer\DateTimeNormalizer;
 use Doctrine\Common\Annotations\AnnotationReader;
 use Symfony\Component\Serializer\Mapping\Factory\ClassMetadataFactory;
 use Symfony\Component\Serializer\Mapping\Loader\AnnotationLoader;

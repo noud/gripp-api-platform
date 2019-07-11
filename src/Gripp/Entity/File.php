@@ -2,7 +2,7 @@
 
 namespace App\Gripp\Entity;
 
-use App\Gripp\Entity\AbstractEntities\AbstractSearchableEntity;
+use App\Entity\AbstractEntity\AbstractSearchableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 class File extends AbstractSearchableEntity

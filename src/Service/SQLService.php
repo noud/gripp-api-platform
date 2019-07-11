@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Gripp\Service;
+namespace App\Service;
 
 use Doctrine\ORM\EntityManagerInterface;
 

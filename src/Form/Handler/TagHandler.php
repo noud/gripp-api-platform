@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Gripp\Form\Handler;
+namespace App\Form\Handler;
 
 use App\Entity\Tag;
-use App\Gripp\Form\Data\TagData;
-use App\Gripp\Service\TagService;
+use App\Form\Data\TagData;
+use App\Service\TagService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;

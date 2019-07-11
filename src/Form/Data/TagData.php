@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Gripp\Form\Data;
+namespace App\Form\Data;
 
-use App\Entity\Taakfase;
+use App\Entity\Tag;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class TaakfaseData
+class TagData
 {
     /**
      * @var string
@@ -14,10 +14,10 @@ class TaakfaseData
     public $name;
     
     public function __construct(
-        Taakfase $taakfase = null
+        Tag $tag = null
     ) {
-        if ($taakfase) {
-            $this->name = $taakfase->getName();
+        if ($tag) {
+            $this->name = $tag->getName();
         }
     }
 }

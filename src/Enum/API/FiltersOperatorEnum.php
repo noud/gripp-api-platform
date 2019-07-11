@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Gripp\Enum\API;
+namespace App\Enum\API;
 
-use App\Gripp\Enum\AbstractEnum;
+use App\Enum\AbstractEnum;
 
 class FiltersOperatorEnum extends AbstractEnum
 {

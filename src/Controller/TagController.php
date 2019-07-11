@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Controller\Gripp;
+namespace App\Controller;
 
 use App\Controller\AbstractController;
-use App\Gripp\Form\Data\TagData;
-use App\Gripp\Form\Handler\TagHandler;
-use App\Gripp\Form\Type\TagType;
-use App\Gripp\Service\TagService;
+use App\Form\Data\TagData;
+use App\Form\Handler\TagHandler;
+use App\Form\Type\TagType;
+use App\Service\TagService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

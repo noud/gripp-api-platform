@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Gripp\Form\Handler;
+namespace App\Form\Handler;
 
 use App\Entity\Taakfase;
-use App\Gripp\Form\Data\TaakfaseData;
-use App\Gripp\Service\TaakfaseService;
+use App\Form\Data\TaakfaseData;
+use App\Service\TaakfaseService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;

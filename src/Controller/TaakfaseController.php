@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Controller\Gripp;
+namespace App\Controller;
 
 use App\Controller\AbstractController;
-use App\Gripp\Form\Data\TaakfaseData;
-use App\Gripp\Form\Handler\TaakfaseHandler;
-use App\Gripp\Form\Type\TaakfaseType;
-use App\Gripp\Service\TaakfaseService;
+use App\Form\Data\TaakfaseData;
+use App\Form\Handler\TaakfaseHandler;
+use App\Form\Type\TaakfaseType;
+use App\Service\TaakfaseService;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;

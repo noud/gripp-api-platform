@@ -63,10 +63,10 @@ services:
             - "%sonata_prefix%"
     
     # API client JSON-RPC
-    App\Controller\Gripp\TagController:
+    App\Controller\TagController:
         arguments:
             - '%kernel.environment%'
-    App\Controller\Gripp\TaakfaseController:
+    App\Controller\TaakfaseController:
         arguments:
             - '%kernel.environment%'
 

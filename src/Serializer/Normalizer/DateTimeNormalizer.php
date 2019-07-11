@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace App\Gripp\Serializer\Normalizer;
+namespace App\Serializer\Normalizer;
 
 use Symfony\Component\Serializer\Exception\InvalidArgumentException;
 use Symfony\Component\Serializer\Exception\NotNormalizableValueException;

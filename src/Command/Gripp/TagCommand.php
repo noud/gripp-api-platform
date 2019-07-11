@@ -3,7 +3,7 @@
 namespace App\Command\Gripp;
 
 use App\Command\AbstractCommand;
-use App\Gripp\Service\TagService;
+use App\Service\TagService;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;

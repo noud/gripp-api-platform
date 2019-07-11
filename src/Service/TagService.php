@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Gripp\Service;
+namespace App\Service;
 
 use App\Entity\Tag;
-use App\Gripp\Enum\API\FiltersOperatorEnum;
-use App\Gripp\Enum\API\OptionsOrderingsDirectionEnum;
-use App\Gripp\Form\Data\TagData;
+use App\Enum\API\FiltersOperatorEnum;
+use App\Enum\API\OptionsOrderingsDirectionEnum;
+use App\Form\Data\TagData;
 use App\Repository\TagRepository;
 use App\Service\CacheService;
 

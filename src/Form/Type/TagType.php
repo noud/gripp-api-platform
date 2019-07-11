@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Gripp\Form\Type;
+namespace App\Form\Type;
 
-use App\Gripp\Form\Data\TaakfaseData;
+use App\Form\Data\TagData;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TaakfaseType extends AbstractType
+class TagType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -19,18 +19,15 @@ class TaakfaseType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'taakfase.field.name',
+                'label' => 'tag.field.name',
             ])
-            ->add('color', TextType::class, [
-                'label' => 'taakfase.field.color',
-            ])
-            ;
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => TaakfaseData::class,
+            'data_class' => TagData::class,
             'translation_domain' => 'gripp',
         ]);
     }

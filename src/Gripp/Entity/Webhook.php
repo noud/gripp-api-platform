@@ -2,7 +2,7 @@
 
 namespace App\Gripp\Entity;
 
-use App\Gripp\Entity\AbstractEntities\AbstractEntity;
+use App\Entity\AbstractEntity\AbstractEntity;
 use App\Gripp\Enum\Entity\Webhook\TriggerEnum;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;

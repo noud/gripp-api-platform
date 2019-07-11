@@ -2,7 +2,7 @@
 
 namespace App\Gripp\Entity;
 
-use App\Gripp\Entity\AbstractEntities\AbstractSearchableEntity;
+use App\Entity\AbstractEntity\AbstractSearchableEntity;
 use App\Gripp\Enum\Entity\Employee\SalutionEnum;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Validator\Constraints as Assert;
