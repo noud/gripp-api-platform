@@ -1,5 +1,11 @@
 # Gripp Symfony
 
+## Architecture
+
+![Architecture](./docs/architecture.png?raw=true "Architecture")
+
+## Use
+
 ![Gripp Symfony](./docs/gripp_symfony.png?raw=true "Gripp Symfony")
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://raw.githubusercontent.com/noud/gripp_api/master/LICENSE)
