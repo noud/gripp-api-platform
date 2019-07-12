@@ -9,7 +9,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
 abstract class AbstractEntity
 {
     /**
-     * @var int
+     * @var int|null
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -52,12 +52,12 @@ abstract class AbstractEntity
      * Gripp API
      */
     
-    public function getCreatedon(): DateTime
+    public function getCreatedon(): ?DateTime
     {
         return $this->createdat;
     }
     
-    public function getUpdatedon(): DateTime
+    public function getUpdatedon(): ?DateTime
     {
         return $this->updatedat;
     }
@@ -67,12 +67,12 @@ abstract class AbstractEntity
         $this->id = $id;
     }
     
-    public function setCreatedon(DateTime $createdon): void
+    public function setCreatedon(?DateTime $createdon): void
     {
         $this->createdat = $createdon;
     }
     
-    public function setUpdatedon(DateTime $updatedon): void
+    public function setUpdatedon(?DateTime $updatedon): void
     {
         $this->updatedat = $updatedon;
     }
