@@ -37,8 +37,8 @@ The application consumes the Gripp API as client but has various API server inte
     * [CSV](https://tools.ietf.org/html/rfc4180)
     * [HTML](https://whatwg.org/)
 * [GraphQL](https://en.wikipedia.org/wiki/GraphQL) with it's own [GraphiQL](https://github.com/graphql/graphiql/tree/master/packages/graphiql#readme) in-browser IDE
-        - accepts clients
-         - [Gripp client Gatsby React](https://github.com/noud/gripp_client_react_gatsby/blob/master/README.md) static [Progressive Web App (PWA)](https://en.wikipedia.org/wiki/Progressive_web_applications), mobile app
+    - accepts clients
+        - [Gripp client Gatsby React](https://github.com/noud/gripp_client_react_gatsby/blob/master/README.md) static [Progressive Web App (PWA)](https://en.wikipedia.org/wiki/Progressive_web_applications), mobile app
 
 ## export
 
