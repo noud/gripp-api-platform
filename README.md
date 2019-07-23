@@ -23,7 +23,7 @@ The application is highly independent of the Entities used and a good example of
 
 The application consumes the Gripp API as client but has various API server interfaces itself as well:
 * [JSON-RPC](https://www.jsonrpc.org/specification)
-* [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with auto generated documentation conform [OpenAPI](https://swagger.io/specification/)
+* [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) with generated API documentation conform [OpenAPI](https://swagger.io/specification/)
     * [JSON-LD](https://json-ld.org/)
         - accepts clients
          - [Gripp client React Redux](https://github.com/noud/gripp_client_react_redux/blob/master/README.md) [Progressive Web App (PWA)](https://en.wikipedia.org/wiki/Progressive_web_applications), mobile app
@@ -36,7 +36,7 @@ The application consumes the Gripp API as client but has various API server inte
     * [YAML](http://yaml.org/)
     * [CSV](https://tools.ietf.org/html/rfc4180)
     * [HTML](https://whatwg.org/)
-* [GraphQL](https://en.wikipedia.org/wiki/GraphQL) with it's own [GraphiQL](https://github.com/graphql/graphiql/tree/master/packages/graphiql#readme) in-browser IDE
+* [GraphQL](https://en.wikipedia.org/wiki/GraphQL) with it's own [GraphiQL](https://github.com/graphql/graphiql/tree/master/packages/graphiql#readme) in-browser IDE with generated API documentation
     - accepts clients
         - [Gripp client Gatsby React](https://github.com/noud/gripp_client_react_gatsby/blob/master/README.md) static [Progressive Web App (PWA)](https://en.wikipedia.org/wiki/Progressive_web_applications), mobile app
 
@@ -90,11 +90,13 @@ The first 2 steps are already done, being outside this project scope. You have t
 Import the database schema and optionally some demo data.:
 ```bash
 mysql -u root -p db_name< db/schema.sql
+mysql -u root -p db_name< db/relations.sql
 mysql -u root -p db_name< db/data.sql
 ```
 Generate the entities and admin webpages.:
 ```bash
 bin/generate.sh
+bin/console doctrine:migrations:migrate
 ```
 ## Tests
 
