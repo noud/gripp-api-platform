@@ -13,4 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Tag extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
-{}
+{
+
+}

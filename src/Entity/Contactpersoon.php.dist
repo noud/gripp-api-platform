@@ -3,35 +3,17 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\FullnameTrait;
 use Doctrine\ORM\Mapping as ORM;
-use \DateTime;
-use \DateTimeInterface;
 
 /**
  * Contactpersoon
  *
  * @ApiResource
- * @ORM\Table(name="contactpersoon")
+ * @ORM\Table(name="contactpersoon", indexes={@ORM\Index(name="FK_ContactpersoonCompany", columns={"company"})})
  * @ORM\Entity
- * @ORM\HasLifecycleCallbacks()
  */
-class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
+class Contactpersoon extends \App\Entity\AbstractEntity\AbstractExtendedPropertiesEntity
 {
-    use FullnameTrait;
-    
-    public function __construct()
-    {
-        $this->dateofbirth = new DateTime();
-    }
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
-     */
-    private $searchname;
-
     /**
      * @var string|null
      *
@@ -103,14 +85,6 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
     private $function;
 
     /**
-     * @var Bedrijf
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Bedrijf")
-     * @ORM\JoinColumn(name="company", referencedColumnName="id")
-     */
-    private $company;
-
-    /**
      * @var string|null
      *
      * @ORM\Column(name="salutation", type="string", length=8, nullable=true)
@@ -146,33 +120,21 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
     private $lastname;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
-     */
-    private $extendedproperties;
-
-    /**
      * @var int|null
      *
      * @ORM\Column(name="tags", type="bigint", nullable=true)
      */
     private $tags;
 
-    public function getSearchname(): ?string
-    {
-        return $this->searchname;
-    }
-
     /**
-     * @ORM\PreUpdate
+     * @var \Bedrijf
+     *
+     * @ORM\ManyToOne(targetEntity="Bedrijf")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="company", referencedColumnName="id")
+     * })
      */
-    public function setSearchname(): self
-    {
-        $this->searchname = ($this->email) ?: $this->__toString();
-
-        return $this;
-    }
+    private $company;
 
     public function getTitle(): ?string
     {
@@ -294,18 +256,6 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getCompany(): ?Bedrijf
-    {
-        return $this->company;
-    }
-
-    public function setCompany(Bedrijf $company): self
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
     public function getSalutation(): ?string
     {
         return $this->salutation;
@@ -366,18 +316,6 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getExtendedproperties(): ?string
-    {
-        return $this->extendedproperties;
-    }
-
-    public function setExtendedproperties(?string $extendedproperties): self
-    {
-        $this->extendedproperties = $extendedproperties;
-
-        return $this;
-    }
-
     public function getTags(): ?int
     {
         return $this->tags;
@@ -386,6 +324,18 @@ class Contactpersoon extends \App\Entity\AbstractEntity\AbstractEntity
     public function setTags(?int $tags): self
     {
         $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Bedrijf
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Bedrijf $company): self
+    {
+        $this->company = $company;
 
         return $this;
     }

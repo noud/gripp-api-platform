@@ -5,7 +5,7 @@ namespace App\Entity\AbstractEntity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-abstract class AbstractPhaseEntity extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
+abstract class AbstractPhaseEntity extends \App\Entity\AbstractEntity\AbstractNameEntity
 {
     /**
      * @var string|null

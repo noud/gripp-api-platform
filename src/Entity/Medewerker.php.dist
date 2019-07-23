@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Entity\Traits\AddressTrait;
 use App\Entity\Traits\FullnameTrait;
+use Doctrine\ORM\Mapping as ORM;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -17,11 +17,11 @@ use \DateTimeInterface;
  * Medewerker
  *
  * @ApiResource
- * @ORM\Table(name="medewerker")
+ * @ORM\Table(name="medewerker", indexes={@ORM\Index(name="FK_MedewerkerUserphoto", columns={"userphoto"})})
  * @ORM\Entity
  * @UniqueEntity("email")
  */
-class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements UserInterface, TwoFactorInterface
+class Medewerker extends \App\Entity\AbstractEntity\AbstractExtendedPropertiesEntity implements UserInterface, TwoFactorInterface
 {
     use FullnameTrait;
     use AddressTrait;
@@ -38,20 +38,6 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
      */
     private $googleAuthenticatorSecret;
     
-     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
-     */
-    private $searchname;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="userphoto", type="bigint", nullable=true)
-     */
-    private $userphoto;
-
     /**
      * @var string|null
      *
@@ -69,12 +55,12 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
     /**
      * @var int|null
      *
-     * @ORM\Column(name="number", type="integer", nullable=true)
+     * @ORM\Column(name="number", type="bigint", nullable=true)
      */
     private $number;
 
     /**
-     * @var DateTime|null
+     * @var \DateTime|null
      *
      * @ORM\Column(name="dateofbirth", type="date", nullable=true)
      */
@@ -124,7 +110,7 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
     private $notes;
 
     /**
-     * @var DateTime|null
+     * @var \DateTime|null
      *
      * @ORM\Column(name="employeesince", type="date", nullable=true)
      */
@@ -143,14 +129,14 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
      */
     private $password;
-
+    
     /**
      * A non-persisted field that's used to create the encoded password.
      *
      * @var string|null
      */
     private $plainPassword;
-
+    
     /**
      * @var bool|null
      *
@@ -272,13 +258,6 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
     private $lastname;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
-     */
-    private $extendedproperties;
-
-    /**
      * @var int|null
      *
      * @ORM\Column(name="tags", type="bigint", nullable=true)
@@ -292,29 +271,15 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
      */
     private $skills;
 
-    public function getSearchname(): ?string
-    {
-        return $this->searchname;
-    }
-
-    public function setSearchname(?string $searchname): self
-    {
-        $this->searchname = $searchname;
-
-        return $this;
-    }
-
-    public function getUserphoto(): ?int
-    {
-        return $this->userphoto;
-    }
-
-    public function setUserphoto(?int $userphoto): self
-    {
-        $this->userphoto = $userphoto;
-
-        return $this;
-    }
+    /**
+     * @var \File
+     *
+     * @ORM\ManyToOne(targetEntity="File")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userphoto", referencedColumnName="id")
+     * })
+     */
+    private $userphoto;
 
     public function getTitle(): ?string
     {
@@ -664,18 +629,6 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
         return $this;
     }
 
-    public function getExtendedproperties(): ?string
-    {
-        return $this->extendedproperties;
-    }
-
-    public function setExtendedproperties(?string $extendedproperties): self
-    {
-        $this->extendedproperties = $extendedproperties;
-
-        return $this;
-    }
-
     public function getTags(): ?int
     {
         return $this->tags;
@@ -700,6 +653,18 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
         return $this;
     }
 
+    public function getUserphoto(): ?File
+    {
+        return $this->userphoto;
+    }
+
+    public function setUserphoto(?File $userphoto): self
+    {
+        $this->userphoto = $userphoto;
+
+        return $this;
+    }
+
     public static function getSalutationList()
     {
         return [
@@ -708,29 +673,30 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
             self::SALUTION_SIRMADAM => 'salution_sirmadam',
         ];
     }
-
+    
     /**
      * Symfony UserInterface
      */
-
+    
     /**
      * @var array
-     * @ORM\Column(type="json")
+     *
+     * @ORM\Column(name="roles", type="json", nullable=false)
      */
     private $roles = [self::ROLE_USER];
-
+    
     public function getRoles(): array
     {
         $roles = $this->roles;
         $roles[] = self::ROLE_USER;
-
+        
         return array_unique($roles);
     }
-
+    
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
-
+        
         return $this;
     }
     
@@ -753,7 +719,7 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
     {
         return $this->plainPassword;
     }
-
+    
     /**
      * @param string $plainPassword
      */
@@ -764,7 +730,7 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
         // Doctrine *not* saving this entity, if only plainPassword changes
         $this->password = null;
     }
-
+    
     /**
      * @see UserInterface
      */
@@ -773,7 +739,7 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
         // not needed when using the "bcrypt" algorithm in security.yaml
         return null;
     }
-
+    
     /**
      * @see UserInterface
      */
@@ -782,9 +748,9 @@ class Medewerker extends \App\Entity\AbstractEntity\AbstractEntity implements Us
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
     }
-
+    
     // App\Security\LoginFormAuthenticator::getUser
-
+    
     public function isActive(): bool
     {
         return $this->active ?: false;

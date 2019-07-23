@@ -9,25 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  * Taak
  *
  * @ApiResource
- * @ORM\Entity()
- * @ORM\Table(name="taak")
+ * @ORM\Table(name="taak", indexes={@ORM\Index(name="FK_TaakType", columns={"type"}), @ORM\Index(name="FK_TaakCompany", columns={"company"}), @ORM\Index(name="FK_TaakPhase", columns={"phase"}), @ORM\Index(name="FK_TaakOfferprojectline", columns={"offerprojectline"})})
+ * @ORM\Entity
  */
-class Taak extends \App\Entity\AbstractEntity\AbstractEntity
+class Taak extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
 {
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
-     */
-    private $searchname;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="type", type="bigint", nullable=true)
-     */
-    private $type;
-
     /**
      * @var \DateTime|null
      *
@@ -64,33 +50,11 @@ class Taak extends \App\Entity\AbstractEntity\AbstractEntity
     private $number;
 
     /**
-     * @var Taakfase|null
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Taakfase")
-     * @ORM\JoinColumn(name="phase", referencedColumnName="id")
-     */
-    private $phase;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="company", type="bigint", nullable=false)
-     */
-    private $company;
-
-    /**
      * @var int|null
      *
      * @ORM\Column(name="offerprojectbase", type="bigint", nullable=true)
      */
     private $offerprojectbase;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="offerprojectline", type="bigint", nullable=true)
-     */
-    private $offerprojectline;
 
     /**
      * @var float|null
@@ -107,13 +71,6 @@ class Taak extends \App\Entity\AbstractEntity\AbstractEntity
     private $completedon;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
-     */
-    private $extendedproperties;
-
-    /**
      * @var int|null
      *
      * @ORM\Column(name="files", type="bigint", nullable=true)
@@ -127,29 +84,45 @@ class Taak extends \App\Entity\AbstractEntity\AbstractEntity
      */
     private $calendaritems;
 
-    public function getSearchname(): ?string
-    {
-        return $this->searchname;
-    }
+    /**
+     * @var \Bedrijf
+     *
+     * @ORM\ManyToOne(targetEntity="Bedrijf")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="company", referencedColumnName="id")
+     * })
+     */
+    private $company;
 
-    public function setSearchname(?string $searchname): self
-    {
-        $this->searchname = $searchname;
+    /**
+     * @var \Onderdeel
+     *
+     * @ORM\ManyToOne(targetEntity="Onderdeel")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="offerprojectline", referencedColumnName="id")
+     * })
+     */
+    private $offerprojectline;
 
-        return $this;
-    }
+    /**
+     * @var \Taakfase
+     *
+     * @ORM\ManyToOne(targetEntity="Taakfase")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="phase", referencedColumnName="id")
+     * })
+     */
+    private $phase;
 
-    public function getType(): ?int
-    {
-        return $this->type;
-    }
-
-    public function setType(?int $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
+    /**
+     * @var \Taaktype
+     *
+     * @ORM\ManyToOne(targetEntity="Taaktype")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type", referencedColumnName="id")
+     * })
+     */
+    private $type;
 
     public function getDeadlinedate(): ?\DateTimeInterface
     {
@@ -211,30 +184,6 @@ class Taak extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getPhase(): ?Taakfase
-    {
-        return $this->phase;
-    }
-
-    public function setPhase(?Taakfase $phase): self
-    {
-        $this->phase = $phase;
-
-        return $this;
-    }
-
-    public function getCompany(): ?int
-    {
-        return $this->company;
-    }
-
-    public function setCompany(int $company): self
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
     public function getOfferprojectbase(): ?int
     {
         return $this->offerprojectbase;
@@ -243,18 +192,6 @@ class Taak extends \App\Entity\AbstractEntity\AbstractEntity
     public function setOfferprojectbase(?int $offerprojectbase): self
     {
         $this->offerprojectbase = $offerprojectbase;
-
-        return $this;
-    }
-
-    public function getOfferprojectline(): ?int
-    {
-        return $this->offerprojectline;
-    }
-
-    public function setOfferprojectline(?int $offerprojectline): self
-    {
-        $this->offerprojectline = $offerprojectline;
 
         return $this;
     }
@@ -283,18 +220,6 @@ class Taak extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getExtendedproperties(): ?string
-    {
-        return $this->extendedproperties;
-    }
-
-    public function setExtendedproperties(?string $extendedproperties): self
-    {
-        $this->extendedproperties = $extendedproperties;
-
-        return $this;
-    }
-
     public function getFiles(): ?int
     {
         return $this->files;
@@ -315,6 +240,54 @@ class Taak extends \App\Entity\AbstractEntity\AbstractEntity
     public function setCalendaritems(?int $calendaritems): self
     {
         $this->calendaritems = $calendaritems;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Bedrijf
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Bedrijf $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getOfferprojectline(): ?Onderdeel
+    {
+        return $this->offerprojectline;
+    }
+
+    public function setOfferprojectline(?Onderdeel $offerprojectline): self
+    {
+        $this->offerprojectline = $offerprojectline;
+
+        return $this;
+    }
+
+    public function getPhase(): ?Taakfase
+    {
+        return $this->phase;
+    }
+
+    public function setPhase(?Taakfase $phase): self
+    {
+        $this->phase = $phase;
+
+        return $this;
+    }
+
+    public function getType(): ?Taaktype
+    {
+        return $this->type;
+    }
+
+    public function setType(?Taaktype $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

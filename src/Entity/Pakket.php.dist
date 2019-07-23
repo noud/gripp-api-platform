@@ -9,18 +9,11 @@ use Doctrine\ORM\Mapping as ORM;
  * Pakket
  *
  * @ApiResource
- * @ORM\Table(name="pakket")
+ * @ORM\Table(name="pakket", indexes={@ORM\Index(name="FK_PakketUnit", columns={"unit"})})
  * @ORM\Entity
  */
-class Pakket extends \App\Entity\AbstractEntity\AbstractEntity
+class Pakket extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
 {
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="name", type="string", length=255, nullable=true)
-     */
-    private $name;
-
     /**
      * @var int|null
      *
@@ -55,13 +48,6 @@ class Pakket extends \App\Entity\AbstractEntity\AbstractEntity
      * @ORM\Column(name="description_formatter", type="string", length=255, nullable=true, options={"default"="markdown"})
      */
     private $descriptionFormatter = 'markdown';
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="unit", type="bigint", nullable=true)
-     */
-    private $unit;
 
     /**
      * @var string|null
@@ -106,23 +92,14 @@ class Pakket extends \App\Entity\AbstractEntity\AbstractEntity
     private $taken;
 
     /**
-     * @var string|null
+     * @var \Producteenheid
      *
-     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
+     * @ORM\ManyToOne(targetEntity="Producteenheid")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="unit", referencedColumnName="id")
+     * })
      */
-    private $extendedproperties;
-
-    public function getName(): ?string
-    {
-        return $this->name;
-    }
-
-    public function setName(?string $name): self
-    {
-        $this->name = $name;
-
-        return $this;
-    }
+    private $unit;
 
     public function getNumber(): ?int
     {
@@ -180,18 +157,6 @@ class Pakket extends \App\Entity\AbstractEntity\AbstractEntity
     public function setDescriptionFormatter(?string $descriptionFormatter): self
     {
         $this->descriptionFormatter = $descriptionFormatter;
-
-        return $this;
-    }
-
-    public function getUnit(): ?int
-    {
-        return $this->unit;
-    }
-
-    public function setUnit(?int $unit): self
-    {
-        $this->unit = $unit;
 
         return $this;
     }
@@ -268,14 +233,14 @@ class Pakket extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getExtendedproperties(): ?string
+    public function getUnit(): ?Producteenheid
     {
-        return $this->extendedproperties;
+        return $this->unit;
     }
 
-    public function setExtendedproperties(?string $extendedproperties): self
+    public function setUnit(?Producteenheid $unit): self
     {
-        $this->extendedproperties = $extendedproperties;
+        $this->unit = $unit;
 
         return $this;
     }

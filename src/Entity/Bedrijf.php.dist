@@ -3,36 +3,17 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
-use App\Entity\Traits\FullnameTrait;
-use App\Entity\Traits\VisitingAddressTrait;
 use Doctrine\ORM\Mapping as ORM;
-use \DateTime;
-use \DateTimeInterface;
 
 /**
  * Bedrijf
  *
  * @ApiResource
- * @ORM\Table(name="bedrijf")
+ * @ORM\Table(name="bedrijf", indexes={@ORM\Index(name="FK_BedrijfAccountmanager", columns={"accountmanager"})})
  * @ORM\Entity
  */
-class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
+class Bedrijf extends \App\Entity\AbstractEntity\AbstractExtendedPropertiesEntity
 {
-    use FullnameTrait;
-    use VisitingAddressTrait;
-    
-    public function __construct()
-    {
-        $this->foundationdate = new DateTime();
-    }
-    
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
-     */
-    private $searchname;
-
     /**
      * @var int|null
      *
@@ -57,7 +38,7 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="invoicesendto", type="string", length=15, nullable=true)
+     * @ORM\Column(name="invoicesendto", type="string", length=0, nullable=true)
      */
     private $invoicesendto;
 
@@ -183,7 +164,7 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="invoicesendby", type="string", length=5, nullable=true)
+     * @ORM\Column(name="invoicesendby", type="string", length=0, nullable=true)
      */
     private $invoicesendby;
 
@@ -223,7 +204,7 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
     private $cocnumber;
 
     /**
-     * @var DateTimeInterface|null
+     * @var \DateTime|null
      *
      * @ORM\Column(name="foundationdate", type="date", nullable=true)
      */
@@ -234,12 +215,12 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active = true;
+    private $active;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="postaddress", type="string", length=15, nullable=true)
+     * @ORM\Column(name="postaddress", type="string", length=0, nullable=true)
      */
     private $postaddress;
 
@@ -365,16 +346,9 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
     /**
      * @var string
      *
-     * @ORM\Column(name="relationtype", type="string", length=13, nullable=false)
+     * @ORM\Column(name="relationtype", type="string", length=0, nullable=false)
      */
-    private $relationtype = 'COMPANY';
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="accountmanager", type="bigint", nullable=true)
-     */
-    private $accountmanager;
+    private $relationtype;
 
     /**
      * @var string|null
@@ -386,7 +360,7 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="salutation", type="string", length=8, nullable=true)
+     * @ORM\Column(name="salutation", type="string", length=0, nullable=true)
      */
     private $salutation;
 
@@ -435,21 +409,14 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
-     */
-    private $extendedproperties;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="paymentmethod", type="string", length=17, nullable=true)
+     * @ORM\Column(name="paymentmethod", type="string", length=0, nullable=true)
      */
     private $paymentmethod;
 
     /**
      * @var string|null
      *
-     * @ORM\Column(name="paymentmethod_purchaseinvoice", type="string", length=17, nullable=true)
+     * @ORM\Column(name="paymentmethod_purchaseinvoice", type="string", length=0, nullable=true)
      */
     private $paymentmethodPurchaseinvoice;
 
@@ -463,7 +430,7 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="companyroles", type="string", length=8, nullable=true)
+     * @ORM\Column(name="companyroles", type="string", length=0, nullable=true)
      */
     private $companyroles;
 
@@ -474,17 +441,15 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
      */
     private $files;
 
-    public function getSearchname(): ?string
-    {
-        return $this->searchname;
-    }
-
-    public function setSearchname(?string $searchname): self
-    {
-        $this->searchname = $searchname;
-
-        return $this;
-    }
+    /**
+     * @var \Medewerker
+     *
+     * @ORM\ManyToOne(targetEntity="Medewerker")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="accountmanager", referencedColumnName="id")
+     * })
+     */
+    private $accountmanager;
 
     public function getIdentity(): ?int
     {
@@ -810,12 +775,12 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getFoundationdate(): ?DateTimeInterface
+    public function getFoundationdate(): ?\DateTimeInterface
     {
         return $this->foundationdate;
     }
 
-    public function setFoundationdate(?DateTimeInterface $foundationdate): self
+    public function setFoundationdate(?\DateTimeInterface $foundationdate): self
     {
         $this->foundationdate = $foundationdate;
 
@@ -1062,18 +1027,6 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getAccountmanager(): ?int
-    {
-        return $this->accountmanager;
-    }
-
-    public function setAccountmanager(?int $accountmanager): self
-    {
-        $this->accountmanager = $accountmanager;
-
-        return $this;
-    }
-
     public function getCompanyname(): ?string
     {
         return $this->companyname;
@@ -1170,18 +1123,6 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getExtendedproperties(): ?string
-    {
-        return $this->extendedproperties;
-    }
-
-    public function setExtendedproperties(?string $extendedproperties): self
-    {
-        $this->extendedproperties = $extendedproperties;
-
-        return $this;
-    }
-
     public function getPaymentmethod(): ?string
     {
         return $this->paymentmethod;
@@ -1238,6 +1179,18 @@ class Bedrijf extends \App\Entity\AbstractEntity\AbstractEntity
     public function setFiles(?int $files): self
     {
         $this->files = $files;
+
+        return $this;
+    }
+
+    public function getAccountmanager(): ?Medewerker
+    {
+        return $this->accountmanager;
+    }
+
+    public function setAccountmanager(?Medewerker $accountmanager): self
+    {
+        $this->accountmanager = $accountmanager;
 
         return $this;
     }

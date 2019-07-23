@@ -10,17 +10,11 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ApiResource
  * @ORM\Entity(repositoryClass="App\Repository\TimelineentryRepository")
- * @ORM\Table(name="timelineentry")
+ * @ORM\Table(name="timelineentry", indexes={@ORM\Index(name="FK_TimelineentryCompany", columns={"company"}), @ORM\Index(name="FK_TimelineentryOffer", columns={"offer"}), @ORM\Index(name="FK_TimelineentryInvoice", columns={"invoice"}), @ORM\Index(name="FK_TimelineentryPurchaseorder", columns={"purchaseorder"}), @ORM\Index(name="FK_TimelineentryTask", columns={"task"}), @ORM\Index(name="FK_TimelineentryContact", columns={"contact"}), @ORM\Index(name="FK_TimelineentryProject", columns={"project"}), @ORM\Index(name="FK_TimelineentryPurchaseinvoice", columns={"purchaseinvoice"}), @ORM\Index(name="FK_TimelineentryContract", columns={"contract"})})
+ * @ORM\Entity
  */
-class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
+class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
 {
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(name="searchname", type="string", length=255, nullable=true)
-     */
-    private $searchname;
-
     /**
      * @var Medewerker|null
      *
@@ -46,75 +40,9 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
     /**
      * @var string|null
      *
-     * @ORM\Column(name="timelinetype", type="string", length=11, nullable=true)
+     * @ORM\Column(name="timelinetype", type="string", length=0, nullable=true)
      */
     private $timelinetype;
-
-    /**
-     * @var Bedrijf
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Bedrijf")
-     * @ORM\JoinColumn(name="company", referencedColumnName="id")
-     */
-    private $company;
-
-    /**
-     * @var Contactpersoon|null
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Contactpersoon")
-     * @ORM\JoinColumn(name="contact", referencedColumnName="id")
-     */
-    private $contact;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="offer", type="bigint", nullable=true)
-     */
-    private $offer;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="project", type="bigint", nullable=true)
-     */
-    private $project;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="invoice", type="bigint", nullable=true)
-     */
-    private $invoice;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="purchaseinvoice", type="bigint", nullable=true)
-     */
-    private $purchaseinvoice;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="purchaseorder", type="bigint", nullable=true)
-     */
-    private $purchaseorder;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(name="contract", type="bigint", nullable=true)
-     */
-    private $contract;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Taak")
-     * @ORM\JoinColumn(name="task", referencedColumnName="id")
-     */
-    private $task;
 
     /**
      * @var bool|null
@@ -124,37 +52,108 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
     private $starred;
 
     /**
-     * @var string|null
-     *
-     * @ORM\Column(name="extendedproperties", type="string", length=255, nullable=true)
-     */
-    private $extendedproperties;
-
-    /**
      * @var int|null
      *
      * @ORM\Column(name="files", type="bigint", nullable=true)
      */
     private $files;
 
-    public function getSearchname(): ?string
-    {
-        return $this->searchname;
-    }
+    /**
+     * @var \Bedrijf
+     *
+     * @ORM\ManyToOne(targetEntity="Bedrijf")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="company", referencedColumnName="id")
+     * })
+     */
+    private $company;
 
-    public function setSearchname(?string $searchname): self
-    {
-        $this->searchname = $searchname;
+    /**
+     * @var \Contactpersoon
+     *
+     * @ORM\ManyToOne(targetEntity="Contactpersoon")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="contact", referencedColumnName="id")
+     * })
+     */
+    private $contact;
 
-        return $this;
-    }
+    /**
+     * @var \Contract
+     *
+     * @ORM\ManyToOne(targetEntity="Contract")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="contract", referencedColumnName="id")
+     * })
+     */
+    private $contract;
 
-    public function getEmployee(): ?Medewerker
+    /**
+     * @var \Factuur
+     *
+     * @ORM\ManyToOne(targetEntity="Factuur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="invoice", referencedColumnName="id")
+     * })
+     */
+    private $invoice;
+
+    /**
+     * @var \Offerte
+     *
+     * @ORM\ManyToOne(targetEntity="Offerte")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="offer", referencedColumnName="id")
+     * })
+     */
+    private $offer;
+
+    /**
+     * @var \Opdracht
+     *
+     * @ORM\ManyToOne(targetEntity="Opdracht")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="project", referencedColumnName="id")
+     * })
+     */
+    private $project;
+
+    /**
+     * @var \Inkoopfactuur
+     *
+     * @ORM\ManyToOne(targetEntity="Inkoopfactuur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="purchaseinvoice", referencedColumnName="id")
+     * })
+     */
+    private $purchaseinvoice;
+
+    /**
+     * @var \Inkoopopdracht
+     *
+     * @ORM\ManyToOne(targetEntity="Inkoopopdracht")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="purchaseorder", referencedColumnName="id")
+     * })
+     */
+    private $purchaseorder;
+
+    /**
+     * @var \Taak
+     *
+     * @ORM\ManyToOne(targetEntity="Taak")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="task", referencedColumnName="id")
+     * })
+     */
+    private $task;
+
+    public function getEmployee(): ?int
     {
         return $this->employee;
     }
 
-    public function setEmployee(?Medewerker $employee): self
+    public function setEmployee(?int $employee): self
     {
         $this->employee = $employee;
 
@@ -197,12 +196,36 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
+    public function getStarred(): ?bool
+    {
+        return $this->starred;
+    }
+
+    public function setStarred(?bool $starred): self
+    {
+        $this->starred = $starred;
+
+        return $this;
+    }
+
+    public function getFiles(): ?int
+    {
+        return $this->files;
+    }
+
+    public function setFiles(?int $files): self
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
     public function getCompany(): ?Bedrijf
     {
         return $this->company;
     }
 
-    public function setCompany(Bedrijf $company): self
+    public function setCompany(?Bedrijf $company): self
     {
         $this->company = $company;
 
@@ -221,74 +244,74 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getOffer(): ?int
+    public function getContract(): ?Contract
     {
-        return $this->offer;
+        return $this->contract;
     }
 
-    public function setOffer(?int $offer): self
+    public function setContract(?Contract $contract): self
     {
-        $this->offer = $offer;
+        $this->contract = $contract;
 
         return $this;
     }
 
-    public function getProject(): ?int
-    {
-        return $this->project;
-    }
-
-    public function setProject(?int $project): self
-    {
-        $this->project = $project;
-
-        return $this;
-    }
-
-    public function getInvoice(): ?int
+    public function getInvoice(): ?Factuur
     {
         return $this->invoice;
     }
 
-    public function setInvoice(?int $invoice): self
+    public function setInvoice(?Factuur $invoice): self
     {
         $this->invoice = $invoice;
 
         return $this;
     }
 
-    public function getPurchaseinvoice(): ?int
+    public function getOffer(): ?Offerte
+    {
+        return $this->offer;
+    }
+
+    public function setOffer(?Offerte $offer): self
+    {
+        $this->offer = $offer;
+
+        return $this;
+    }
+
+    public function getProject(): ?Opdracht
+    {
+        return $this->project;
+    }
+
+    public function setProject(?Opdracht $project): self
+    {
+        $this->project = $project;
+
+        return $this;
+    }
+
+    public function getPurchaseinvoice(): ?Inkoopfactuur
     {
         return $this->purchaseinvoice;
     }
 
-    public function setPurchaseinvoice(?int $purchaseinvoice): self
+    public function setPurchaseinvoice(?Inkoopfactuur $purchaseinvoice): self
     {
         $this->purchaseinvoice = $purchaseinvoice;
 
         return $this;
     }
 
-    public function getPurchaseorder(): ?int
+    public function getPurchaseorder(): ?Inkoopopdracht
     {
         return $this->purchaseorder;
     }
 
-    public function setPurchaseorder(?int $purchaseorder): self
+    public function setPurchaseorder(?Inkoopopdracht $purchaseorder): self
     {
         $this->purchaseorder = $purchaseorder;
-
-        return $this;
-    }
-
-    public function getContract(): ?int
-    {
-        return $this->contract;
-    }
-
-    public function setContract(?int $contract): self
-    {
-        $this->contract = $contract;
 
         return $this;
     }
@@ -305,39 +328,5 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractEntity
         return $this;
     }
 
-    public function getStarred(): ?bool
-    {
-        return $this->starred;
-    }
 
-    public function setStarred(?bool $starred): self
-    {
-        $this->starred = $starred;
-
-        return $this;
-    }
-
-    public function getExtendedproperties(): ?string
-    {
-        return $this->extendedproperties;
-    }
-
-    public function setExtendedproperties(?string $extendedproperties): self
-    {
-        $this->extendedproperties = $extendedproperties;
-
-        return $this;
-    }
-
-    public function getFiles(): ?int
-    {
-        return $this->files;
-    }
-
-    public function setFiles(?int $files): self
-    {
-        $this->files = $files;
-
-        return $this;
-    }
 }

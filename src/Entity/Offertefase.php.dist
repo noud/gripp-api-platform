@@ -13,4 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Offertefase extends \App\Entity\AbstractEntity\AbstractPhaseEntity
-{}
+{
+
+}

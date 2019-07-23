@@ -13,4 +13,6 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Taaktype extends \App\Entity\AbstractEntity\AbstractPhaseEntity
-{}
+{
+
+}
