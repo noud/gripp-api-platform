@@ -9,7 +9,7 @@ use App\Form\Data\TagData;
 use App\Repository\TagRepository;
 use App\Service\CacheService;
 
-class TagService
+class TagService extends AbstractService
 {
     /**
      * @var CacheService
@@ -31,6 +31,11 @@ class TagService
      */
     private $tagRepository;
     
+    /**
+     * @var string
+     */
+    private $lowercaseClassName;
+    
     public function __construct(
         CacheService $cacheService,
         APIService $apiService,
@@ -41,15 +46,17 @@ class TagService
         $this->apiService = $apiService;
         $this->sqlService = $sqlService;
         $this->tagRepository = $tagRepository;
+        $this->lowercaseClassName = $this->getLowercaseClassName();
     }
-
+    
     public function allTags(): array
     {
         //$this->invalidateAllCache();
-        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5(Tag::API_NAME));
+        $className = $this->getClassName();
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5($this->lowercaseClassName));
         $hit = $this->cacheService->getFromCache($cacheKey);
         if (false === $hit) {
-            $this->sqlService->truncate('App\Entity\Tag');
+            $this->sqlService->truncate("App\Entity\\".$className);
             
             $from = 0;
             $limit = 10;
@@ -63,7 +70,7 @@ class TagService
                     ],
                     'orderings' => [
                         [
-                            'field' => 'tag.id',
+                            'field' => $this->lowercaseClassName.'.id',
                             'direction' => OptionsOrderingsDirectionEnum::ASC,
                         ],
                     ],
@@ -97,7 +104,7 @@ class TagService
     {
         $filters = [
             [
-                'field' => Tag::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::EQUALS,
                 'value' => $id,
             ],
@@ -206,7 +213,7 @@ class TagService
     {
         $filters = [
             [
-                'field' => Tag::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::GREATEREQUALS,
                 'value' => 1,
             ],
@@ -222,7 +229,7 @@ class TagService
     {
         $filters = [
             [
-                'field' => Tag::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::EQUALS,
                 'value' => $id,
             ],
@@ -238,21 +245,20 @@ class TagService
 
     private function invalidateAllCache():  void
     {
-        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5(Tag::API_NAME));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5($this->lowercaseClassName));
         $this->cacheService->deleteCacheByKey($cacheKey);
     }
     
     private function invalidateCache(int $id): void
     {
-        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5((string) $id));
-//        $cacheKey = sprintf('gripp_'.$entityName::API_NAME.'_%s', md5((string) $id));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5((string) $id));
         $this->cacheService->deleteCacheByKey($cacheKey);
     }
 
     
     private function saveToCache(array $response): void
     {
-        $cacheKey = sprintf('gripp_'.Tag::API_NAME.'_%s', md5((string) $response['id']));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5((string) $response['id']));
         $this->cacheService->saveToCache($cacheKey, $response);
     }
 
