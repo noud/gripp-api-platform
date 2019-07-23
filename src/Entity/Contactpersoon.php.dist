@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Traits\FullnameTrait;
 use Doctrine\ORM\Mapping as ORM;
+use \DateTime;
+use \DateTimeInterface;
 
 /**
  * Contactpersoon
@@ -14,6 +17,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Contactpersoon extends \App\Entity\AbstractEntity\AbstractExtendedPropertiesEntity
 {
+    use FullnameTrait;
+    
+    public function __construct()
+    {
+        $this->dateofbirth = new DateTime();
+    }
+
     /**
      * @var string|null
      *
