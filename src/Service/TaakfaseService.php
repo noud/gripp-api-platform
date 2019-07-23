@@ -9,7 +9,7 @@ use App\Form\Data\TaakfaseData;
 use App\Repository\TaakfaseRepository;
 use App\Service\CacheService;
 
-class TaakfaseService
+class TaakfaseService extends AbstractService
 {
     /**
      * @var CacheService
@@ -31,6 +31,11 @@ class TaakfaseService
      */
     private $taakfaseRepository;
     
+    /**
+     * @var string
+     */
+    private $lowercaseClassName;
+
     public function __construct(
         CacheService $cacheService,
         APIService $apiService,
@@ -41,15 +46,18 @@ class TaakfaseService
         $this->apiService = $apiService;
         $this->sqlService = $sqlService;
         $this->taakfaseRepository = $taakfaseRepository;
+        $this->lowercaseClassName = $this->getLowercaseClassName();
     }
 
     public function allTaakfases(): array
     {
         //$this->invalidateAllCache();
-        $cacheKey = sprintf('gripp_'.Taakfase::API_NAME.'_%s', md5(Taakfase::API_NAME));
+        $className = $this->getClassName();
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5($this->lowercaseClassName));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5($this->lowercaseClassName));
         $hit = $this->cacheService->getFromCache($cacheKey);
         if (false === $hit) {
-            $this->sqlService->truncate('App\Entity\Taakfase');
+            $this->sqlService->truncate('App\Entity\\'.$className);
             
             $from = 0;
             $limit = 10;
@@ -97,7 +105,7 @@ class TaakfaseService
     {
         $filters = [
             [
-                'field' => Taakfase::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::EQUALS,
                 'value' => $id,
             ],
@@ -206,7 +214,7 @@ class TaakfaseService
     {
         $filters = [
             [
-                'field' => Taakfase::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::GREATEREQUALS,
                 'value' => 1,
             ],
@@ -222,7 +230,7 @@ class TaakfaseService
     {
         $filters = [
             [
-                'field' => Taakfase::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::EQUALS,
                 'value' => $id,
             ],
@@ -238,21 +246,20 @@ class TaakfaseService
 
     private function invalidateAllCache():  void
     {
-        $cacheKey = sprintf('gripp_'.Taakfase::API_NAME.'_%s', md5(Taakfase::API_NAME));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5($this->lowercaseClassName));
         $this->cacheService->deleteCacheByKey($cacheKey);
     }
     
     private function invalidateCache(int $id): void
     {
-        $cacheKey = sprintf('gripp_'.Taakfase::API_NAME.'_%s', md5((string) $id));
-//        $cacheKey = sprintf('gripp_'.$entityName::API_NAME.'_%s', md5((string) $id));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5((string) $id));
         $this->cacheService->deleteCacheByKey($cacheKey);
     }
 
     
     private function saveToCache(array $response): void
     {
-        $cacheKey = sprintf('gripp_'.Taakfase::API_NAME.'_%s', md5((string) $response['id']));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5((string) $response['id']));
         $this->cacheService->saveToCache($cacheKey, $response);
     }
 

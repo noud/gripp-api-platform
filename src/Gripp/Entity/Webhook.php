@@ -9,8 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Webhook extends AbstractEntity
 {
-    const API_NAME = 'webhook';
-
     /**
      * @var TriggerEnum
      * @Assert\NotBlank

@@ -8,7 +8,7 @@ use App\Enum\API\OptionsOrderingsDirectionEnum;
 use App\Repository\TaaktypeRepository;
 use App\Service\CacheService;
 
-class TaaktypeService
+class TaaktypeService extends AbstractService
 {
     /**
      * @var CacheService
@@ -30,6 +30,11 @@ class TaaktypeService
      */
     private $taaktypeRepository;
     
+    /**
+     * @var string
+     */
+    private $lowercaseClassName;
+
     public function __construct(
         CacheService $cacheService,
         APIService $apiService,
@@ -40,15 +45,17 @@ class TaaktypeService
         $this->apiService = $apiService;
         $this->sqlService = $sqlService;
         $this->taaktypeRepository = $taaktypeRepository;
+        $this->lowercaseClassName = $this->getLowercaseClassName();
     }
 
     public function allTaaktypes(): array
     {
         //$this->invalidateAllCache();
-        $cacheKey = sprintf('gripp_taaktypes_%s', md5('taaktypes'));
+        $className = $this->getClassName();
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5($this->lowercaseClassName));
         $hit = $this->cacheService->getFromCache($cacheKey);
         if (false === $hit) {
-            $this->sqlService->truncate('App\Entity\Taaktype');
+            $this->sqlService->truncate('App\Entity\\'.$className);
             
             $from = 0;
             $limit = 10;
@@ -62,7 +69,7 @@ class TaaktypeService
                     ],
                     'orderings' => [
                         [
-                            'field' => 'tasktype.id',
+                            'field' => $this->lowercaseClassName.'.id',
                             'direction' => OptionsOrderingsDirectionEnum::ASC,
                         ],
                     ],
@@ -96,7 +103,7 @@ class TaaktypeService
     {
         $filters = [
             [
-                'field' => Taaktype::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::EQUALS,
                 'value' => $id,
             ],
@@ -180,7 +187,7 @@ class TaaktypeService
     {
         $filters = [
             [
-                'field' => Taaktype::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::GREATEREQUALS,
                 'value' => 1,
             ],
@@ -196,7 +203,7 @@ class TaaktypeService
     {
         $filters = [
             [
-                'field' => Taaktype::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::EQUALS,
                 'value' => $id,
             ],
@@ -212,21 +219,20 @@ class TaaktypeService
 
     private function invalidateAllCache():  void
     {
-        $cacheKey = sprintf('gripp_taaktypes_%s', md5('taaktypes'));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5($this->lowercaseClassName));
         $this->cacheService->deleteCacheByKey($cacheKey);
     }
     
     private function invalidateCache(int $id): void
     {
-        $cacheKey = sprintf('gripp_'.Taaktype::API_NAME.'_%s', md5((string) $id));
-//        $cacheKey = sprintf('gripp_'.$entityName::API_NAME.'_%s', md5((string) $id));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5((string) $id));
         $this->cacheService->deleteCacheByKey($cacheKey);
     }
 
     
     private function saveToCache(array $response): void
     {
-        $cacheKey = sprintf('gripp_'.Taaktype::API_NAME.'_%s', md5((string) $response['id']));
+        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5((string) $response['id']));
         $this->cacheService->saveToCache($cacheKey, $response);
     }
 

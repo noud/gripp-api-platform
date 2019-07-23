@@ -13,6 +13,4 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  */
 class Taakfase extends \App\Entity\AbstractEntity\AbstractPhaseEntity
-{
-    const API_NAME = 'taskphase';
-}
+{}

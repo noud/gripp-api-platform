@@ -7,8 +7,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 class File extends AbstractSearchableEntity
 {
-    const API_NAME = 'file';
-
     /**
      * @var string
      * @Groups("write")

@@ -7,8 +7,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
 
 abstract class AbstractPhaseEntity extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
 {
-    const API_NAME = 'phase_entity';
-
     /**
      * @var string|null
      *

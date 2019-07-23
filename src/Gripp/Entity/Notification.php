@@ -8,8 +8,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Notification
 {
-    const API_NAME = 'notification';
-
     /**
      * @var array[int]
      * @Groups("write")

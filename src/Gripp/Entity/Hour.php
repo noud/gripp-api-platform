@@ -9,8 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 class Hour extends AbstractSearchableEntity
 {
-    const API_NAME = 'hour';
-
     /**
      * @var int
      * @Assert\NotBlank(allowNull=true)
