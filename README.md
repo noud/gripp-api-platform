@@ -87,16 +87,16 @@ We generate large part of the application:
 
 The first 2 steps are already done, being outside this project scope. You have to perform the last 2 steps, import the Database Schema and generate Entities and Views, here is how:
 
-Import the database schema and optionally some demo data.:
+Import the database schema and relations.:
 ```bash
 mysql -u root -p db_name< db/schema.sql
 mysql -u root -p db_name< db/relations.sql
-mysql -u root -p db_name< db/data.sql
 ```
-Generate the entities and admin webpages.:
+Generate the entities and admin webpages. Migrate and load example data:
 ```bash
 bin/generate.sh
 bin/console doctrine:migrations:migrate
+mysql -u root -p db_name< db/data.sql
 ```
 ## Tests
 
