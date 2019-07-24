@@ -10,10 +10,12 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ApiResource
  * @ORM\Table(name="taak", indexes={@ORM\Index(name="FK_TaakType", columns={"type"}), @ORM\Index(name="FK_TaakCompany", columns={"company"}), @ORM\Index(name="FK_TaakPhase", columns={"phase"}), @ORM\Index(name="FK_TaakOfferprojectline", columns={"offerprojectline"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\TaakRepository")
  */
-class Taak extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
+class Taak extends \App\Entity\AbstractEntity\AbstractExtendedPropertiesEntity
 {
+    const API_NAME = 'task';
+    
     /**
      * @var \DateTime|null
      *

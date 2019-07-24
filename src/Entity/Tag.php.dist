@@ -10,9 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ApiResource
  * @ORM\Table(name="tag")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  */
 class Tag extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
 {
-
+    const API_NAME = 'tag';
 }

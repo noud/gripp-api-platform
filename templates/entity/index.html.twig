@@ -55,7 +55,7 @@
                                                         <div class="col-sm-6">
                                                             {% if fieldValue is not iterable %}
                                                                 {{ fieldValue }}
-                                                            {% elseif 'date' in fieldValue|keys %}
+                                                            {% elseif fieldValue['date'] is defined %}
                                                                {{ fieldValue['date'] }}
                                                             {% endif %}
                                                         </div>

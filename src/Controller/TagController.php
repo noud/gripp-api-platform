@@ -38,7 +38,7 @@ class TagController extends AbstractController
     {
         $tagName = 'Tag';
         $tagsName = 'Tags';
-        $tagsArray = $this->tagService->allTags();
+        $tagsArray = $this->tagService->getAll();
 
         return $this->entitiesTable($tagName, $tagsName, $tagsArray);
     }
@@ -49,7 +49,7 @@ class TagController extends AbstractController
     public function view(int $id): Response
     {
         $tagName = 'Tag';
-        $tagArray = $this->tagService->getTagByIdAsArray($id);
+        $tagArray = $this->tagService->getEntityByIdAsArray($id);
 
         return $this->entityView($tagName, $tagArray);
     }

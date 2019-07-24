@@ -38,7 +38,7 @@ class TaaktypeController extends AbstractController
     {
         $taaktypeName = 'Taaktype';
         $taaktypesName = 'Taaktypes';
-        $taaktypesArray = $this->taaktypeService->allTaaktypes();
+        $taaktypesArray = $this->taaktypeService->getAll();
         //dump($taaktypesArray);
         return $this->entitiesTable($taaktypeName, $taaktypesName, $taaktypesArray);
     }

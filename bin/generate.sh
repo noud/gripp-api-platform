@@ -6,11 +6,11 @@ bin/console app:mapping:import "App\Entity" annotation-extended --filter="File" 
 bin/console app:mapping:import "App\Entity" annotation-extended --filter='(?=^((?!File).)*$)(?=^((?!.*fase).)*$)(?=^((?!.*type).)*$)' --path=src/Entity --class_to_extend="App\Entity\AbstractEntity\AbstractNameEntity"
 bin/console app:mapping:import "App\Entity" annotation-extended --filter="fase|type" --path=src/Entity --class_to_extend="App\Entity\AbstractEntity\AbstractPhaseEntity"
 bin/console app:mapping:import "App\Entity" annotation-extended --filter='(?=Bedrijf|Contactpersoon|Contractregel|Factuurregel|Inkoopopdrachtregel|Medewerker|Onderdeel|Pakketregel)(?=^((?!Medewerkerdatum).)*$)' --path=src/Entity --class_to_extend="App\Entity\AbstractEntity\AbstractExtendedPropertiesEntity"
+# @TODO bin/console app:mapping:import "App\Entity" annotation-extended --filter='(?=Bedrijf|Contactpersoon|regel|Medewerker|Onderdeel|^Taak$)(?=^((?!Medewerkerdatum).)*$)' --path=src/Entity --class_to_extend="App\Entity\AbstractEntity\AbstractExtendedPropertiesEntity"
 bin/console app:mapping:import "App\Entity" annotation-extended --filter="Grootboek" --path=src/Entity --class_to_extend="App\Entity\AbstractEntity\AbstractNameNoExtendedPropertiesEntity"
 rm src/Entity/ApiUser.php
 rm src/Entity/MigrationVersions.php
 bin/console make:entity --regenerate App
-
 rm config/services_sonata.yaml; echo 'services:' > config/services_sonata.yaml
 rm src/Admin/VerlofaanvraagAdmin.php; bin/console make:app:admin App/Entity/Verlofaanvraag --id=admin.verlofaanvraag --services=services_sonata.yaml --no-interaction
 rm src/Admin/VerlofmutatieAdmin.php; bin/console make:app:admin App/Entity/Verlofmutatie --id=admin.verlofmutatie --services=services_sonata.yaml --no-interaction

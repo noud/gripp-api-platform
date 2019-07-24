@@ -38,7 +38,7 @@ class TaakfaseController extends AbstractController
     {
         $taakfaseName = 'Taakfase';
         $taakfasesName = 'Taakfases';
-        $taakfasesArray = $this->taakfaseService->allTaakfases();
+        $taakfasesArray = $this->taakfaseService->getAll();
 
         return $this->entitiesTable($taakfaseName, $taakfasesName, $taakfasesArray);
     }

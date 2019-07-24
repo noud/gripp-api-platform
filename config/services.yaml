@@ -11,7 +11,9 @@ parameters:
     gripp_api_cache_ttl: '%env(GRIPP_API_CACHE_TTL)%'
     sonata_prefix: 'sonata'
     sonata_skin_color: 'blue'
-    
+    #idp_public_key_file_path: 'config/certs'
+    #idp_private_key_file_path: 'config/certs'
+
 imports:
     - { resource: 'services_sonata.yaml' }
 
@@ -45,6 +47,10 @@ services:
     
     Psr\SimpleCache\CacheInterface: '@Symfony\Component\Cache\Simple\FilesystemCache'
     
+    # SAML2
+    #app.saml.service_provider_repository:
+    #    class: App\Entity\Saml\SamlServiceProviderRepository
+        
     # Gripp API
     App\Service\APIService:
         arguments:
@@ -67,6 +73,12 @@ services:
             - { name: twig.extension }
     
     # API client JSON-RPC
+    App\Controller\BedrijfController:
+        arguments:
+            - '%kernel.environment%'
+    App\Controller\TaakController:
+        arguments:
+            - '%kernel.environment%'
     App\Controller\TaakfaseController:
         arguments:
             - '%kernel.environment%'

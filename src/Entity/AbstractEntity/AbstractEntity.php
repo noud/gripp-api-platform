@@ -13,14 +13,14 @@ abstract class AbstractEntity
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
+     * @ORM\GeneratedValue(strategy="NONE")
      */
     protected $id;
 
     /**
      * @var \DateTimeInterface
      *
-     * @ORM\Column(name="createdAt", type="datetime")
+     * @ORM\Column(name="createdAt", type="datetime", nullable=true)
      * @Gedmo\Timestampable(on="create")
      */
     protected $createdat;
@@ -28,7 +28,7 @@ abstract class AbstractEntity
     /**
      * @var \DateTimeInterface
      *
-     * @ORM\Column(name="updatedAt", type="datetime")
+     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
      * @Gedmo\Timestampable(on="update")
      */
     protected $updatedat;

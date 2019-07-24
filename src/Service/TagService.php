@@ -3,38 +3,15 @@
 namespace App\Service;
 
 use App\Entity\Tag;
-use App\Enum\API\FiltersOperatorEnum;
-use App\Enum\API\OptionsOrderingsDirectionEnum;
 use App\Form\Data\TagData;
 use App\Repository\TagRepository;
-use App\Service\CacheService;
 
 class TagService extends AbstractService
 {
     /**
-     * @var CacheService
-     */
-    private $cacheService;
-
-    /**
-     * @var APIService
-     */
-    private $apiService;
-    
-    /**
-     * @var SQLService
-     */
-    private $sqlService;
-    
-    /**
      * @var TagRepository
      */
     private $tagRepository;
-    
-    /**
-     * @var string
-     */
-    private $lowercaseClassName;
     
     public function __construct(
         CacheService $cacheService,
@@ -42,105 +19,10 @@ class TagService extends AbstractService
         SQLService $sqlService,
         TagRepository $tagRepository
     ) {
-        $this->cacheService = $cacheService;
-        $this->apiService = $apiService;
-        $this->sqlService = $sqlService;
+        parent::__construct($cacheService,$apiService,$sqlService);
         $this->tagRepository = $tagRepository;
-        $this->lowercaseClassName = $this->getLowercaseClassName();
-    }
-    
-    public function allTags(): array
-    {
-        //$this->invalidateAllCache();
-        $className = $this->getClassName();
-        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5($this->lowercaseClassName));
-        $hit = $this->cacheService->getFromCache($cacheKey);
-        if (false === $hit) {
-            $this->sqlService->truncate("App\Entity\\".$className);
-            
-            $from = 0;
-            $limit = 10;
-            $totalResponse = [];
-
-            do {
-                $options = [
-                    'paging' => [
-                        'firstresult' => $from,
-                        'maxresults' => $limit,
-                    ],
-                    'orderings' => [
-                        [
-                            'field' => $this->lowercaseClassName.'.id',
-                            'direction' => OptionsOrderingsDirectionEnum::ASC,
-                        ],
-                    ],
-                ];
-                $response = $this->get([], $options);
-                if (\count($response['rows'])) {
-                    $totalResponse = array_merge($totalResponse, $response['rows']);
-                    $from = $response['next_start'];
-                } else {
-                    // @TODO some real bad did happen?
-                    break;
-                }
-            } while ($response['more_items_in_collection']);
-
-            $this->cacheService->saveToCache($cacheKey, $totalResponse);
-            
-            foreach ($totalResponse as $response) {
-                $this->saveToCache($response);
-                $tag = $this->denormalizeArrayToTag($response);
-                $this->tagRepository->add($tag);
-            }
-            $this->sqlService->getEntityManager()->flush();
-            
-            return $totalResponse;
-        }
-
-        return $hit;
     }
 
-    public function getTagByIdAsArray(int $id): ?array
-    {
-        $filters = [
-            [
-                'field' => $this->lowercaseClassName.'.id',
-                'operator' => FiltersOperatorEnum::EQUALS,
-                'value' => $id,
-            ],
-        ];
-        $response = $this->getone($filters, [], $id);
-
-        return $response;
-    }
-    
-    public function denormalizeArrayToTag(array $data): ?Tag
-    {
-        $data = array_filter($data, function($var){return !is_null($var);});
-        $tagCreatedon = $this->apiService->dateTimeSerializer->denormalize($data['createdon'], \DateTime::class);
-        unset($data['createdon']);
-        if (isset($data['updatedon'])) {
-            $tagUpdatedon = $this->apiService->dateTimeSerializer->denormalize($data['updatedon'], \DateTime::class);
-            unset($data['updatedon']);
-        }
-        $tag = $this->apiService->serializer->denormalize($data, Tag::class);
-        $tag->setCreatedon($tagCreatedon);
-        if (isset($tagUpdatedon)) {
-            $tag->setUpdatedon($tagUpdatedon);
-        }
-        
-        return $tag;
-    }
-    
-    public function getTagById(int $id): ?Tag
-    {
-        $response = $this->getTagByIdAsArray($id);
-        if ($response) {
-            return $this->denormalizeArrayToTag($response);
-        }
-        return null;
-    }
-    
     public function deleteTag(Tag $tag): void
     {
         $id = $tag->getId();
@@ -207,59 +89,6 @@ class TagService extends AbstractService
         } else {
             return false;
         }
-    }
-
-    private function get(array $filters = [], array $options = []): array
-    {
-        $filters = [
-            [
-                'field' => $this->lowercaseClassName.'.id',
-                'operator' => FiltersOperatorEnum::GREATEREQUALS,
-                'value' => 1,
-            ],
-        ];
-
-        $batchresponse = $this->apiService->API->tag_get($filters, $options);
-        $response = $batchresponse[0]['result'];
-
-        return $response;
-    }
-
-    private function getone(array $filters = [], array $options = [], int $id = 1): ?array
-    {
-        $filters = [
-            [
-                'field' => $this->lowercaseClassName.'.id',
-                'operator' => FiltersOperatorEnum::EQUALS,
-                'value' => $id,
-            ],
-        ];
-
-        $response = $this->apiService->API->tag_getone($filters, $options);
-        if ($response[0]['result']['count'] === 1) {
-            return $response[0]['result']['rows'][0];
-        }
-
-        return null;
-    }
-
-    private function invalidateAllCache():  void
-    {
-        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5($this->lowercaseClassName));
-        $this->cacheService->deleteCacheByKey($cacheKey);
-    }
-    
-    private function invalidateCache(int $id): void
-    {
-        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5((string) $id));
-        $this->cacheService->deleteCacheByKey($cacheKey);
-    }
-
-    
-    private function saveToCache(array $response): void
-    {
-        $cacheKey = sprintf('gripp_'.$this->lowercaseClassName.'_%s', md5((string) $response['id']));
-        $this->cacheService->saveToCache($cacheKey, $response);
     }
 
     private function update(int $id, array $fields): bool

@@ -10,9 +10,9 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ApiResource
  * @ORM\Table(name="taakfase")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\TaakfaseRepository")
  */
 class Taakfase extends \App\Entity\AbstractEntity\AbstractPhaseEntity
 {
-
+    const API_NAME = 'taskphase';
 }
