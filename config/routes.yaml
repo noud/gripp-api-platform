@@ -12,3 +12,6 @@ authentication:
 authentication_token:
     path: /authentication_token
     methods: ['POST']
+    
+#hslavich_saml_sp:
+#    resource: "@HslavichOneloginSamlBundle/Resources/config/routing.yml"

@@ -25,7 +25,7 @@ sonata_admin:
             - bundles/sonataadmin/css/tree.css
             - bundles/sonatacore/css/flashmessage.css
         extra_stylesheets:
-            - build/app.css
+            #- build/app.css
 #        javascripts:
 #             - bundles/sonataadmin/vendor/jquery/dist/jquery.min.js
 #             - bundles/sonataadmin/vendor/jquery.scrollTo/jquery.scrollTo.min.js             - 

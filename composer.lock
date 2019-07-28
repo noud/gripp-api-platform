@@ -4,8 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "61385edd8c155dd1fd09019d69d7f02e",
+    "content-hash": "c0111694747b4c7eee2ff430ef1dbc6b",
     "packages": [
+        {
+            "name": "adactive-sas/saml2-bridge-bundle",
+            "version": "9999999-dev",
+            "dist": {
+                "type": "path",
+                "url": "../saml2-bridge-bundle",
+                "reference": "1b79004d13dc3b60775abf1393e068bd4c62dd0b"
+            },
+            "require": {
+                "ext-openssl": "*",
+                "php": ">=5.6,<8.0-dev",
+                "simplesamlphp/saml2": "^1.10.3",
+                "symfony/framework-bundle": "^2.8|^3.3.0|^4.0|^4.1|^4.2|^4.3",
+                "symfony/templating": "^2.8|^3.3.0|^4.0|^4.1|^4.2|^4.3",
+                "symfony/workflow": "^3.3.0|^4.0|^4.1|^4.2|^4.3"
+            },
+            "require-dev": {
+                "liip/functional-test-bundle": "^1.7",
+                "phpunit/phpunit": "^5.7.17",
+                "satooshi/php-coveralls": "^2.0.0",
+                "symfony/phpunit-bridge": "^2.8.0|^3.0.0|^4.0|^4.1|^4.2|^4.3",
+                "twig/twig": "^1.34|^2.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "AdactiveSas\\Saml2BridgeBundle\\": "src"
+                }
+            },
+            "license": [
+                "GPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "moroine",
+                    "email": "moroine.bentefrit@adactive.com"
+                }
+            ],
+            "description": "Symfony bundle that provide a SAML Identity Provider (idp).",
+            "keywords": [
+                "Bundle",
+                "SAML",
+                "SAML2",
+                "Symfony",
+                "adactiveSas",
+                "bridge",
+                "identity-provider",
+                "idp",
+                "saml-idp",
+                "symfony-bundle"
+            ]
+        },
         {
             "name": "api-platform/api-pack",
             "version": "v1.2.0",
@@ -3516,6 +3568,47 @@
             "time": "2017-10-23T01:57:42+00:00"
         },
         {
+            "name": "robrichards/xmlseclibs",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/robrichards/xmlseclibs.git",
+                "reference": "79fb5e03c4ee4dc3ec77e4b2628231374364a017"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/robrichards/xmlseclibs/zipball/79fb5e03c4ee4dc3ec77e4b2628231374364a017",
+                "reference": "79fb5e03c4ee4dc3ec77e4b2628231374364a017",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">= 5.2"
+            },
+            "suggest": {
+                "ext/mcrypt": "MCrypt extension",
+                "ext/openssl": "OpenSSL extension"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "A PHP library for XML Security",
+            "homepage": "https://github.com/robrichards/xmlseclibs",
+            "keywords": [
+                "security",
+                "signature",
+                "xml",
+                "xmldsig"
+            ],
+            "time": "2016-09-08T13:31:44+00:00"
+        },
+        {
             "name": "scheb/two-factor-bundle",
             "version": "v4.4.0",
             "source": {
@@ -3696,6 +3789,55 @@
             ],
             "description": "A security checker for your composer.lock",
             "time": "2018-12-19T17:14:59+00:00"
+        },
+        {
+            "name": "simplesamlphp/saml2",
+            "version": "v1.10.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/simplesamlphp/saml2.git",
+                "reference": "93fef13dea9c46dc238eb59e414d3ae76559d8c4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/simplesamlphp/saml2/zipball/93fef13dea9c46dc238eb59e414d3ae76559d8c4",
+                "reference": "93fef13dea9c46dc238eb59e414d3ae76559d8c4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-openssl": "*",
+                "php": ">=5.3.3",
+                "psr/log": "~1.0",
+                "robrichards/xmlseclibs": "^1.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9",
+                "phpmd/phpmd": "~1.5",
+                "phpunit/phpunit": "~3.7",
+                "satooshi/php-coveralls": "~0.6.1",
+                "sebastian/phpcpd": "~1.4",
+                "sensiolabs/security-checker": "~1.1",
+                "squizlabs/php_codesniffer": "~1.4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "SAML2_": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Andreas Åkre Solberg",
+                    "email": "andreas.solberg@uninett.no"
+                }
+            ],
+            "description": "SAML2 PHP library from SimpleSAMLphp",
+            "time": "2018-03-02T14:46:25+00:00"
         },
         {
             "name": "sonata-project/admin-bundle",
@@ -4173,16 +4315,16 @@
         },
         {
             "name": "sonata-project/doctrine-orm-admin-bundle",
-            "version": "3.9.0",
+            "version": "3.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle.git",
-                "reference": "df5c97b9bd3793e7baf0a1ba19d92eab2e90242d"
+                "reference": "0c6cbc3aef1fcd074950d92ed02c30103e2eb333"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/df5c97b9bd3793e7baf0a1ba19d92eab2e90242d",
-                "reference": "df5c97b9bd3793e7baf0a1ba19d92eab2e90242d",
+                "url": "https://api.github.com/repos/sonata-project/SonataDoctrineORMAdminBundle/zipball/0c6cbc3aef1fcd074950d92ed02c30103e2eb333",
+                "reference": "0c6cbc3aef1fcd074950d92ed02c30103e2eb333",
                 "shasum": ""
             },
             "require": {
@@ -4213,7 +4355,7 @@
             "require-dev": {
                 "simplethings/entity-audit-bundle": "^0.9 || ^1.0",
                 "sonata-project/block-bundle": "^3.11",
-                "symfony/phpunit-bridge": "^4.2"
+                "symfony/phpunit-bridge": "^4.3"
             },
             "suggest": {
                 "simplethings/entity-audit-bundle": "If you want to support for versioning of entities and their associations."
@@ -4235,13 +4377,13 @@
             ],
             "authors": [
                 {
-                    "name": "Sonata Community",
-                    "homepage": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/contributors"
-                },
-                {
                     "name": "Thomas Rabaix",
                     "email": "thomas.rabaix@sonata-project.org",
                     "homepage": "https://sonata-project.org"
+                },
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataDoctrineORMAdminBundle/contributors"
                 }
             ],
             "description": "Symfony Sonata / Integrate Doctrine ORM into the SonataAdminBundle",
@@ -4253,7 +4395,7 @@
                 "generator",
                 "sonata"
             ],
-            "time": "2019-04-17T21:07:57+00:00"
+            "time": "2019-07-20T09:12:01+00:00"
         },
         {
             "name": "sonata-project/exporter",
@@ -5446,16 +5588,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.4.4",
+            "version": "v1.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "4b5d25a5538e2dc37ff84645fe7498a9a04947b3"
+                "reference": "4467ab35c82edebac58fe58c22cea166a805eb1f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/4b5d25a5538e2dc37ff84645fe7498a9a04947b3",
-                "reference": "4b5d25a5538e2dc37ff84645fe7498a9a04947b3",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/4467ab35c82edebac58fe58c22cea166a805eb1f",
+                "reference": "4467ab35c82edebac58fe58c22cea166a805eb1f",
                 "shasum": ""
             },
             "require": {
@@ -5491,7 +5633,7 @@
                 }
             ],
             "description": "Composer plugin for Symfony",
-            "time": "2019-07-12T06:29:25+00:00"
+            "time": "2019-07-19T08:59:18+00:00"
         },
         {
             "name": "symfony/form",
@@ -7888,6 +8030,76 @@
             ],
             "description": "Integration with your Symfony app & Webpack Encore!",
             "time": "2019-07-03T00:30:37+00:00"
+        },
+        {
+            "name": "symfony/workflow",
+            "version": "v4.3.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/workflow.git",
+                "reference": "b77526fd4d6f042906e36494a44f19a0f3311d0e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/workflow/zipball/b77526fd4d6f042906e36494a44f19a0f3311d0e",
+                "reference": "b77526fd4d6f042906e36494a44f19a0f3311d0e",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3",
+                "symfony/property-access": "~3.4|~4.0"
+            },
+            "conflict": {
+                "symfony/event-dispatcher": "<4.3"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/event-dispatcher": "^4.3",
+                "symfony/expression-language": "~3.4|~4.0",
+                "symfony/security-core": "~3.4|~4.0",
+                "symfony/validator": "~3.4|~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Workflow\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Grégoire Pineau",
+                    "email": "lyrixx@lyrixx.info"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Workflow Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "petrinet",
+                "place",
+                "state",
+                "statemachine",
+                "transition",
+                "workflow"
+            ],
+            "time": "2019-06-13T11:01:17+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -10642,7 +10854,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "adactive-sas/saml2-bridge-bundle": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
