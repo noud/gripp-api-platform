@@ -1,0 +1,299 @@
+<?php
+
+namespace App\Entity;
+
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Task
+ *
+ * @ApiResource
+ * @ORM\Table(name="task", indexes={@ORM\Index(name="FK_TaskPhase", columns={"phase"}), @ORM\Index(name="FK_TaskOfferprojectline", columns={"offerprojectline"}), @ORM\Index(name="FK_TaskType", columns={"type"}), @ORM\Index(name="FK_TaskCompany", columns={"company"})})
+ * @ORM\Entity(repositoryClass="App\Repository\TaskRepository")
+ */
+class Task extends \App\Entity\AbstractEntity\AbstractExtendedPropertiesEntity
+{
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="deadlinedate", type="date", nullable=true)
+     */
+    private $deadlinedate;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="deadlinetime", type="time", nullable=true)
+     */
+    private $deadlinetime;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="description", type="string", length=255, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="content", type="string", length=255, nullable=true)
+     */
+    private $content;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="number", type="bigint", nullable=true)
+     */
+    private $number;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="offerprojectbase", type="bigint", nullable=true)
+     */
+    private $offerprojectbase;
+
+    /**
+     * @var float|null
+     *
+     * @ORM\Column(name="estimatedhours", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $estimatedhours;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="completedon", type="date", nullable=true)
+     */
+    private $completedon;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="files", type="bigint", nullable=true)
+     */
+    private $files;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="calendaritems", type="bigint", nullable=true)
+     */
+    private $calendaritems;
+
+    /**
+     * @var \Company
+     *
+     * @ORM\ManyToOne(targetEntity="Company")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="company", referencedColumnName="id")
+     * })
+     */
+    private $company;
+
+    /**
+     * @var \Offerprojectline
+     *
+     * @ORM\ManyToOne(targetEntity="Offerprojectline")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="offerprojectline", referencedColumnName="id")
+     * })
+     */
+    private $offerprojectline;
+
+    /**
+     * @var \Taskphase
+     *
+     * @ORM\ManyToOne(targetEntity="Taskphase")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="phase", referencedColumnName="id")
+     * })
+     */
+    private $phase;
+
+    /**
+     * @var \Tasktype
+     *
+     * @ORM\ManyToOne(targetEntity="Tasktype")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type", referencedColumnName="id")
+     * })
+     */
+    private $type;
+
+    public function getDeadlinedate(): ?\DateTimeInterface
+    {
+        return $this->deadlinedate;
+    }
+
+    public function setDeadlinedate(?\DateTimeInterface $deadlinedate): self
+    {
+        $this->deadlinedate = $deadlinedate;
+
+        return $this;
+    }
+
+    public function getDeadlinetime(): ?\DateTimeInterface
+    {
+        return $this->deadlinetime;
+    }
+
+    public function setDeadlinetime(?\DateTimeInterface $deadlinetime): self
+    {
+        $this->deadlinetime = $deadlinetime;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    public function setNumber(?int $number): self
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function getOfferprojectbase(): ?int
+    {
+        return $this->offerprojectbase;
+    }
+
+    public function setOfferprojectbase(?int $offerprojectbase): self
+    {
+        $this->offerprojectbase = $offerprojectbase;
+
+        return $this;
+    }
+
+    public function getEstimatedhours(): ?float
+    {
+        return $this->estimatedhours;
+    }
+
+    public function setEstimatedhours(?float $estimatedhours): self
+    {
+        $this->estimatedhours = $estimatedhours;
+
+        return $this;
+    }
+
+    public function getCompletedon(): ?\DateTimeInterface
+    {
+        return $this->completedon;
+    }
+
+    public function setCompletedon(?\DateTimeInterface $completedon): self
+    {
+        $this->completedon = $completedon;
+
+        return $this;
+    }
+
+    public function getFiles(): ?int
+    {
+        return $this->files;
+    }
+
+    public function setFiles(?int $files): self
+    {
+        $this->files = $files;
+
+        return $this;
+    }
+
+    public function getCalendaritems(): ?int
+    {
+        return $this->calendaritems;
+    }
+
+    public function setCalendaritems(?int $calendaritems): self
+    {
+        $this->calendaritems = $calendaritems;
+
+        return $this;
+    }
+
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    public function setCompany(?Company $company): self
+    {
+        $this->company = $company;
+
+        return $this;
+    }
+
+    public function getOfferprojectline(): ?Offerprojectline
+    {
+        return $this->offerprojectline;
+    }
+
+    public function setOfferprojectline(?Offerprojectline $offerprojectline): self
+    {
+        $this->offerprojectline = $offerprojectline;
+
+        return $this;
+    }
+
+    public function getPhase(): ?Taskphase
+    {
+        return $this->phase;
+    }
+
+    public function setPhase(?Taskphase $phase): self
+    {
+        $this->phase = $phase;
+
+        return $this;
+    }
+
+    public function getType(): ?Tasktype
+    {
+        return $this->type;
+    }
+
+    public function setType(?Tasktype $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->description;
+    }
+}

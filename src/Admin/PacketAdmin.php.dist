@@ -1,0 +1,92 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Admin;
+
+use Sonata\AdminBundle\Admin\AbstractAdmin;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\FormatterBundle\Form\Type\FormatterType;
+
+final class PacketAdmin extends AbstractAdmin
+{
+
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    {
+        $datagridMapper
+            ->add('number')
+            ->add('name')
+            ;
+    }
+
+    protected function configureListFields(ListMapper $listMapper): void
+    {
+        $listMapper
+            ->add('name')
+            ->add('number')
+            ->add('groupcategory')
+            ->add('description')
+            ->add('unit')
+            ->add('internalnote')
+            ->add('hidedetails')
+            ->add('usepriceexceptionscustomer')
+            ->add('tags')
+            ->add('packetlines')
+            ->add('taken')
+            ->add('extendedproperties')
+            ->add('_action', null, [
+                'actions' => [
+                    'show' => [],
+                    'edit' => [],
+                    'delete' => [],
+                ],
+            ]);
+    }
+
+    protected function configureFormFields(FormMapper $formMapper): void
+    {
+        $formMapper
+            ->add('name')
+            ->add('number')
+            ->add('groupcategory')
+            ->add('description', FormatterType::class, [
+                'format_field'   => 'descriptionFormatter',
+                'source_field' => 'descriptionRaw',
+                'source_field_options' => [
+                    'attr' => ['class' => 'span10', 'rows' => 20],
+                ],
+                'listener' => false,
+                'target_field' => 'description',
+            ])
+            ->add('unit')
+            ->add('internalnote')
+            ->add('hidedetails')
+            ->add('usepriceexceptionscustomer')
+            ->add('tags')
+            ->add('packetlines')
+            ->add('taken')
+            ->add('extendedproperties')
+            ;
+    }
+
+    protected function configureShowFields(ShowMapper $showMapper): void
+    {
+        $showMapper
+            ->add('name')
+            ->add('number')
+            ->add('groupcategory')
+            ->add('description')
+            ->add('unit')
+            ->add('internalnote')
+            ->add('hidedetails')
+            ->add('usepriceexceptionscustomer')
+            ->add('tags')
+            ->add('packetlines')
+            ->add('taken')
+            ->add('extendedproperties')
+            ;
+    }
+}

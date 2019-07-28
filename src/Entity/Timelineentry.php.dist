@@ -9,16 +9,15 @@ use Doctrine\ORM\Mapping as ORM;
  * Timelineentry
  *
  * @ApiResource
+ * @ORM\Table(name="timelineentry", indexes={@ORM\Index(name="FK_TimelineentryPurchaseinvoice", columns={"purchaseinvoice"}), @ORM\Index(name="FK_TimelineentryContract", columns={"contract"}), @ORM\Index(name="FK_TimelineentryContact", columns={"contact"}), @ORM\Index(name="FK_TimelineentryProject", columns={"project"}), @ORM\Index(name="FK_TimelineentryInvoice", columns={"invoice"}), @ORM\Index(name="FK_TimelineentryPurchaseorder", columns={"purchaseorder"}), @ORM\Index(name="FK_TimelineentryTask", columns={"task"}), @ORM\Index(name="FK_TimelineentryCompany", columns={"company"}), @ORM\Index(name="FK_TimelineentryOffer", columns={"offer"})})
  * @ORM\Entity(repositoryClass="App\Repository\TimelineentryRepository")
- * @ORM\Table(name="timelineentry", indexes={@ORM\Index(name="FK_TimelineentryCompany", columns={"company"}), @ORM\Index(name="FK_TimelineentryOffer", columns={"offer"}), @ORM\Index(name="FK_TimelineentryInvoice", columns={"invoice"}), @ORM\Index(name="FK_TimelineentryPurchaseorder", columns={"purchaseorder"}), @ORM\Index(name="FK_TimelineentryTask", columns={"task"}), @ORM\Index(name="FK_TimelineentryContact", columns={"contact"}), @ORM\Index(name="FK_TimelineentryProject", columns={"project"}), @ORM\Index(name="FK_TimelineentryPurchaseinvoice", columns={"purchaseinvoice"}), @ORM\Index(name="FK_TimelineentryContract", columns={"contract"})})
- * @ORM\Entity
  */
-class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
+class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameEntity
 {
     /**
-     * @var Medewerker|null
+     * @var Employee|null
      *
-     * @ORM\ManyToOne(targetEntity="App\Entity\Medewerker")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Employee")
      * @ORM\JoinColumn(name="employee", referencedColumnName="id")
      */
     private $employee;
@@ -59,9 +58,9 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
     private $files;
 
     /**
-     * @var \Bedrijf
+     * @var \Company
      *
-     * @ORM\ManyToOne(targetEntity="Bedrijf")
+     * @ORM\ManyToOne(targetEntity="Company")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="company", referencedColumnName="id")
      * })
@@ -69,9 +68,9 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
     private $company;
 
     /**
-     * @var \Contactpersoon
+     * @var \Contact
      *
-     * @ORM\ManyToOne(targetEntity="Contactpersoon")
+     * @ORM\ManyToOne(targetEntity="Contact")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="contact", referencedColumnName="id")
      * })
@@ -89,9 +88,9 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
     private $contract;
 
     /**
-     * @var \Factuur
+     * @var \Invoice
      *
-     * @ORM\ManyToOne(targetEntity="Factuur")
+     * @ORM\ManyToOne(targetEntity="Invoice")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="invoice", referencedColumnName="id")
      * })
@@ -99,9 +98,9 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
     private $invoice;
 
     /**
-     * @var \Offerte
+     * @var \Offer
      *
-     * @ORM\ManyToOne(targetEntity="Offerte")
+     * @ORM\ManyToOne(targetEntity="Offer")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="offer", referencedColumnName="id")
      * })
@@ -109,9 +108,9 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
     private $offer;
 
     /**
-     * @var \Opdracht
+     * @var \Project
      *
-     * @ORM\ManyToOne(targetEntity="Opdracht")
+     * @ORM\ManyToOne(targetEntity="Project")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="project", referencedColumnName="id")
      * })
@@ -119,9 +118,9 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
     private $project;
 
     /**
-     * @var \Inkoopfactuur
+     * @var \Purchaseinvoice
      *
-     * @ORM\ManyToOne(targetEntity="Inkoopfactuur")
+     * @ORM\ManyToOne(targetEntity="Purchaseinvoice")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="purchaseinvoice", referencedColumnName="id")
      * })
@@ -129,9 +128,9 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
     private $purchaseinvoice;
 
     /**
-     * @var \Inkoopopdracht
+     * @var \Purchaseorder
      *
-     * @ORM\ManyToOne(targetEntity="Inkoopopdracht")
+     * @ORM\ManyToOne(targetEntity="Purchaseorder")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="purchaseorder", referencedColumnName="id")
      * })
@@ -139,9 +138,9 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
     private $purchaseorder;
 
     /**
-     * @var \Taak
+     * @var \Task
      *
-     * @ORM\ManyToOne(targetEntity="Taak")
+     * @ORM\ManyToOne(targetEntity="Task")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="task", referencedColumnName="id")
      * })
@@ -220,24 +219,24 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
         return $this;
     }
 
-    public function getCompany(): ?Bedrijf
+    public function getCompany(): ?Company
     {
         return $this->company;
     }
 
-    public function setCompany(?Bedrijf $company): self
+    public function setCompany(?Company $company): self
     {
         $this->company = $company;
 
         return $this;
     }
 
-    public function getContact(): ?Contactpersoon
+    public function getContact(): ?Contact
     {
         return $this->contact;
     }
 
-    public function setContact(?Contactpersoon $contact): self
+    public function setContact(?Contact $contact): self
     {
         $this->contact = $contact;
 
@@ -256,72 +255,72 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPr
         return $this;
     }
 
-    public function getInvoice(): ?Factuur
+    public function getInvoice(): ?Invoice
     {
         return $this->invoice;
     }
 
-    public function setInvoice(?Factuur $invoice): self
+    public function setInvoice(?Invoice $invoice): self
     {
         $this->invoice = $invoice;
 
         return $this;
     }
 
-    public function getOffer(): ?Offerte
+    public function getOffer(): ?Offer
     {
         return $this->offer;
     }
 
-    public function setOffer(?Offerte $offer): self
+    public function setOffer(?Offer $offer): self
     {
         $this->offer = $offer;
 
         return $this;
     }
 
-    public function getProject(): ?Opdracht
+    public function getProject(): ?Project
     {
         return $this->project;
     }
 
-    public function setProject(?Opdracht $project): self
+    public function setProject(?Project $project): self
     {
         $this->project = $project;
 
         return $this;
     }
 
-    public function getPurchaseinvoice(): ?Inkoopfactuur
+    public function getPurchaseinvoice(): ?Purchaseinvoice
     {
         return $this->purchaseinvoice;
     }
 
-    public function setPurchaseinvoice(?Inkoopfactuur $purchaseinvoice): self
+    public function setPurchaseinvoice(?Purchaseinvoice $purchaseinvoice): self
     {
         $this->purchaseinvoice = $purchaseinvoice;
 
         return $this;
     }
 
-    public function getPurchaseorder(): ?Inkoopopdracht
+    public function getPurchaseorder(): ?Purchaseorder
     {
         return $this->purchaseorder;
     }
 
-    public function setPurchaseorder(?Inkoopopdracht $purchaseorder): self
+    public function setPurchaseorder(?Purchaseorder $purchaseorder): self
     {
         $this->purchaseorder = $purchaseorder;
 
         return $this;
     }
 
-    public function getTask(): ?Taak
+    public function getTask(): ?Task
     {
         return $this->task;
     }
 
-    public function setTask(?Taak $task): self
+    public function setTask(?Task $task): self
     {
         $this->task = $task;
 

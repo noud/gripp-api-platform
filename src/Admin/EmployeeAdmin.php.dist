@@ -1,0 +1,143 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Admin;
+
+use App\Admin\AbstractAdmin\AbstractVCardAdmin;
+//use App\Type\MedewerkerSalutationType;
+use Sonata\AdminBundle\Datagrid\DatagridMapper;
+use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\Form\Type\DatePickerType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Security\Core\Security;
+
+final class EmployeeAdmin extends AbstractVCardAdmin
+{
+    private $security;
+    
+    public function __construct(
+        $code,
+        $class,
+        $baseControllerName,
+        Security $security
+    ) {
+        parent::__construct($code, $class, $baseControllerName, 'firstname');
+        $this->security = $security;
+    }
+    
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
+    {
+        parent::configureDatagridFilters($datagridMapper);
+        $datagridMapper
+            ->add('firstname')
+            ->add('lastname')
+            ->add('email')
+        ;
+    }
+    
+    protected function configureListFields(ListMapper $listMapper): void
+    {
+        parent::configureListFields($listMapper);
+        $listMapper
+            ->add('email', null, [
+                'template' => 'bundles/SonataAdminBundle/link_email.html.twig',
+            ])
+            ->add('name')
+            ->add('function')
+            ->add('mobile')
+            ->add('phone')
+            ->add('address')
+            ->add('country')
+            ->add('skills')
+        ;
+    }
+    
+    protected function configureFormFields(FormMapper $formMapper): void
+    {
+        $owned = $this->getSubject()->getId() === $this->security->getToken()->getUser()->getId();
+        
+        $formMapper
+            ->tab('Algemeen')
+                ->add('searchname')
+                ->add('userphoto')
+                ->add('title')
+                ->add('screenname')
+                ->add('number')
+                ->add('dateofbirth', DatePickerType::class)
+                ->add('socialsecuritynumber')
+                ->add('emailprivate')
+                ->add('notes')
+                ->add('employeesince', DatePickerType::class)
+                ->end()
+            ->end()
+            ->tab('Contact')
+                ->add('email')
+                ->add('phone')
+                ->add('mobile')
+                ->end()
+            ->end()
+            ->tab('Bank')
+                ->add('bankaccount')
+                ->add('bankcity')
+                ->add('bankascription')
+                ->end()
+            ->end()
+            ->tab('Adres')
+                ->add('street')
+                ->add('adresline2')
+                ->add('streetnumber')
+                ->add('zipcode')
+                ->add('city')
+                ->add('country')
+                ->end()
+            ->end()
+            ->tab('Naam')
+                ->add('function')
+                ->add('salutation')
+                //->add('salutation', MedewerkerSalutationType::class)
+                ->add('initials')
+                ->add('firstname')
+                ->add('infix')
+                ->add('lastname')
+                ->end()
+            ->end()
+            ->tab('Uitgebreide eigenschappen')
+                ->add('extendedproperties')
+                ->end()
+            ->end()
+            ->tab('Tags en Skills')
+                ->add('tags')
+                ->add('skills')
+                ->end()
+            ->end()
+        ;
+        if ($owned) {
+            $formMapper
+                ->tab('Inlog gegevens')
+                    ->add('username')
+                    ->add('plainPassword', PasswordType::class, [
+                        'required' => false,
+                        'attr' => [
+                            'autocomplete' => 'disabled',
+                        ],
+                    ])
+                    ->add('password', null, [
+                        'help' => '<a href="https://bcrypt-generator.com" target="_blank">bcrypt generator</a>',
+                    ])
+                    ->add('googleAuthenticatorSecret', TextType::class, [
+                        'required' => false,
+                        'attr' => [
+                            'autocomplete' => 'disabled',
+                        ],
+                    ])
+                    ->add('active')
+                    ->add('role')
+                    ->end()
+                ->end()
+            ;
+        }
+    }
+}

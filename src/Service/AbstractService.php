@@ -59,9 +59,7 @@ abstract class AbstractService
 
     public function getAll(): array
     {
-        $entityName = "App\Entity\\".$this->className;
-        
-        //$this->invalidateAllCache();
+        $this->invalidateAllCache();
         $hit = $this->getAllCache();
         if (false === $hit) {
             $this->sqlService->truncate("App\Entity\\".$this->className);
@@ -78,7 +76,7 @@ abstract class AbstractService
                     ],
                     'orderings' => [
                         [
-                            'field' => $entityName::API_NAME.'.id',
+                            'field' => $this->lowercaseClassName.'.id',
                             'direction' => OptionsOrderingsDirectionEnum::ASC,
                         ],
                     ],
@@ -158,16 +156,15 @@ abstract class AbstractService
     
     private function get(array $filters = [], array $options = []): array
     {
-        $entityName = "App\Entity\\".$this->className;
         $filters = [
             [
-                'field' => $entityName::API_NAME.'.id',
+                'field' => $this->lowercaseClassName.'.id',
                 'operator' => FiltersOperatorEnum::GREATEREQUALS,
                 'value' => 1,
             ],
         ];
         
-        $methodName = $entityName::API_NAME.'_get';
+        $methodName = $this->lowercaseClassName.'_get';
         $batchresponse = $this->apiService->API->$methodName($filters, $options);
         $response = $batchresponse[0]['result'];
         
@@ -184,8 +181,7 @@ abstract class AbstractService
             ],
         ];
         
-        $entityName = "App\Entity\\".$this->className;
-        $methodName = $entityName::API_NAME.'_getone';
+        $methodName = $this->lowercaseClassName.'_getone';
         $response = $this->apiService->API->$methodName($filters, $options);
         if ($response[0]['result']['count'] === 1) {
             return $response[0]['result']['rows'][0];

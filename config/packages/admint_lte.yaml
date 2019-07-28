@@ -50,6 +50,6 @@ admin_lte:
         adminlte_messages: admin_app_timelineentry_list
         adminlte_notification: sonata_admin_dashboard
         adminlte_notifications: sonata_admin_dashboard
-        adminlte_task: admin_app_taak_edit
-        adminlte_tasks: admin_app_taak_list
+        adminlte_task: admin_app_task_edit
+        adminlte_tasks: admin_app_task_list
         adminlte_profile: fos_user_profile_show

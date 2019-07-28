@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Taak as Task;
-use App\Entity\Medewerker as User;
-use App\Entity\Contactpersoon;
+use App\Entity\Employee as User;
+use App\Entity\Contact;
 use App\Entity\Timelineentry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -16,7 +16,7 @@ class TimelineentryRepository extends ServiceEntityRepository
         parent::__construct($registry, Timelineentry::class);
     }
     
-    public function findCompaniesByContact(Contactpersoon $contact): ?Array
+    public function findCompaniesByContact(Contact $contact): ?Array
     {
         $sub = $this->createQueryBuilder('te2');
         $sub

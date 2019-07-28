@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Entity;
+
+use ApiPlatform\Core\Annotation\ApiResource;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Taskphase
+ *
+ * @ApiResource
+ * @ORM\Table(name="taskphase")
+ * @ORM\Entity(repositoryClass="App\Repository\TaskphaseRepository")
+ */
+class Taskphase extends \App\Entity\AbstractEntity\AbstractPhaseEntity
+{
+
+}

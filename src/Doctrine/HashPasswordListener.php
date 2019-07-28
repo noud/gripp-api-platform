@@ -2,7 +2,7 @@
 
 namespace App\Doctrine;
 
-use App\Entity\Medewerker as User;
+use App\Entity\Employee as User;
 use App\Entity\Api\ApiUser;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;

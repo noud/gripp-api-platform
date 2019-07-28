@@ -12,7 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="tag")
  * @ORM\Entity(repositoryClass="App\Repository\TagRepository")
  */
-class Tag extends \App\Entity\AbstractEntity\AbstractNameAndExtendedPropertiesEntity
+class Tag extends \App\Entity\AbstractEntity\AbstractNameEntity
 {
-    const API_NAME = 'tag';
+
 }

@@ -14,7 +14,7 @@ final class Version20190611173741 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Two-Factor authentication for Medewerker.';
+        return 'Two-Factor authentication for Employee.';
     }
 
     public function up(Schema $schema) : void
@@ -22,7 +22,7 @@ final class Version20190611173741 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE medewerker ADD googleAuthenticatorSecret VARCHAR(255) DEFAULT NULL');
+        $this->addSql('ALTER TABLE employee ADD googleAuthenticatorSecret VARCHAR(255) DEFAULT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +30,6 @@ final class Version20190611173741 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE medewerker DROP googleAuthenticatorSecret');
+        $this->addSql('ALTER TABLE employee DROP googleAuthenticatorSecret');
     }
 }

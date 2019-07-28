@@ -1,3 +1,115 @@
+Absencerequest: Verlofaanvraag
+Absencerequest List: Verlofaanvraag overzicht
+Absencerequest Create: Verlofaanvraag aanmaken
+Absencerequestline: Verlofmutatie
+Absencerequestline List: Verlofmutatie overzicht
+Absencerequestline Create: Verlofmutatie aanmaken
+Company: Bedrijf
+Company List: Bedrijf overzicht
+Company Create: Bedrijf aanmaken
+Contact: Contactpersoon
+Contact List: Contactpersoon overzicht
+Contact Create: Contactpersoon aanmaken
+Contract: Contract
+Contract List: Contract overzicht
+Contract Create: Contract aanmaken
+Contractline: Contractregel
+Contractline List: Contractregel overzicht
+Contractline Create: Contractregel aanmaken
+Costheading: Kostenplaats
+Costheading List: Kostenplaats overzicht
+Costheading Create: Kostenplaats aanmaken
+Employee: Medewerker
+Employee List: Medewerker overzicht
+Employee Create: Medewerker aanmaken
+Employeefamily: Medewerkerdatum
+Employeefamily List: Medewerkerdatum overzicht
+Employeefamily Create: Medewerkerdatum aanmaken
+File: File
+File List: File overzicht
+File Create: File aanmaken
+Hour: Mijnuren
+Hour List: Mijnuren overzicht
+Hour Create: Mijnuren aanmaken
+Invoice: Factuur
+Invoice List: Factuur overzicht
+Invoice Create: Factuur aanmaken
+Invoiceline: Factuurregel
+Invoiceline List: Factuurregel overzicht
+Invoiceline Create: Factuurregel aanmaken
+Ledger: Grootboek
+Ledger List: Grootboek overzicht
+Ledger Create: Grootboek aanmaken
+Notification: Alerttrigger
+Notification List: Alerttrigger overzicht
+Notification Create: Alerttrigger aanmaken
+Offer: Offerte
+Offer List: Offerte overzicht
+Offer Create: Offerte aanmaken
+Offerphase: Offertefase
+Offerphase List: Offertefase overzicht
+Offerphase Create: Offertefase aanmaken
+Offerprojectline: Onderdeel
+Offerprojectline List: Onderdeel overzicht
+Offerprojectline Create: Onderdeel aanmaken
+Packet: Pakket
+Packet List: Pakket overzicht
+Packet Create: Pakket aanmaken
+Packetline: Pakketregel
+Packetline List: Pakketregel overzicht
+Packetline Create: Pakketregel aanmaken
+Payment: Betaling
+Payment List: Betaling overzicht
+Payment Create: Betaling aanmaken
+Priceexception: Tariefuitzondering
+Priceexception List: Tariefuitzondering overzicht
+Priceexception Create: Tariefuitzondering aanmaken
+Product: Verkoopproduct
+Product List: Verkoopproduct overzicht
+Product Create: Verkoopproduct aanmaken
+Project: Opdracht
+Project List: Opdracht overzicht
+Project Create: Opdracht aanmaken
+Projectphase: Opdrachtfase
+Projectphase List: Opdrachtfase overzicht
+Projectphase Create: Opdrachtfase aanmaken
+Purchaseinvoice: Inkoopfactuur
+Purchaseinvoice List: Inkoopfactuur overzicht
+Purchaseinvoice Create: Inkoopfactuur aanmaken
+Purchaseinvoiceline: Inkoopfactuurregel
+Purchaseinvoiceline List: Inkoopfactuurregel overzicht
+Purchaseinvoiceline Create: Inkoopfactuurregel aanmaken
+Purchaseorder: Inkoopopdracht
+Purchaseorder List: Inkoopopdracht overzicht
+Purchaseorder Create: Inkoopopdracht aanmaken
+Purchaseorderline: Inkoopopdrachtregel
+Purchaseorderline List: Inkoopopdrachtregel overzicht
+Purchaseorderline Create: Inkoopopdrachtregel aanmaken
+Purchasepayment: Inkoopbetaling
+Purchasepayment List: Inkoopbetaling overzicht
+Purchasepayment Create: Inkoopbetaling aanmaken
+Tag: Tag
+Tag List: Tag overzicht
+Tag Create: Tag aanmaken
+Task: Taak
+Task List: Taak overzicht
+Task Create: Taak aanmaken
+Taskphase: Taakfase
+Taskphase List: Taakfase overzicht
+Taskphase Create: Taakfase aanmaken
+Tasktype: Taaktype
+Tasktype List: Taaktype overzicht
+Tasktype Create: Taaktype aanmaken
+Timelineentry: Timelineentry
+Timelineentry List: Timelineentry overzicht
+Timelineentry Create: Timelineentry aanmaken
+Unit: Producteenheid
+Unit List: Producteenheid overzicht
+Unit Create: Producteenheid aanmaken
+Webhook: Webhook
+Webhook List: Webhook overzicht
+Webhook Create: Webhook aanmaken
+# manual
 Active: 'Actief'
 Action: 'Actie'
 # authentication
@@ -41,15 +153,11 @@ Startingtime: 'Starttijd'
 Name: 'Naam'
 Color: 'Kleur'
 Files: 'Bestanden'
-Invoice: 'Factuur'
 Number: 'Nummer'
 Amount: 'Bedrag'
 Notes: 'Notities'
-Company: 'Bedrijf'
 Department: 'Afdeling'
 Description: 'Beschrijving'
-Purchaseinvoice: 'Aankoopfactuur'
-Purchaseorder: 'Bestelling'
 # Trait
 Address: 'Adres'
 Country: 'Land'
@@ -74,22 +182,3 @@ Mobile: 'Mobiel'
 Bankaccount: 'Bankrekening'
 Bankcity: 'Bank stad'
 Bankascription: 'Opschorting bank'
-# Sonata header
-Bedrijf List: 'Bedrijfen overzicht'
-Bedrijf Create: 'Bedrijf aanmaken'
-Betaling List: 'Taaktypen overzicht'
-Betaling Create: 'Taakfase aanmaken'
-Contactpersoon List: 'Contactpersonen overzicht'
-Contactpersoon Create: 'Contactpersoon aanmaken'
-Medewerker List: 'Medewerkers overzicht'
-Medewerker Create: 'Medewerker aanmaken'
-Offertefase List: 'Offertefasen overzicht'
-Offertefase Create: 'Offertefase aanmaken'
-Opdrachtfase List: 'Opdrachtfasen overzicht'
-Opdrachtfase Create: 'Opdrachtfase aanmaken'
-Taakfase List: 'Taakfasen overzicht'
-Taakfase Create: 'Taakfase aanmaken'
-Taaktype List: 'Taaktypen overzicht'
-Taaktype Create: 'Taaktype aanmaken'
-Tag List: 'Tags overzicht'
-Tag Create: 'Tag aanmaken'

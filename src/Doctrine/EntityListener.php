@@ -2,11 +2,11 @@
 
 namespace App\Doctrine;
 
-use App\Entity\Taakfase;
-use App\Entity\Taaktype;
+use App\Entity\Taskphase;
+use App\Entity\Tasktype;
 use App\Entity\Tag;
-use App\Service\TaakfaseService;
-use App\Service\TaaktypeService;
+use App\Service\TaskphaseService;
+use App\Service\TasktypeService;
 use App\Service\TagService;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -23,32 +23,32 @@ class EntityListener implements EventSubscriber
     private $passwordEncoder;
 
     /**
-     * @var TaakfaseService
+     * @var TaskphaseService
      */
-    private $taakfaseService;
+    private $taskphaseService;
     
     /**
-     * @var TaaktypeService
+     * @var TasktypeService
      */
-    private $taaktypeService;
+    private $tasktypeService;
     
     /**
      * HashPasswordListener constructor.
      */
     public function __construct(
-        TaakfaseService $taakfaseService,
-        TaaktypeService $taaktypeService,
+        TaskphaseService $taskphaseService,
+        TasktypeService $tasktypeService,
         TagService $tagService
     ) {
-        $this->taakfaseService = $taakfaseService;
-        $this->taaktypeService = $taaktypeService;
+        $this->taskphaseService = $taskphaseService;
+        $this->tasktypeService = $tasktypeService;
         $this->tagService = $tagService;
     }
 
     public function preUpdate(LifecycleEventArgs $args)
     {
         $entity = $args->getEntity();
-        if (! ($entity instanceof Taakfase || $entity instanceof Tag)) {
+        if (! ($entity instanceof Taskphase || $entity instanceof Tag)) {
             return;
         }
 
@@ -69,14 +69,14 @@ class EntityListener implements EventSubscriber
     }
 
     /**
-     * @param Taakfase|Tag $entity
+     * @param Taskphase|Tag $entity
      */
     private function setEntityInAPI($entity)   // @TODO should use Interface?
     {
-        if ($entity instanceof Taakfase) {
-            $this->taakfaseService->updateTaakfase($entity);
-        } elseif ($entity instanceof Taaktype) {
-            $this->taaktypeService->updateTaaktype($entity);
+        if ($entity instanceof Taskphase) {
+            $this->taskphaseService->updateTaskphase($entity);
+        } elseif ($entity instanceof Tasktype) {
+            $this->tasktypeService->updateTasktype($entity);
         } elseif ($entity instanceof Tag) {
             $this->tagService->updateTag($entity);
         }

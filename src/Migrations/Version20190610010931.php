@@ -14,7 +14,7 @@ final class Version20190610010931 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return 'Add Symfony User fields to Medewerker.';
+        return 'Add Symfony User fields to Employee.';
     }
 
     public function up(Schema $schema) : void
@@ -22,7 +22,7 @@ final class Version20190610010931 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE medewerker ADD roles JSON NOT NULL');
+        $this->addSql('ALTER TABLE employee ADD roles JSON NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -30,6 +30,6 @@ final class Version20190610010931 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE medewerker DROP roles');
+        $this->addSql('ALTER TABLE employee DROP roles');
     }
 }

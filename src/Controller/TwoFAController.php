@@ -2,7 +2,7 @@
 
 namespace App\Controller;
 
-use App\Repository\MedewerkerRepository as UserRepository;
+use App\Repository\EmployeeRepository as UserRepository;
 use Endroid\QrCode\Factory\QrCodeFactory;
 use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
 use Scheb\TwoFactorBundle\Security\TwoFactor\Provider\Google\GoogleAuthenticator;

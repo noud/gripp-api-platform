@@ -1,0 +1,787 @@
+<?php
+
+namespace App\Entity;
+
+use ApiPlatform\Core\Annotation\ApiResource;
+use App\Entity\Traits\AddressTrait;
+use App\Entity\Traits\FullnameTrait;
+use Doctrine\ORM\Mapping as ORM;
+use Scheb\TwoFactorBundle\Model\Google\TwoFactorInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use \DateTime;
+use \DateTimeInterface;
+
+/**
+ * Employee
+ *
+ * @ApiResource
+ * @ORM\Table(name="employee", indexes={@ORM\Index(name="FK_EmployeeUserphoto", columns={"userphoto"})})
+ * @ORM\Entity
+ * @UniqueEntity("email")
+ */
+class Employee extends \App\Entity\AbstractEntity\AbstractExtendedPropertiesEntity implements UserInterface, TwoFactorInterface
+{
+    use FullnameTrait;
+    use AddressTrait;
+    
+    const ROLE_USER = 'ROLE_USER';
+    
+    public function __construct()
+    {
+        $this->dateofbirth = new DateTime();
+    }
+    
+    /**
+     * @ORM\Column(name="googleAuthenticatorSecret", type="string", nullable=true)
+     */
+    private $googleAuthenticatorSecret;
+    
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="title", type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="screenname", type="string", length=255, nullable=true)
+     */
+    private $screenname;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="number", type="bigint", nullable=true)
+     */
+    private $number;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="dateofbirth", type="date", nullable=true)
+     */
+    private $dateofbirth;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="socialsecuritynumber", type="string", length=255, nullable=true)
+     */
+    private $socialsecuritynumber;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="emailprivate", type="string", length=255, nullable=true)
+     * @Assert\Email()
+     */
+    private $emailprivate;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="bankaccount", type="string", length=255, nullable=true)
+     */
+    private $bankaccount;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="bankcity", type="string", length=255, nullable=true)
+     */
+    private $bankcity;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="bankascription", type="string", length=255, nullable=true)
+     */
+    private $bankascription;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="notes", type="string", length=255, nullable=true)
+     */
+    private $notes;
+
+    /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(name="employeesince", type="date", nullable=true)
+     */
+    private $employeesince;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=255, nullable=false)
+     */
+    private $username;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=255, nullable=false)
+     */
+    private $password;
+
+    /**
+     * A non-persisted field that's used to create the encoded password.
+     *
+     * @var string|null
+     */
+    private $plainPassword;
+
+    /**
+     * @var bool|null
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $active;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="role", type="bigint", nullable=false)
+     */
+    private $role;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true)
+     * @Assert\Email()
+     */
+    private $email;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
+     */
+    private $phone;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="mobile", type="string", length=255, nullable=true)
+     */
+    private $mobile;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="street", type="string", length=255, nullable=true)
+     */
+    private $street;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="adresline2", type="string", length=255, nullable=true)
+     */
+    private $adresline2;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="streetnumber", type="string", length=255, nullable=true)
+     */
+    private $streetnumber;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="zipcode", type="string", length=255, nullable=true)
+     */
+    private $zipcode;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="city", type="string", length=255, nullable=true)
+     */
+    private $city;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="country", type="string", length=255, nullable=true)
+     */
+    private $country;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="function", type="string", length=255, nullable=true)
+     */
+    private $function;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="salutation", type="string", length=8, nullable=true)
+     */
+    private $salutation;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="initials", type="string", length=255, nullable=true)
+     */
+    private $initials;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="firstname", type="string", length=255, nullable=true)
+     */
+    private $firstname;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="infix", type="string", length=255, nullable=true)
+     */
+    private $infix;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(name="lastname", type="string", length=255, nullable=true)
+     */
+    private $lastname;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="tags", type="bigint", nullable=true)
+     */
+    private $tags;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(name="skills", type="bigint", nullable=true)
+     */
+    private $skills;
+
+    /**
+     * @var \File
+     *
+     * @ORM\ManyToOne(targetEntity="File")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="userphoto", referencedColumnName="id")
+     * })
+     */
+    private $userphoto;
+
+    public function getTitle(): ?string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(?string $title): self
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    public function getScreenname(): ?string
+    {
+        return $this->screenname;
+    }
+
+    public function setScreenname(?string $screenname): self
+    {
+        $this->screenname = $screenname;
+
+        return $this;
+    }
+
+    public function getNumber(): ?int
+    {
+        return $this->number;
+    }
+
+    public function setNumber(?int $number): self
+    {
+        $this->number = $number;
+
+        return $this;
+    }
+
+    public function getDateofbirth(): ?\DateTimeInterface
+    {
+        return $this->dateofbirth;
+    }
+
+    public function setDateofbirth(?\DateTimeInterface $dateofbirth): self
+    {
+        $this->dateofbirth = $dateofbirth;
+
+        return $this;
+    }
+
+    public function getSocialsecuritynumber(): ?string
+    {
+        return $this->socialsecuritynumber;
+    }
+
+    public function setSocialsecuritynumber(?string $socialsecuritynumber): self
+    {
+        $this->socialsecuritynumber = $socialsecuritynumber;
+
+        return $this;
+    }
+
+    public function getEmailprivate(): ?string
+    {
+        return $this->emailprivate;
+    }
+
+    public function setEmailprivate(?string $emailprivate): self
+    {
+        $this->emailprivate = $emailprivate;
+
+        return $this;
+    }
+
+    public function getBankaccount(): ?string
+    {
+        return $this->bankaccount;
+    }
+
+    public function setBankaccount(?string $bankaccount): self
+    {
+        $this->bankaccount = $bankaccount;
+
+        return $this;
+    }
+
+    public function getBankcity(): ?string
+    {
+        return $this->bankcity;
+    }
+
+    public function setBankcity(?string $bankcity): self
+    {
+        $this->bankcity = $bankcity;
+
+        return $this;
+    }
+
+    public function getBankascription(): ?string
+    {
+        return $this->bankascription;
+    }
+
+    public function setBankascription(?string $bankascription): self
+    {
+        $this->bankascription = $bankascription;
+
+        return $this;
+    }
+
+    public function getNotes(): ?string
+    {
+        return $this->notes;
+    }
+
+    public function setNotes(?string $notes): self
+    {
+        $this->notes = $notes;
+
+        return $this;
+    }
+
+    public function getEmployeesince(): ?\DateTimeInterface
+    {
+        return $this->employeesince;
+    }
+
+    public function setEmployeesince(?\DateTimeInterface $employeesince): self
+    {
+        $this->employeesince = $employeesince;
+
+        return $this;
+    }
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function getActive(): ?bool
+    {
+        return $this->active;
+    }
+
+    public function setActive(?bool $active): self
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    public function getRole(): ?int
+    {
+        return $this->role;
+    }
+
+    public function setRole(int $role): self
+    {
+        $this->role = $role;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): self
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(?string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getMobile(): ?string
+    {
+        return $this->mobile;
+    }
+
+    public function setMobile(?string $mobile): self
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    public function getStreet(): ?string
+    {
+        return $this->street;
+    }
+
+    public function setStreet(?string $street): self
+    {
+        $this->street = $street;
+
+        return $this;
+    }
+
+    public function getAdresline2(): ?string
+    {
+        return $this->adresline2;
+    }
+
+    public function setAdresline2(?string $adresline2): self
+    {
+        $this->adresline2 = $adresline2;
+
+        return $this;
+    }
+
+    public function getStreetnumber(): ?string
+    {
+        return $this->streetnumber;
+    }
+
+    public function setStreetnumber(?string $streetnumber): self
+    {
+        $this->streetnumber = $streetnumber;
+
+        return $this;
+    }
+
+    public function getZipcode(): ?string
+    {
+        return $this->zipcode;
+    }
+
+    public function setZipcode(?string $zipcode): self
+    {
+        $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    public function getCity(): ?string
+    {
+        return $this->city;
+    }
+
+    public function setCity(?string $city): self
+    {
+        $this->city = $city;
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
+
+        return $this;
+    }
+
+    public function getFunction(): ?string
+    {
+        return $this->function;
+    }
+
+    public function setFunction(?string $function): self
+    {
+        $this->function = $function;
+
+        return $this;
+    }
+
+    public function getSalutation(): ?string
+    {
+        return $this->salutation;
+    }
+
+    public function setSalutation(?string $salutation): self
+    {
+        $this->salutation = $salutation;
+
+        return $this;
+    }
+
+    public function getInitials(): ?string
+    {
+        return $this->initials;
+    }
+
+    public function setInitials(?string $initials): self
+    {
+        $this->initials = $initials;
+
+        return $this;
+    }
+
+    public function getFirstname(): ?string
+    {
+        return $this->firstname;
+    }
+
+    public function setFirstname(?string $firstname): self
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    public function getInfix(): ?string
+    {
+        return $this->infix;
+    }
+
+    public function setInfix(?string $infix): self
+    {
+        $this->infix = $infix;
+
+        return $this;
+    }
+
+    public function getLastname(): ?string
+    {
+        return $this->lastname;
+    }
+
+    public function setLastname(?string $lastname): self
+    {
+        $this->lastname = $lastname;
+
+        return $this;
+    }
+
+    public function getTags(): ?int
+    {
+        return $this->tags;
+    }
+
+    public function setTags(?int $tags): self
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    public function getSkills(): ?int
+    {
+        return $this->skills;
+    }
+
+    public function setSkills(?int $skills): self
+    {
+        $this->skills = $skills;
+
+        return $this;
+    }
+
+    public function getUserphoto(): ?File
+    {
+        return $this->userphoto;
+    }
+
+    public function setUserphoto(?File $userphoto): self
+    {
+        $this->userphoto = $userphoto;
+
+        return $this;
+    }
+
+    public static function getSalutationList()
+    {
+        return [
+            self::SALUTION_SIR => 'salution_sir',
+            self::SALUTION_MADAM => 'salution_madam',
+            self::SALUTION_SIRMADAM => 'salution_sirmadam',
+        ];
+    }
+    
+    /**
+     * Symfony UserInterface
+     */
+    
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="roles", type="json", nullable=false)
+     */
+    private $roles = [self::ROLE_USER];
+    
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        $roles[] = self::ROLE_USER;
+        
+        return array_unique($roles);
+    }
+    
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+        
+        return $this;
+    }
+    
+    public function getPassword(): ?string
+    {
+        return $this->password;
+    }
+    
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+        
+        return $this;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+    
+    /**
+     * @param string $plainPassword
+     */
+    public function setPlainPassword(?string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+        // forces the object to look "dirty" to Doctrine. Avoids
+        // Doctrine *not* saving this entity, if only plainPassword changes
+        $this->password = null;
+    }
+    
+    /**
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        // not needed when using the "bcrypt" algorithm in security.yaml
+        return null;
+    }
+    
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+    
+    // App\Security\LoginFormAuthenticator::getUser
+    
+    public function isActive(): bool
+    {
+        return $this->active ?: false;
+    }
+    
+    /**
+     * Two-factor authentication
+     */
+    
+    public function isGoogleAuthenticatorEnabled(): bool
+    {
+        return $this->googleAuthenticatorSecret ? true : false;
+    }
+    
+    public function getGoogleAuthenticatorUsername(): string
+    {
+        return $this->username;
+    }
+    
+    public function getGoogleAuthenticatorSecret(): ?string
+    {
+        return $this->googleAuthenticatorSecret;
+    }
+    
+    public function setGoogleAuthenticatorSecret(?string $googleAuthenticatorSecret): void
+    {
+        $this->googleAuthenticatorSecret = $googleAuthenticatorSecret;
+    }
+    
+    public function __toString()
+    {
+        return $this->getName();
+    }
+}

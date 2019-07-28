@@ -2,7 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\Medewerker as User;
+use App\Entity\Employee as User;
 use App\Repository\TimelineentryRepository;
 use KevinPapst\AdminLTEBundle\Helper\Constants;
 use KevinPapst\AdminLTEBundle\Model\MessageModel;

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Sonata\BlockBundle\Block\Service;
 
-use App\Entity\Medewerker as User;
+use App\Entity\Employee as User;
 use App\Service\TimelineentryService;
 use Sonata\AdminBundle\Admin\Pool;
 use Sonata\AdminBundle\Templating\TemplateRegistry;

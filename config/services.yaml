@@ -73,43 +73,43 @@ services:
             - { name: twig.extension }
     
     # API client JSON-RPC
-    App\Controller\BedrijfController:
+    App\Controller\CompanyController:
         arguments:
             - '%kernel.environment%'
-    App\Controller\TaakController:
+    App\Controller\TaskController:
         arguments:
             - '%kernel.environment%'
-    App\Controller\TaakfaseController:
+    App\Controller\TaskphaseController:
         arguments:
             - '%kernel.environment%'
-    App\Controller\TaaktypeController:
+    App\Controller\TasktypeController:
         arguments:
             - '%kernel.environment%'
     App\Controller\TagController:
         arguments:
             - '%kernel.environment%'
 
-#    sonata.medewerker.form.salutation_type:
+#    sonata.employee.form.salutation_type:
 #        class: '@Sonata\Form\Type\StatusType'
-#        class: '@App\Type\MedewerkerSalutationType'
+#        class: '@App\Type\EmployeeSalutationType'
 #        tags:
 #            - { name: form.type }
 #        arguments:
 ##            - '%sonata.order.order.class%'
-##            - '%sonata.medewerker.class%'
-#            - '@sonata.medewerker.class'
-##            - '%sonata.medewerker.medewerker.class%'
+##            - '%sonata.employee.class%'
+#            - '@sonata.employee.class'
+##            - '%sonata.employee.employee.class%'
 #            - 'getSalutationList'
-#            - 'sonata_medewerker_salutation'
-#    sonata.medewerker.class:
-#        class: App\Entity\Medewerker
-#        #class: App\Type\MedewerkerSalutationType
+#            - 'sonata_employee_salutation'
+#    sonata.employee.class:
+#        class: App\Entity\Employee
+#        #class: App\Type\EmployeeSalutationType
 
-    admin.medewerker:
-        class: App\Admin\MedewerkerAdmin
-        arguments: [~, App\Entity\Medewerker, ~]
+    admin.employee:
+        class: App\Admin\EmployeeAdmin
+        arguments: [~, App\Entity\Employee, ~]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: Medewerker }
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Employee }
         public: true
         calls:
             - [setTemplate, ['edit', 'bundles/SonataAdminBundle/CRUD/2fa_edit.html.twig']]
