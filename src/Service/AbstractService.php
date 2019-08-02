@@ -59,7 +59,7 @@ abstract class AbstractService
 
     public function getAll(): array
     {
-        $this->invalidateAllCache();
+        //$this->invalidateAllCache();
         $hit = $this->getAllCache();
         if (false === $hit) {
             $this->sqlService->truncate("App\Entity\\".$this->className);
