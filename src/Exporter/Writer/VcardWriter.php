@@ -89,7 +89,7 @@ class VcardWriter implements TypedWriterInterface
                 } else {
                     $JWT = '';
                     $curl = new Curl();
-                    $response = $curl->execute('/api/contactpersoons/'.$data['id'], $JWT);
+                    $response = $curl->execute('/api/contacts/'.$data['id'], $JWT);
                     if (isset($response['company']) || isset($data['Afdeling'])){
                         $companyUri = $response['company'];
                         $response = $curl->execute($companyUri, $JWT);
