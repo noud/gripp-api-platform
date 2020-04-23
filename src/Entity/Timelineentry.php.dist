@@ -147,7 +147,7 @@ class Timelineentry extends \App\Entity\AbstractEntity\AbstractNameEntity
      */
     private $task;
 
-    public function getEmployee(): ?int
+    public function getEmployee(): ?Employee
     {
         return $this->employee;
     }
