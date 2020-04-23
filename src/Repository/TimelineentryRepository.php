@@ -7,7 +7,7 @@ use App\Entity\Employee as User;
 use App\Entity\Contact;
 use App\Entity\Timelineentry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry as RegistryInterface;
 
 class TimelineentryRepository extends ServiceEntityRepository
 {

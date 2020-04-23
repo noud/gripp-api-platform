@@ -173,6 +173,15 @@
     "jeroendesloovere/vcard-bundle": {
         "version": "1.2.3"
     },
+    "kevinpapst/adminlte-bundle": {
+        "version": "0.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.9",
+            "ref": "dca6a91efc23d844326d2e90b47bdf48a5038fcf"
+        }
+    },
     "khanamiryan/qrcode-detector-decoder": {
         "version": "1.0.2"
     },
@@ -265,6 +274,9 @@
     },
     "pdepend/pdepend": {
         "version": "2.5.2"
+    },
+    "php": {
+        "version": "7.2"
     },
     "php-cs-fixer/diff": {
         "version": "v1.3.0"
@@ -483,6 +495,9 @@
     "symfony/dotenv": {
         "version": "v4.3.0"
     },
+    "symfony/error-handler": {
+        "version": "v4.4.7"
+    },
     "symfony/event-dispatcher": {
         "version": "v4.3.0"
     },
@@ -595,11 +610,17 @@
             "tests/.gitignore"
         ]
     },
+    "symfony/polyfill-intl-grapheme": {
+        "version": "v1.15.0"
+    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.11.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.11.0"
+    },
+    "symfony/polyfill-intl-normalizer": {
+        "version": "v1.15.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.11.0"
@@ -675,6 +696,9 @@
     },
     "symfony/stopwatch": {
         "version": "v4.3.0"
+    },
+    "symfony/string": {
+        "version": "v5.0.7"
     },
     "symfony/templating": {
         "version": "v4.3.1"
@@ -772,6 +796,9 @@
     "symfony/yaml": {
         "version": "v4.3.0"
     },
+    "thecodingmachine/safe": {
+        "version": "v1.1"
+    },
     "timiki/rpc-common": {
         "version": "1.0.4"
     },
@@ -789,6 +816,12 @@
         "files": [
             "config/packages/twig_extensions.yaml"
         ]
+    },
+    "twig/extra-bundle": {
+        "version": "v3.0.3"
+    },
+    "twig/string-extra": {
+        "version": "v3.0.3"
     },
     "twig/twig": {
         "version": "v2.11.0"

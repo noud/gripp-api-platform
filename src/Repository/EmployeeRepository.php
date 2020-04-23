@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Employee as User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry as RegistryInterface;
 
 class EmployeeRepository extends ServiceEntityRepository
 {

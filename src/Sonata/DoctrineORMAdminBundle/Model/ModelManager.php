@@ -34,7 +34,7 @@ use Sonata\DoctrineORMAdminBundle\Admin\FieldDescription;
 use Sonata\DoctrineORMAdminBundle\Datagrid\OrderByToSelectWalker;
 use Sonata\DoctrineORMAdminBundle\Datagrid\ProxyQuery;
 use Sonata\Exporter\Source\DoctrineORMQuerySourceIterator;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry as RegistryInterface;
 use Symfony\Component\PropertyAccess\Exception\NoSuchPropertyException as PropertyAccessDeniedException;
 
 class ModelManager implements ModelManagerInterface, LockInterface
