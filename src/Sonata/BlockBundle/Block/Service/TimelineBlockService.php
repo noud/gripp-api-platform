@@ -49,7 +49,7 @@ class TimelineBlockService extends AbstractBlockService
         Security $security,
         TimelineentryService $timelineentryService
     ) {
-        parent::__construct($name, $templating);
+        parent::__construct($name ?? '', $templating);
 
         $this->pool = $pool;
         $this->templateRegistry = $templateRegistry ?: new TemplateRegistry();
