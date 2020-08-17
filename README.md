@@ -19,7 +19,7 @@ and demonstrate Gripp API use.
 
 The application is highly independent of the Entities used and a good example of writing generic code and [API-First](http://swagger.io/resources/articles/adopting-an-api-first-approach/) development to facilitate a [Rapid-application development (RAD)](http://en.wikipedia.org/wiki/Rapid_application_development) process.
 
-## API
+## API front ends
 
 The application consumes the Gripp API as client but has various API server interfaces itself as well:
 * [GraphQL](http://en.wikipedia.org/wiki/GraphQL) with it's own [GraphiQL](http://github.com/graphql/graphiql/tree/master/packages/graphiql#readme) in-browser IDE with generated API documentation
