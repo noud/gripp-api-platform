@@ -3,6 +3,7 @@
 namespace App\Entity\AbstractEntity;
 
 use DateTime;
+use DateTimeInterface;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 
@@ -20,7 +21,7 @@ abstract class AbstractEntity
     /**
      * @var \DateTimeInterface
      *
-     * @ORM\Column(name="createdAt", type="datetime", nullable=true)
+     * @ORM\Column(name="createdAt", type="datetime")
      * @Gedmo\Timestampable(on="create")
      */
     protected $createdat;
@@ -28,7 +29,7 @@ abstract class AbstractEntity
     /**
      * @var \DateTimeInterface
      *
-     * @ORM\Column(name="updatedAt", type="datetime", nullable=true)
+     * @ORM\Column(name="updatedAt", type="datetime")
      * @Gedmo\Timestampable(on="update")
      */
     protected $updatedat;
@@ -38,12 +39,12 @@ abstract class AbstractEntity
         return $this->id;
     }
     
-    public function getCreatedat(): ?DateTime
+    public function getCreatedat(): DateTimeInterface
     {
         return $this->createdat;
     }
     
-    public function getUpdatedat(): ?DateTime
+    public function getUpdatedat(): DateTimeInterface
     {
         return $this->updatedat;
     }
@@ -52,12 +53,12 @@ abstract class AbstractEntity
      * Gripp API
      */
     
-    public function getCreatedon(): ?DateTime
+    public function getCreatedon(): DateTimeInterface
     {
         return $this->createdat;
     }
     
-    public function getUpdatedon(): ?DateTime
+    public function getUpdatedon(): DateTimeInterface
     {
         return $this->updatedat;
     }

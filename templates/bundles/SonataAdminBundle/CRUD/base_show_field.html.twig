@@ -1,7 +1,15 @@
-<th{% if(is_diff|default(false)) %} class="diff"{% endif %}>{% block name %}{{ field_description.label|trans({}, field_description.translationDomain ?: admin.translationDomain) }}{% endblock %}</th>
+<th{% if(is_diff|default(false)) %} class="diff"{% endif %}>
+    {%- block name -%}
+        {% apply spaceless %}
+            {% if field_description.label is not same as(false) %}
+                {{ field_description.label|trans({}, field_description.translationDomain ?: admin.translationDomain) }}
+            {% endif %}
+        {% endapply %}
+    {%- endblock -%}
+</th>
 <td>
     {%- block field -%}
-        {% spaceless %}
+        {% apply spaceless %}
             {% set collapse = field_description.options.collapse|default(false) %}
             {% if collapse %}
                 <div class="sonata-readmore"
@@ -13,6 +21,7 @@
                     {% endblock %}
                 </div>
             {% else %}
+                {# color added #}
                 {% if 'color' == field_description.name %}
                     <div class="show-color">
                         <div class="color-box" style="background-color: {{ value }};"></div>
@@ -20,16 +29,17 @@
                 {% else %}
                     {{ block('field_value') }}
                 {% endif %}
+                {# color added #}
             {% endif %}
-        {% endspaceless %}
+        {% endapply %}
     {%- endblock -%}
 </td>
 
-{% block field_compare %}
-    {% if(value_compare is defined) %}
-        <td>
+{%- block field_compare -%}
+    {% apply spaceless %}
+        {% if(value_compare is defined) %}
             {% set value = value_compare %}
-            {{ block('field') }}
-        </td>
-    {% endif %}
-{% endblock %}
+            <td>{{ block('field') }}</td>
+        {% endif %}
+    {% endapply %}
+{%- endblock -%}

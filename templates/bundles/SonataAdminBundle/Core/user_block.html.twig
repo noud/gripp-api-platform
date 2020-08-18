@@ -1,5 +1,5 @@
 {% block user_block %}
 {% trans_default_domain 'security' %}
-<li> <a href="/{{ sonata_prefix }}/app/medewerker/{{ app.user.id }}/edit?_tab=tab_s6411e22d72_852710112_8">{{ 'login.url.title'|trans }}</a></li>
+<li> <a href="/{{ sonata_prefix }}/app/employee/{{ app.user.id }}/edit?_tab=tab_s6411e22d72_852710112_8">{{ 'login.url.title'|trans }}</a></li>
 <li> <a href="{{ path('sonata_logout') }}">{{ 'login.button.logout'|trans }}</a></li>
 {% endblock %}

@@ -346,7 +346,7 @@ final class AdminMaker extends AbstractMaker implements MakerInterface
                         break;
                     }
                     if ('color' === $field) {
-                        $fieldString = $fieldString.sprintf('%12s', '')."->add('".$field."', \Sonata\CoreBundle\Form\Type\ColorType::class)".PHP_EOL;
+                        $fieldString = $fieldString.sprintf('%12s', '')."->add('".$field."', \Symfony\Component\Form\Extension\Core\Type\ColorType::class)".PHP_EOL;
                         break;
                     }
                     if (!('Timelineentry' === $adminClassName) && in_array($field, $dateFields)) {
