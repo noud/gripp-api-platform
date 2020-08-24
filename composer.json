@@ -17,7 +17,7 @@
 		"psr/simple-cache": "^1.0",
 		"scheb/two-factor-bundle": "^4.14",
 		"sensio/framework-extra-bundle": "^5.5",
-		"sensiolabs/security-checker": "^5.0",
+		"sensiolabs/security-checker": "^6.0",
 		"sonata-project/admin-bundle": "^3.73.0",
 		"sonata-project/doctrine-orm-admin-bundle": "^3.21.0",
 		"sonata-project/exporter": "^2.3",
@@ -27,7 +27,7 @@
 		"symfony/cache": "^4.4",
 		"symfony/console": "^4.4",
 		"symfony/dotenv": "^4.4",
-		"symfony/flex": "^1.6",
+		"symfony/flex": "^1.9",
 		"symfony/form": "^4.4",
 		"symfony/framework-bundle": "^4.4",
 		"symfony/orm-pack": "^1.0",
@@ -84,8 +84,8 @@
 	},
 	"extra" : {
 		"symfony" : {
-			"allow-contrib" : false,
-			"require" : "^4.4"
+			"allow-contrib": "true",
+			"require": "^4.4"
 		}
 	},
 	"name" : "noud/gripp_client_symfony",
@@ -121,7 +121,7 @@
 		"phpstan/phpstan-symfony": "^0.11.3",
 		"symfony/debug": "^4.4",
 		"symfony/debug-pack": "*",
-		"symfony/maker-bundle": "^1.15",
+		"symfony/maker-bundle": "^1.2",
 		"symfony/profiler-pack": "*",
 		"symfony/test-pack": "*"
 	}

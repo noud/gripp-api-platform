@@ -1,4 +1,13 @@
 {% extends sonata_block.templates.block_base %}
+{% block style %}
+   <style type="text/css">
+    #visualization {
+      width: 600px;
+      height: 400px;
+      border: 1px solid lightgray;
+    }
+  </style> 
+ {% endblock %}
 
 {% block block %}
     <div class="panel panel-default">
@@ -10,7 +19,7 @@
             <div class="media">
                 {% if timelineentries %}
                     <div class="media-body">
-                	<div id="visualization" data-data-set="{{ timelineentries }}"></div>
+                	<div id="visualization" data-drawn="false" data-data-set="{{ timelineentries }}"></div>
                     </div>
                 {% else %}
                     No timelineentries available.
@@ -18,4 +27,5 @@
             </div>
         </div>
     </div>
+    {{ encore_entry_script_tags('timeline') }}
 {% endblock %}

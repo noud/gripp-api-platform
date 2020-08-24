@@ -53,7 +53,6 @@ sonata_admin:
             - build/runtime.js
             - build/app.js
             - build/2fa.js
-            - build/timeline.js
     templates:
         dashboard: 'bundles/SonataAdminBundle/Core/dashboard.html.twig'
         layout: 'bundles/SonataAdminBundle/standard_layout_favicon.html.twig'
