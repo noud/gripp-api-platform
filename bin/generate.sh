@@ -51,4 +51,5 @@ rm src/Admin/TimelineentryAdmin.php; bin/console make:app:admin App/Entity/Timel
 rm src/Admin/UnitAdmin.php; bin/console make:app:admin App/Entity/Unit --id=admin.unit --services=services_sonata.yaml --no-interaction
 rm src/Admin/WebhookAdmin.php; bin/console make:app:admin App/Entity/Webhook --id=admin.webhook --services=services_sonata.yaml --no-interaction
 rm src/Admin/ApiUserAdmin.php; bin/console make:sonata:admin --id=api.user --services=services_sonata.yaml --no-interaction App/Entity/Api/ApiUser
+patch bin/services_sonata.yaml.diff
 bin/edited.sh
